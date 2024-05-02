@@ -6,11 +6,11 @@
 
 This is a module for [AzerothCore](http://www.azerothcore.org) that reintroduces the vanilla version of Naxxramas back to 335.
 
-This project is constrained by the 335 client, therefore vanilla naxx cannot be fully restored without a client-side patch. To ensure compatibility (and an easier development experience), no client-side change will be necessary to use this module. This also means there will be inaccuracies, such as Mograine (4 horsemen) casting Riverdare's Mark.
+This project is constrained by the 335 client, therefore vanilla naxx cannot be fully restored without a client-side patch. To ensure compatibility (and an easier development experience), no client-side change will be necessary to use this module. This also means there will be inaccuracies
 
 If you encounter any issues or have suggestions, please post them as Github issues so that we can resolve them and improve this project.
 
-## Features
+## Some Features
 * New Naxxramas difficulty 10man heroic which hosts level 60 version of Naxxramas
 * Power level adjustments to Vanilla values
 * Entrance from either Stratholme instance or through a teleporter located in Plaguewood near the original entrance
