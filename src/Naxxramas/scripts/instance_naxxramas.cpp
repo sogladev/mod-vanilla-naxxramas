@@ -1381,7 +1381,6 @@ class NaxxPlayerScript : public PlayerScript
 public:
     NaxxPlayerScript() : PlayerScript("NaxxPlayerScript") { }
 
-
     void OnBeforeChooseGraveyard(Player* player, TeamId /*teamId*/, bool /*nearCorpse*/, uint32& graveyardOverride) override
     {
         if (player->GetMapId() == MAP_NAXX && player->GetMap()->GetSpawnMode() == RAID_DIFFICULTY_10MAN_HEROIC)
@@ -1455,7 +1454,6 @@ public:
         return true;
     }
 };
-
 
 const Position sapphironEntryTP = { 3498.300049f, -5349.490234f, 144.968002f, 1.3698910f };
 

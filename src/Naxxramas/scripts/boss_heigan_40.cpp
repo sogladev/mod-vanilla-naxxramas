@@ -292,7 +292,6 @@ public:
     }
 };
 
-
 class spell_heigan_eruption_40 : public SpellScriptLoader
 {
 public:

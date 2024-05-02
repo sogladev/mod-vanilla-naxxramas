@@ -93,7 +93,6 @@ private:
         sVanillaNaxxramas->requireNaxxStrath = sConfigMgr->GetOption<bool>("VanillaNaxxramas.Naxxramas.RequireNaxxStrathEntrance", true);
     }
 
-
 public:
     VanillaNaxxramas_WorldScript() : WorldScript("VanillaNaxxramas_WorldScript") { }
 

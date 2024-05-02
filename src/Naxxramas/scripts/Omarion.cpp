@@ -116,7 +116,6 @@ class npc_omarion : public CreatureScript
 public:
     npc_omarion() : CreatureScript("npc_omarion_gossip") { }
 
-
     bool OnGossipHello(Player* player, Creature* creature) override
     {
         ClearGossipMenuFor(player);

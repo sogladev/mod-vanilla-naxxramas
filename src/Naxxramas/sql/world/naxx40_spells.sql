@@ -45,5 +45,3 @@ VALUES(28457, 'spell_kelthuzad_dark_blast');
 DELETE FROM `spell_script_names` WHERE `spell_id` = 28135;
 INSERT INTO `spell_script_names` (`spell_id`, `ScriptName`)
 VALUES(28135, 'spell_feugen_static_field');
-
-

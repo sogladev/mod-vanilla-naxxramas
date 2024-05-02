@@ -741,7 +741,6 @@ public:
     }
 };
 
-
 class spell_kelthuzad_dark_blast : public SpellScript
 {
     PrepareSpellScript(spell_kelthuzad_dark_blast);

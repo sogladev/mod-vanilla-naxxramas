@@ -221,7 +221,6 @@ public:
     };
 };
 
-
 class boss_maexxna_webwrap40 : public CreatureScript
 {
 public:

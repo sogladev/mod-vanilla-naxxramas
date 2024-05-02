@@ -279,7 +279,6 @@ public:
     }
 };
 
-
 // This will overwrite the declared 10 and 25 man mutating injection to handle all versions of the spell script
 class spell_grobbulus_mutating_injection_40 : public SpellScriptLoader
 {
@@ -330,7 +329,6 @@ class spell_grobbulus_mutating_injection_40 : public SpellScriptLoader
             return new spell_grobbulus_mutating_injection_40_AuraScript();
         }
 };
-
 
 class spell_grobbulus_poison_cloud_poison_40 : public SpellScriptLoader
 {
