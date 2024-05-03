@@ -83,26 +83,6 @@ enum FourHorsemen
 // MARKS
 const uint32 TABLE_SPELL_MARK[4] = {SPELL_MARK_OF_ZELIEK, SPELL_MARK_OF_BLAUMEUX, SPELL_MARK_OF_MOGRAINE, SPELL_MARK_OF_KORTHAZZ};
 
-const Position WaypointPositions[12] =
-{
-    // Thane waypoints
-    {2542.3f, -2984.1f, 241.49f, 5.362f},
-    {2547.6f, -2999.4f, 241.34f, 5.049f},
-    {2542.9f, -3015.0f, 241.35f, 4.654f},
-    // Lady waypoints
-    {2498.3f, -2961.8f, 241.28f, 3.267f},
-    {2487.7f, -2959.2f, 241.28f, 2.890f},
-    {2469.4f, -2947.6f, 241.28f, 2.576f},
-    // Mograine waypoints
-    {2553.8f, -2968.4f, 241.33f, 5.757f},
-    {2564.3f, -2972.5f, 241.33f, 5.890f},
-    {2583.9f, -2971.6f, 241.35f, 0.008f},
-    // Sir waypoints
-    {2534.5f, -2921.7f, 241.53f, 1.363f},
-    {2523.5f, -2902.8f, 241.28f, 2.095f},
-    {2517.8f, -2896.6f, 241.28f, 2.315f}
-};
-
 class boss_four_horsemen_40 : public CreatureScript
 {
 public:
@@ -158,7 +138,6 @@ public:
                     currentWaypoint = 9;
                     break;
             }
-            me->GetMotionMaster()->MovePoint(currentWaypoint, WaypointPositions[currentWaypoint]);
         }
 
         bool IsInRoom()
@@ -176,6 +155,7 @@ public:
             BossAI::Reset();
             me->SetPosition(me->GetHomePosition());
             movementPhase = MOVE_PHASE_NONE;
+
             currentWaypoint = 0;
             me->SetReactState(REACT_AGGRESSIVE);
             events.Reset();
@@ -197,47 +177,6 @@ public:
                     {
                         go->SetGoState(GO_STATE_ACTIVE);
                     }
-                }
-            }
-        }
-
-        void MovementInform(uint32 type, uint32 id) override
-        {
-            if (type != POINT_MOTION_TYPE)
-                return;
-
-            // final waypoint
-            if (id % 3 == 2)
-            {
-                movementPhase = MOVE_PHASE_FINISHED;
-                me->SetReactState(REACT_AGGRESSIVE);
-                me->SetInCombatWithZone();
-                if (!UpdateVictim())
-                {
-                    EnterEvadeMode();
-                    return;
-                }
-                if (me->GetEntry() == NPC_LADY_BLAUMEUX_40 || me->GetEntry() == NPC_SIR_ZELIEK_40)
-                {
-                    me->GetMotionMaster()->Clear(false);
-                    me->GetMotionMaster()->MoveIdle();
-                }
-                return;
-            }
-            currentWaypoint = id + 1;
-        }
-
-        void AttackStart(Unit* who) override
-        {
-            if (movementPhase == MOVE_PHASE_FINISHED)
-            {
-                if (me->GetEntry() == NPC_LADY_BLAUMEUX_40 || me->GetEntry() == NPC_SIR_ZELIEK_40)
-                {
-                    me->Attack(who, false);
-                }
-                else
-                {
-                    ScriptedAI::AttackStart(who);
                 }
             }
         }
@@ -286,10 +225,9 @@ public:
             if (movementPhase == MOVE_PHASE_NONE)
             {
                 Talk(SAY_AGGRO);
-                me->SetReactState(REACT_PASSIVE);
-                movementPhase = MOVE_PHASE_STARTED;
-                me->SetSpeed(MOVE_RUN, me->GetSpeedRate(MOVE_RUN), true);
-                MoveToCorner();
+                movementPhase = MOVE_PHASE_FINISHED;
+                me->SetReactState(REACT_AGGRESSIVE);
+                me->SetInCombatWithZone();
             }
             if (pInstance)
             {
@@ -302,16 +240,10 @@ public:
 
         void UpdateAI(uint32 diff) override
         {
-            if (movementPhase == MOVE_PHASE_STARTED && currentWaypoint)
-            {
-                me->GetMotionMaster()->MovePoint(currentWaypoint, WaypointPositions[currentWaypoint]);
-                currentWaypoint = 0;
-            }
-
             if (!IsInRoom())
                 return;
 
-            if (movementPhase < MOVE_PHASE_FINISHED || !UpdateVictim())
+            if (!UpdateVictim())
                 return;
 
             events.Update(diff);
@@ -368,27 +300,7 @@ public:
                     events.RepeatEvent(15000);
                     return;
             }
-
-            if ((me->GetEntry() == NPC_LADY_BLAUMEUX_40 || me->GetEntry() == NPC_SIR_ZELIEK_40))
-            {
-                if (Unit* target = SelectTarget(SelectTargetMethod::MaxDistance, 0, 45.0f, true))
-                {
-                    if (horsemanId == HORSEMAN_ZELIEK)
-                    {
-                        int32 bp0 = 1109; // spell not used in vanilla, reduced damage from ~2.5 to ~1.2k
-                        me->CastCustomSpell(me->GetVictim(), SPELL_ZELIEK_HOLY_BOLT_10, &bp0, 0, 0, false);
-                    }
-                    else if (horsemanId == HORSEMAN_BLAUMEUX)
-                    {
-                        int32 bp0 = 1109; // spell not used in vanilla, reduced damage from ~2.5 to ~1.2k
-                        me->CastCustomSpell(me->GetVictim(), SPELL_BLAUMEUX_SHADOW_BOLT_10, &bp0, 0, 0, false);
-                    }
-                }
-            }
-            else
-            {
-                DoMeleeAttackIfReady();
-            }
+            DoMeleeAttackIfReady();
         }
     };
 };
