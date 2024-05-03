@@ -5582,10 +5582,10 @@ VALUES(29350, 'spell_heigan_plague_cloud_40');
 DELETE FROM `spell_script_names` WHERE `spell_id` = 29371;
 INSERT INTO `spell_script_names` (`spell_id`, `ScriptName`)
 VALUES(29371, 'spell_heigan_eruption_40');
--- Grobullus, Poison cast by Poison Cloud
-DELETE FROM `spell_script_names` WHERE `spell_id` = 28158;
+-- Grobullus, Poison damage by Poison Cloud ~3k to ~1k
+DELETE FROM `spell_script_names` WHERE `spell_id` = 28241;
 INSERT INTO `spell_script_names` (`spell_id`, `ScriptName`)
-VALUES(28158, 'spell_grobbulus_poison_cloud_poison_40');
+VALUES(28241, 'spell_grobbulus_poison_cloud_poison_damage_40');
 
 -- Eye Stalk
 -- Reduce damage 2.5k to 750, movement speed reduction -50 to -20 (as unsigned int)
@@ -5702,3 +5702,4 @@ INSERT INTO `creature_template_addon` (`entry`, `path_id`, `mount`, `bytes1`, `b
 -- DELETE FROM `creature_template_addon` WHERE (`entry` = 351009);
 -- INSERT INTO `creature_template_addon` (`entry`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES
 -- (351009, 0, 0, 0, 0, 0, 0, '18943');
+

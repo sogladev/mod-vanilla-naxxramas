@@ -330,42 +330,35 @@ class spell_grobbulus_mutating_injection_40 : public SpellScriptLoader
         }
 };
 
-class spell_grobbulus_poison_cloud_poison_40 : public SpellScriptLoader
+class spell_grobbulus_poison_cloud_poison_damage_40 : public SpellScriptLoader
 {
-    public:
-        spell_grobbulus_poison_cloud_poison_40() : SpellScriptLoader("spell_grobbulus_poison_cloud_poison_40") { }
+public:
+    spell_grobbulus_poison_cloud_poison_damage_40() : SpellScriptLoader("spell_grobbulus_poison_cloud_poison_damage_40") { }
 
-        class spell_grobbulus_poison_cloud_poison_40_AuraScript : public AuraScript
+    class spell_grobbulus_poison_cloud_poison_damage_40_SpellScript : public SpellScript
+    {
+        PrepareSpellScript(spell_grobbulus_poison_cloud_poison_damage_40_SpellScript);
+
+        void HandleDamageCalc(SpellEffIndex /*effIndex*/)
         {
-            PrepareAuraScript(spell_grobbulus_poison_cloud_poison_40_AuraScript);
-
-            bool Validate(SpellInfo const* /*spellInfo*/) override
+            Unit* caster = GetCaster();
+            if (!caster || (caster->GetMap()->GetDifficulty() != RAID_DIFFICULTY_10MAN_HEROIC))
             {
-                return ValidateSpellInfo({ SPELL_POISON_CLOUD_POISON_DAMAGE }); // Poison trigger
+                return;
             }
-
-            void HandleTriggerSpell(AuraEffect const* /*aurEff*/)
-            {
-                Unit* caster = GetCaster();
-                if (!caster || (caster->GetMap()->GetDifficulty() != RAID_DIFFICULTY_10MAN_HEROIC))
-                {
-                    return;
-                }
-                PreventDefaultAction();
-                int32 bp0 = 1109;
-                caster->CastCustomSpell(GetTarget(), SPELL_POISON_CLOUD_POISON_DAMAGE, &bp0, 0, 0, true);
-            }
-
-            void Register() override
-            {
-                OnEffectPeriodic += AuraEffectPeriodicFn(spell_grobbulus_poison_cloud_poison_40_AuraScript::HandleTriggerSpell, EFFECT_0, SPELL_AURA_PERIODIC_TRIGGER_SPELL);
-            }
-        };
-
-        AuraScript* GetAuraScript() const override
-        {
-            return new spell_grobbulus_poison_cloud_poison_40_AuraScript();
+            SetEffectValue(urand(1110, 1290));
         }
+
+        void Register() override
+        {
+            OnEffectLaunchTarget += SpellEffectFn(spell_grobbulus_poison_cloud_poison_damage_40_SpellScript::HandleDamageCalc, EFFECT_0, SPELL_EFFECT_SCHOOL_DAMAGE);
+        }
+    };
+
+    SpellScript* GetSpellScript() const override
+    {
+        return new spell_grobbulus_poison_cloud_poison_damage_40_SpellScript();
+    }
 };
 
 void AddSC_boss_grobbulus_40()
@@ -374,5 +367,6 @@ void AddSC_boss_grobbulus_40()
     new boss_grobbulus_poison_cloud_40();
     new spell_grobbulus_mutating_injection_40();
 //    new spell_grobbulus_poison();
-    new spell_grobbulus_poison_cloud_poison_40();
+    new spell_grobbulus_poison_cloud_poison_damage_40();
+
 }
