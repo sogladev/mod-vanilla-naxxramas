@@ -59,10 +59,6 @@ enum Events
 
 enum Misc
 {
-    // Movement
-    MOVE_PHASE_NONE                     = 0,
-    MOVE_PHASE_STARTED                  = 1,
-    MOVE_PHASE_FINISHED                 = 2,
     // Horseman
     HORSEMAN_ZELIEK                     = 0,
     HORSEMAN_BLAUMEUX                   = 1,
@@ -117,28 +113,7 @@ public:
 
         EventMap events;
         InstanceScript* pInstance;
-        uint8 currentWaypoint{};
-        uint8 movementPhase{};
         uint8 horsemanId;
-
-        void MoveToCorner()
-        {
-            switch(me->GetEntry())
-            {
-                case NPC_THANE_KORTHAZZ_40:
-                    currentWaypoint = 0;
-                    break;
-                case NPC_LADY_BLAUMEUX_40:
-                    currentWaypoint = 3;
-                    break;
-                case NPC_HIGHLORD_MOGRAINE_40:
-                    currentWaypoint = 6;
-                    break;
-                case NPC_SIR_ZELIEK_40:
-                    currentWaypoint = 9;
-                    break;
-            }
-        }
 
         bool IsInRoom()
         {
@@ -154,9 +129,7 @@ public:
         {
             BossAI::Reset();
             me->SetPosition(me->GetHomePosition());
-            movementPhase = MOVE_PHASE_NONE;
 
-            currentWaypoint = 0;
             me->SetReactState(REACT_AGGRESSIVE);
             events.Reset();
             events.RescheduleEvent(EVENT_MARK_CAST, 24000);
@@ -222,13 +195,9 @@ public:
         void JustEngagedWith(Unit* who) override
         {
             BossAI::JustEngagedWith(who);
-            if (movementPhase == MOVE_PHASE_NONE)
-            {
-                Talk(SAY_AGGRO);
-                movementPhase = MOVE_PHASE_FINISHED;
-                me->SetReactState(REACT_AGGRESSIVE);
-                me->SetInCombatWithZone();
-            }
+            Talk(SAY_AGGRO);
+            me->SetReactState(REACT_AGGRESSIVE);
+            me->SetInCombatWithZone();
             if (pInstance)
             {
                 if (GameObject* go = me->GetMap()->GetGameObject(pInstance->GetGuidData(DATA_HORSEMEN_GATE)))
