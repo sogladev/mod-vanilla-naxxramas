@@ -5687,3 +5687,18 @@ INSERT INTO `creature_template_spell` (`CreatureID`, `Index`, `Spell`, `Verified
 DELETE FROM `creature_template_addon` WHERE (`entry` = 351075);
 INSERT INTO `creature_template_addon` (`entry`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES
 (351075, 0, 0, 0, 1, 0, 0, '28460');
+
+-- Double Attack Aura
+-- Maexxna
+-- Aura that gives 25% chance to double attack
+DELETE FROM `creature_template_addon` WHERE (`entry` = 351006);
+INSERT INTO `creature_template_addon` (`entry`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES
+(351006, 0, 0, 0, 0, 0, 0, '18943');
+-- Gluth
+DELETE FROM `creature_template_addon` WHERE (`entry` = 351004);
+INSERT INTO `creature_template_addon` (`entry`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES
+(351004, 0, 0, 0, 0, 0, 0, '18943');
+-- Anub'Rekhan, not sure. Present in CMangos, not in VMangos
+-- DELETE FROM `creature_template_addon` WHERE (`entry` = 351009);
+-- INSERT INTO `creature_template_addon` (`entry`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES
+-- (351009, 0, 0, 0, 0, 0, 0, '18943');
