@@ -38,7 +38,7 @@ enum Says
 
 enum Spells
 {
-    SPELL_SPELL_DISRUPTION          = 29310,
+    SPELL_DISRUPTION                = 55010, // 29310->55010: Mana Burn AoE spell similar to vanilla
     SPELL_DECREPIT_FEVER            = 29998,
     SPELL_PLAGUE_CLOUD              = 29350,
     SPELL_PLAGUE_CLOUD_TRIGGER      = 30122,
@@ -189,7 +189,7 @@ public:
             switch (events.ExecuteEvent())
             {
                 case EVENT_DISRUPTION:
-                    me->CastSpell(me, SPELL_SPELL_DISRUPTION, false);
+                    me->CastCustomSpell(SPELL_DISRUPTION, SPELLVALUE_RADIUS_MOD, 2500, me, false); // 25yd
                     events.RepeatEvent(10000);
                     break;
                 case EVENT_DECEPIT_FEVER:
