@@ -6,7 +6,7 @@
 
 This is a module for [AzerothCore](http://www.azerothcore.org) that reintroduces the vanilla version of Naxxramas back to 335.
 
-This project is constrained by the 335 client, therefore vanilla naxx cannot be fully restored without a client-side patch. To ensure compatibility (and an easier development experience), no client-side change will be necessary to use this module. This also means there will be inaccuracies
+This project is constrained by the 335 client, therefore vanilla naxx cannot be fully restored without a client-side patch. To ensure compatibility, no client-side change will be necessary to use this module. This also means there will be inaccuracies
 
 If you encounter any issues or have suggestions, please post them as Github issues so that we can resolve them and improve this project.
 
@@ -62,7 +62,7 @@ https://github.com/jellemeeus/mod-progression-system-naxx25-60/tree/naxx
 Version3: stand-alone custom-module `mod-vanilla-naxxramas`
 
 ## Acknowledgements
-- [cmangos], [vmangos] for vanilla game data
+- [cmangos](https://github.com/cmangos), [vmangos](https://github.com/vmangos) for vanilla game data
 - [ZhengPeiRu21](https://github.com/ZhengPeiRu21/mod-individual-progression) Integrating V1 Naxx40 scripts into [mod-individual-progression](https://github.com/ZhengPeiRu21/mod-individual-progression) and allowing Naxx40 to co-exist alongside WOTLK Naxx
 - [mod-individual-progression](https://github.com/ZhengPeiRu21/mod-individual-progression) contributors and players for PR's and creating issues
 - AzerothCore: [repository](https://github.com/azerothcore) - [website](https://azerothcore.org/) - [discord chat community](https://discord.gg/PaqQRkd)
