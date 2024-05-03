@@ -32,21 +32,15 @@ enum Spells
     SPELL_MARK_OF_ZELIEK                = 28835,
     SPELL_MARK_DAMAGE                   = 28836,
     // Korth'azz
-    SPELL_KORTHAZZ_METEOR_10            = 28884,
-    SPELL_KORTHAZZ_METEOR_25            = 57467,
+    SPELL_KORTHAZZ_METEOR            = 28884,
     // Blaumeux
-    SPELL_BLAUMEUX_SHADOW_BOLT_10       = 57374,
-    SPELL_BLAUMEUX_SHADOW_BOLT_25       = 57464,
-    SPELL_BLAUMEUX_VOID_ZONE_10         = 28863,
-    SPELL_BLAUMEUX_VOID_ZONE_25         = 57463,
+    SPELL_BLAUMEUX_SHADOW_BOLT       = 57374,
+    SPELL_BLAUMEUX_VOID_ZONE         = 28863,
     // Zeliek
-    SPELL_ZELIEK_HOLY_WRATH_10          = 28883,
-    SPELL_ZELIEK_HOLY_WRATH_25          = 57466,
-    SPELL_ZELIEK_HOLY_BOLT_10           = 57376,
-    SPELL_ZELIEK_HOLY_BOLT_25           = 57465,
+    SPELL_ZELIEK_HOLY_WRATH          = 28883,
+    SPELL_ZELIEK_HOLY_BOLT           = 57376,
     // Mograine
-    SPELL_RIVENDARE_UNHOLY_SHADOW_10    = 28882,
-    SPELL_RIVENDARE_UNHOLY_SHADOW_25    = 57369
+    SPELL_RIVENDARE_UNHOLY_SHADOW    = 28882,
 };
 
 enum Events
@@ -234,22 +228,22 @@ public:
                     if (horsemanId == HORSEMAN_ZELIEK)
                     {
                         int32 bp0 = 1109; // spell not used in vanilla, reduced damage from ~2.5 to ~1.2k
-                        me->CastCustomSpell(me->GetVictim(), SPELL_ZELIEK_HOLY_BOLT_10, &bp0, 0, 0, false);
+                        me->CastCustomSpell(me->GetVictim(), SPELL_ZELIEK_HOLY_BOLT, &bp0, 0, 0, false);
                     }
                     else if (horsemanId == HORSEMAN_BLAUMEUX)
                     {
                         int32 bp0 = 1109; // spell not used in vanilla, reduced damage from ~2.5 to ~1.2k
-                        me->CastCustomSpell(me->GetVictim(), SPELL_BLAUMEUX_SHADOW_BOLT_10, &bp0, 0, 0, false);
+                        me->CastCustomSpell(me->GetVictim(), SPELL_BLAUMEUX_SHADOW_BOLT, &bp0, 0, 0, false);
                     }
                     else if (horsemanId == HORSEMAN_MOGRAINE)
                     {
                         // same dbc as vanilla. Shadow damage instead of fire
-                        me->CastSpell(me->GetVictim(), SPELL_RIVENDARE_UNHOLY_SHADOW_10, false);
+                        me->CastSpell(me->GetVictim(), SPELL_RIVENDARE_UNHOLY_SHADOW, false);
                     }
                     else // HORSEMAN_KORTHAZZ
                     {
                         int32 bp0 = 12824; // 14.5k to 13.5k
-                        me->CastCustomSpell(me->GetVictim(), SPELL_KORTHAZZ_METEOR_10, &bp0, 0, 0, false);
+                        me->CastCustomSpell(me->GetVictim(), SPELL_KORTHAZZ_METEOR, &bp0, 0, 0, false);
                     }
                     events.RepeatEvent(15000);
                     return;
@@ -260,11 +254,11 @@ public:
                         CustomSpellValues values;
                         values.AddSpellMod(SPELLVALUE_BASE_POINT0, bp0);
                         values.AddSpellMod(SPELLVALUE_MAX_TARGETS, 50); // 30yd
-                        me->CastCustomSpell(SPELL_ZELIEK_HOLY_WRATH_10, values, me->GetVictim(), TRIGGERED_NONE, nullptr, nullptr, ObjectGuid::Empty);
+                        me->CastCustomSpell(SPELL_ZELIEK_HOLY_WRATH, values, me->GetVictim(), TRIGGERED_NONE, nullptr, nullptr, ObjectGuid::Empty);
                     }
                     else // HORSEMAN_BLAUMEUX
                     {
-                        me->CastSpell(me->GetVictim(), SPELL_BLAUMEUX_VOID_ZONE_10, false);
+                        me->CastSpell(me->GetVictim(), SPELL_BLAUMEUX_VOID_ZONE, false);
                     }
                     events.RepeatEvent(15000);
                     return;
