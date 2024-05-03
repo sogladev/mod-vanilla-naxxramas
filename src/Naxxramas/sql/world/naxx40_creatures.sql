@@ -5703,3 +5703,6 @@ INSERT INTO `creature_template_addon` (`entry`, `path_id`, `mount`, `bytes1`, `b
 -- INSERT INTO `creature_template_addon` (`entry`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES
 -- (351009, 0, 0, 0, 0, 0, 0, '18943');
 
+-- Necro Knight Guardian
+-- Restore sword
+UPDATE `creature_template_addon` SET `bytes2` = 1 WHERE (`entry` = 16452);
