@@ -75,3 +75,15 @@ INSERT INTO `spell_dbc` (`ID`,`Category`,`DispelType`,`Mechanic`,`Attributes`,`A
 -- 28618: Disable pull effect and periodic trigger event. Keep pacify silence and set duration to 5 seconds
 -- TODO: remove this if fixed upstream
 UPDATE `spell_dbc` SET `DurationIndex` = 27, `Effect_1` = 0, `Effect_2` = 0 WHERE `ID` = 28618;
+
+-- Razuvious
+-- ? Script defines 29107? as target but only 55543 works
+-- 29107: Disrupting Shout
+DELETE FROM `spell_script_names` WHERE `spell_id` = 29107;
+INSERT INTO `spell_script_names` (`spell_id`, `ScriptName`)
+VALUES(29107, 'spell_razuvious_disrupting_shout');
+-- 55543: 10 man version of Disrupting Shout
+DELETE FROM `spell_script_names` WHERE `spell_id` = 55543;
+INSERT INTO `spell_script_names` (`spell_id`, `ScriptName`)
+VALUES(55543, 'spell_razuvious_disrupting_shout');
+

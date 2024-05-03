@@ -17,6 +17,8 @@
 
 #include "ScriptMgr.h"
 #include "ScriptedCreature.h"
+#include "SpellScript.h"
+#include "SpellScriptLoader.h"
 #include "naxxramas.h"
 
 enum Says
@@ -135,7 +137,8 @@ public:
             BossAI::JustEngagedWith(who);
             Talk(SAY_AGGRO);
             events.ScheduleEvent(EVENT_UNBALANCING_STRIKE, 20000); //  TODO: This can be 30 seconds to match vanilla
-            events.ScheduleEvent(EVENT_DISRUPTING_SHOUT, 15000);
+            events.ScheduleEvent(EVENT_DISRUPTING_SHOUT, 5s);
+            // events.ScheduleEvent(EVENT_DISRUPTING_SHOUT, 15s);
             //events.ScheduleEvent(EVENT_JAGGED_KNIFE, 10000); // New wrath mechanic
             summons.DoZoneInCombat();
         }
@@ -156,17 +159,9 @@ public:
                     events.RepeatEvent(20000);
                     break;
                 case EVENT_DISRUPTING_SHOUT:
-                {
-                    // TODO: Custom patch needed to implement power burn, or remove visual effect
-                    // 45yd that ignores line of sight
-                    CustomSpellValues values;
-                    int32 customDisruptingShoutDamage = 2200; // some value as we ignore LoS without patch
-                    values.AddSpellMod(SPELLVALUE_BASE_POINT0, customDisruptingShoutDamage);
-                    values.AddSpellMod(SPELLVALUE_RADIUS_MOD, 4500); // 45yd
-                    me->CastCustomSpell(SPELL_DISRUPTING_SHOUT, values, me, TRIGGERED_NONE, nullptr, nullptr, ObjectGuid::Empty);
-                    events.RepeatEvent(15000);
+                    me->CastSpell(me, SPELL_DISRUPTING_SHOUT, false);
+                    events.RepeatEvent(10000);
                     break;
-                }
                 case EVENT_JAGGED_KNIFE:
                     if (Unit* target = SelectTarget(SelectTargetMethod::Random, 0, 45.0f))
                     {
@@ -232,8 +227,55 @@ public:
     };
 };
 
+class spell_razuvious_disrupting_shout_40 : public SpellScriptLoader
+{
+public:
+    spell_razuvious_disrupting_shout_40() : SpellScriptLoader("spell_razuvious_disrupting_shout") { }
+
+    class spell_razuvious_disrupting_shout_40_SpellScript : public SpellScript
+    {
+        PrepareSpellScript(spell_razuvious_disrupting_shout_40_SpellScript);
+
+        void PreventLaunchHit(SpellEffIndex effIndex)
+        {
+            Unit* caster = GetCaster();
+            if (!caster || (caster->GetMap()->GetDifficulty() != RAID_DIFFICULTY_10MAN_HEROIC))
+            {
+                return;
+            }
+            if (Unit* target = GetHitUnit())
+            {
+                // ignore los -> not ignore los
+                // radius 60yd -> 45yd
+                PreventHitDefaultEffect(effIndex);
+                if (!target->IsWithinLOSInMap(caster) || !target->IsWithinDist2d(caster, 45.0f))
+                {
+                    SetEffectValue(0);
+                    return;
+                }
+                Powers PowerType = POWER_MANA;
+                // int32 amountToDrain = urand(4050,4950);
+                int32 amountToDrain = urand(500,501);
+                int32 drainedAmount = -target->ModifyPower(PowerType, -amountToDrain);
+                SetEffectValue(drainedAmount);
+            }
+        }
+
+        void Register() override
+        {
+            OnEffectHitTarget += SpellEffectFn(spell_razuvious_disrupting_shout_40_SpellScript::PreventLaunchHit, EFFECT_0, SPELL_EFFECT_SCHOOL_DAMAGE);
+        }
+    };
+
+    SpellScript* GetSpellScript() const override
+    {
+        return new spell_razuvious_disrupting_shout_40_SpellScript();
+    }
+};
+
 void AddSC_boss_razuvious_40()
 {
     new boss_razuvious_40();
     new boss_razuvious_minion_40();
+    new spell_razuvious_disrupting_shout_40();
 }
