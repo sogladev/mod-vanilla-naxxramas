@@ -5706,3 +5706,7 @@ INSERT INTO `creature_template_addon` (`entry`, `path_id`, `mount`, `bytes1`, `b
 -- Necro Knight Guardian
 -- Restore sword
 UPDATE `creature_template_addon` SET `bytes2` = 1 WHERE (`entry` = 16452);
+-- Death Lord
+-- Restore blue sword
+UPDATE `creature_template_addon` SET `bytes2` = 1 WHERE (`entry` = 16861);
+UPDATE `creature_equip_template` SET `ItemID1` = 13623 WHERE (`CreatureID` = 16861);
