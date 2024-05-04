@@ -301,11 +301,25 @@ public:
                 case EVENT_ERUPT_SECTION:
                     if (pInstance)
                     {
-                        // if (currentPhase == PHASE_FAST_DANCE)
-                        // {
-                            // Blast tunnel
+                        if (currentPhase == PHASE_FAST_DANCE)
+                        {
+                            // ugly  hackfix: kill everyone who's not in the main room
+                            Map::PlayerList const& PlayerList = me->GetMap()->GetPlayers();
+                            for (const auto& itr : PlayerList)
+                            {
+                                if (Player* player = itr.GetSource())
+                                {
+                                    if (player->IsAlive() && !player->IsGameMaster())
+                                    {
+                                        if (player->GetPositionX() <= 2769.0f)
+                                        {
+                                            player->KillSelf();
+                                        }
+                                    }
+                                }
+                            }
                             // pInstance->SetData(DATA_HEIGAN_ERUPTION_TUNNEL, 0);
-                        // }
+                        }
                         pInstance->SetData(DATA_HEIGAN_ERUPTION, currentSection);
                         if (currentSection == 3)
                         {
@@ -448,7 +462,6 @@ public:
         return new spell_submerge_visual_AuraScript();
     }
 };
-
 
 class boss_heigan_eye_stalk_40 : public CreatureScript
 {
