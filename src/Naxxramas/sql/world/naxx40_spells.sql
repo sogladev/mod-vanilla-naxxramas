@@ -87,3 +87,13 @@ DELETE FROM `spell_script_names` WHERE `spell_id` = 55543;
 INSERT INTO `spell_script_names` (`spell_id`, `ScriptName`)
 VALUES(55543, 'spell_razuvious_disrupting_shout');
 
+-- Generic Spell Submerge
+-- relinquery of souls and eye stalk TC: https://github.com/search?q=repo%3ATrinityCore%2FTrinityCore%20spell_reliquary_of_souls_submerge&type=code
+DELETE FROM `spell_script_names` WHERE `spell_id` = 28819;
+INSERT INTO `spell_script_names` (`spell_id`, `ScriptName`)
+VALUES(28819, 'spell_submerge_visual');
+
+-- Update heigan teleport player (unused in core)
+UPDATE `spell_target_position`
+SET `PositionX`=2917.43, `PositionY`=-3769.18, `PositionZ`=273.62, `Orientation`=3.1415
+WHERE `ID`=29273

@@ -74,6 +74,7 @@ public:
 
             // NPCs
             PatchwerkRoomTrash.clear();
+            HeiganBackRoomAdds.clear();
 
             // Controls
             _horsemanKilled = 0;
@@ -103,6 +104,7 @@ public:
         ObjectGuid _nothExitGateGUID;
         ObjectGuid _heiganGateGUID;
         ObjectGuid _heiganGateExitGUID;
+        ObjectGuid _heiganGateExitOldGUID;
         ObjectGuid _loathebGateGUID;
         ObjectGuid _anubGateGUID;
         ObjectGuid _anubNextGateGUID;
@@ -136,6 +138,7 @@ public:
 
         // NPCs
         GuidList PatchwerkRoomTrash;
+        GuidList HeiganBackRoomAdds;
         ObjectGuid _patchwerkGUID;
         ObjectGuid _thaddiusGUID;
         ObjectGuid _stalaggGUID;
@@ -197,6 +200,15 @@ public:
 
             switch(creature->GetEntry())
             {
+                case NPC_ROTTING_MAGGOT_40:
+                    HeiganBackRoomAdds.push_back(creature->GetGUID());
+                    return;
+                case NPC_DISEASED_MAGGOT_40:
+                    HeiganBackRoomAdds.push_back(creature->GetGUID());
+                    return;
+                case NPC_EYE_STALK_40:
+                    HeiganBackRoomAdds.push_back(creature->GetGUID());
+                    return;
                 case NPC_PATCHWERK:
                     _patchwerkGUID = creature->GetGUID();
                     return;
@@ -354,6 +366,13 @@ public:
                     break;
                 case GO_HEIGAN_EXIT_GATE:
                     _heiganGateExitGUID = pGo->GetGUID();
+                    if (GetBossState(BOSS_HEIGAN) == DONE)
+                    {
+                        pGo->SetGoState(GO_STATE_ACTIVE);
+                    }
+                    break;
+                case GO_HEIGAN_EXIT_GATE_OLD:
+                    _heiganGateExitOldGUID = pGo->GetGUID();
                     if (GetBossState(BOSS_HEIGAN) == DONE)
                     {
                         pGo->SetGoState(GO_STATE_ACTIVE);
@@ -921,11 +940,22 @@ public:
                         }
                         break;
                     case BOSS_HEIGAN:
+                        for (auto& mobGUID : HeiganBackRoomAdds)
+                        {
+                            if (Creature* mob = instance->GetCreature(mobGUID))
+                            {
+                                mob->DespawnOrUnsummon();
+                            }
+                        }
                         if (GameObject* go = instance->GetGameObject(_heiganGateGUID))
                         {
                             go->SetGoState(GO_STATE_ACTIVE);
                         }
                         if (GameObject* go = instance->GetGameObject(_heiganGateExitGUID))
+                        {
+                            go->SetGoState(GO_STATE_ACTIVE);
+                        }
+                        if (GameObject* go = instance->GetGameObject(_heiganGateExitOldGUID))
                         {
                             go->SetGoState(GO_STATE_ACTIVE);
                         }
@@ -1143,6 +1173,10 @@ public:
                 // GameObjects
                 case DATA_HEIGAN_ENTER_GATE:
                     return _heiganGateGUID;
+                case DATA_HEIGAN_EXIT_GATE_OLD:
+                    return _heiganGateExitOldGUID;
+                case DATA_HEIGAN_EXIT_GATE:
+                    return _heiganGateExitGUID;
                 case DATA_LOATHEB_GATE:
                     return _loathebGateGUID;
                 case DATA_ANUB_GATE:
@@ -1365,9 +1399,7 @@ public:
 
     bool OnGossipHello(Player* player, GameObject* /*go*/) override
     {
-        //if ((!sIndividualProgression->requireNaxxStrath || player->GetQuestStatus(NAXX40_ENTRANCE_FLAG) == QUEST_STATUS_REWARDED) && isAttuned(player))
         if ((!sVanillaNaxxramas->requireNaxxStrath || player->GetQuestStatus(NAXX40_ENTRANCE_FLAG) == QUEST_STATUS_REWARDED) && isAttuned(player))
-        //if ((player->GetQuestStatus(NAXX40_ENTRANCE_FLAG) == QUEST_STATUS_REWARDED) && isAttuned(player))
         {
             player->SetRaidDifficulty(RAID_DIFFICULTY_10MAN_HEROIC);
             player->TeleportTo(533, 3005.51f, -3434.64f, 304.195f, 6.2831f);
