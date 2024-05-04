@@ -130,7 +130,7 @@ public:
             me->SetReactState(REACT_AGGRESSIVE);
             doneFirstShieldWall = false;
             events.Reset();
-            events.RescheduleEvent(EVENT_MARK_CAST, 24000);
+            events.RescheduleEvent(EVENT_MARK_CAST, 20000);
             events.RescheduleEvent(EVENT_BERSERK, 600000);
             if ((me->GetEntry() != NPC_LADY_BLAUMEUX_40 && me->GetEntry() != NPC_SIR_ZELIEK_40))
             {
@@ -222,7 +222,7 @@ public:
             {
                 case EVENT_MARK_CAST:
                     me->CastSpell(me, TABLE_SPELL_MARK[horsemanId], false);
-                    events.RepeatEvent((me->GetEntry() == NPC_LADY_BLAUMEUX_40 || me->GetEntry() == NPC_SIR_ZELIEK_40) ? 15000 : 12000);
+                    events.RepeatEvent(12000);
                     return;
                 case EVENT_BERSERK:
                     Talk(SAY_SPECIAL);
