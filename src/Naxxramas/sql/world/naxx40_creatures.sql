@@ -5590,11 +5590,7 @@ VALUES(28241, 'spell_grobbulus_poison_cloud_poison_damage_40');
 -- Eye Stalk
 -- Reduce damage 2.5k to 750, movement speed reduction -50 to -20 (as unsigned int)
 DELETE FROM `smart_scripts` WHERE (`source_type` = 0 AND `entryorguid` = 351090);
-INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES
-(351090, 0, 0, 0, 0, 0, 85, 0, 0, 0, 11000, 11000, 0, 0, 218, 29407, 0, 749, 4294967276, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 'Eye Stalk - In Combat - Custom Cast Mind Flay (Naxx40)'),
-(351090, 0, 1, 0, 11, 0, 100, 0, 0, 0, 0, 0, 0, 0, 11, 26586, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 'Eye Stalk - On Respawn - Cast \'Birth\' (Naxx40)'),
-(351090, 0, 2, 0, 1, 0, 100, 0, 2000, 8000, 2000, 30000, 0, 0, 11, 28819, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 'Eye Stalk - Out of Combat - Cast \'Submerge Visual\' (Naxx40)'),
-(351090, 0, 3, 0, 9, 0, 100, 0, 0, 0, 2000, 2000, 36, 90, 24, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 'Eye Stalk - Within 36-90 Range - Evade (Naxx40)');
+UPDATE `creature_template` SET `AIName` = '', `ScriptName` = 'boss_heigan_eye_stalk_40' WHERE (`entry` = 351090);
 
 -- Fungal Spore
 -- OnDeath Apply: Threat -100% (as unsigned int), Melee +50% crit, Casters +60% (up from 50%) crit
@@ -5721,3 +5717,21 @@ INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_
 (16778, 0, 0, 0, 0, 0, 100, 0, 20000, 20000, 12000, 12000, 0, 0, 11, 28832, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 'Spirit of Korthazz - In Combat - Cast \'Mark of Korthazz\'');
 -- fix: Mograine spirit is 73? and attackable
 UPDATE `creature_template` SET `minlevel` = 63, `maxlevel` = 63, `DamageModifier` = 10, `unit_flags` = 2, `MovementType` = 0 WHERE (`entry` = 16775);
+
+-- Heigan maggots
+-- Mechanic Disoriented: Scatter Shot
+UPDATE `creature_template` SET `mechanic_immune_mask` = (`mechanic_immune_mask` | 2) WHERE `entry` IN (351033, 351034);
+-- Mechanic Snare: Earthbind, Piercing Howl
+UPDATE `creature_template` SET `mechanic_immune_mask` = (`mechanic_immune_mask` | 1024) WHERE `entry` IN (351033, 351034);
+-- Disease aura 30080
+DELETE FROM `creature_template_addon` WHERE (`entry` = 351033);
+INSERT INTO `creature_template_addon` (`entry`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES
+(351033, 0, 0, 0, 0, 0, 0, '30080');
+-- Eye stalk HP should be 800hp ish
+UPDATE `creature_template` SET `HealthModifier` = 0.15 WHERE (`entry` = 351090);
+-- Trigger forced despawn if near the platform
+UPDATE `creature_template` SET `AIName` = 'SmartAI' WHERE `entry` IN (351033, 351034);
+DELETE FROM `smart_scripts` WHERE (`entryorguid` IN (351033, 351034)) AND (`source_type` = 0);
+INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES
+(351033, 0, 0, 0, 76, 0, 100, 0, 0, 181202, 54, 1500, 0, 0, 41, 200, 10, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 'Diseased Maggot - On Distance 54y To GameObject - Despawn In 200 ms'),
+(351034, 0, 0, 0, 76, 0, 100, 0, 0, 181202, 54, 1500, 0, 0, 41, 200, 10, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 'Rotten Maggot - On Distance 54y To GameObject - Despawn In 200 ms');
