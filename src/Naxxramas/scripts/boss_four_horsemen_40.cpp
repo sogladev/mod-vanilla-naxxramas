@@ -182,6 +182,14 @@ public:
             }
         }
 
+        void SpellHitTarget(Unit* target, SpellInfo const* spellInfo) override
+        {
+            if (spellInfo->Id == TABLE_SPELL_MARK[horsemanId])
+            {
+                DoModifyThreatByPercent(target, -50);
+            }
+        }
+
         void JustDied(Unit*  killer) override
         {
             BossAI::JustDied(killer);
