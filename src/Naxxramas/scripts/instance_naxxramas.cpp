@@ -734,7 +734,6 @@ public:
             }
         }
 
-
         uint32 GetData(uint32 id) const override
         {
             if (id == DATA_HAD_THADDIUS_GREET && _hadThaddiusGreet)
