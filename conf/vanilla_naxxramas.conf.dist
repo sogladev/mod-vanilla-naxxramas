@@ -52,17 +52,7 @@ VanillaNaxxramas.ReapplyUpdates = 0
 VanillaNaxxramas.ScourgeEvent  = 0  # (NOT IMPLEMENTED)
 VanillaNaxxramas.Naxxramas     = 1
 
-VanillaNaxxramas.Naxxramas.RequireAttunement = 1 # (OPTION NOT IMPLEMENTED)
-
-#
-#    VanillaNaxxramas.Naxxramas.RequireAttunement
-#        Description: Require attunement quests to be completed to enter Naxxramas
-#        Default:   1 - Enabled
-#                   0 - Disabled
-#
-#
-
-VanillaNaxxramas.Naxxramas.RequireNaxxStrathEntrance = 1 # (OPTION NOT IMPLEMENTED)
+VanillaNaxxramas.Naxxramas.RequireNaxxStrathEntrance = 1
 
 #
 #
