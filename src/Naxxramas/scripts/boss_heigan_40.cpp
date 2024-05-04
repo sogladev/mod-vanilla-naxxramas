@@ -301,6 +301,11 @@ public:
                 case EVENT_ERUPT_SECTION:
                     if (pInstance)
                     {
+                        // if (currentPhase == PHASE_FAST_DANCE)
+                        // {
+                            // Blast tunnel
+                            // pInstance->SetData(DATA_HEIGAN_ERUPTION_TUNNEL, 0);
+                        // }
                         pInstance->SetData(DATA_HEIGAN_ERUPTION, currentSection);
                         if (currentSection == 3)
                         {

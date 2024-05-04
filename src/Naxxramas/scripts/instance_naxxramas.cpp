@@ -96,6 +96,7 @@ public:
         }
 
         std::set<GameObject*> HeiganEruption[4];
+        std::set<GameObject*> HeiganEruptionTunnel;
 
         // GOs
         ObjectGuid _patchwerkGateGUID;
@@ -182,6 +183,17 @@ public:
                     itr->SendCustomAnim(itr->GetGoAnimProgress());
                     itr->CastSpell(nullptr, SPELL_ERUPTION);
                 }
+
+            }
+        }
+
+        void HeiganEruptSectionsTunnel()
+        {
+            // doesn't work
+            for (auto itr : HeiganEruptionTunnel)
+            {
+                itr->SendCustomAnim(itr->GetGoAnimProgress());
+                itr->CastSpell(nullptr, SPELL_ERUPTION);
             }
         }
 
@@ -324,6 +336,11 @@ public:
             if (pGo->GetGOInfo()->displayId == 6785 || pGo->GetGOInfo()->displayId == 1287)
             {
                 HeiganEruption[GetEruptionSection(pGo->GetPositionX(), pGo->GetPositionY())].insert(pGo);
+                return;
+            }
+            if (pGo->GetGOInfo()->entry == 361001)
+            {
+                HeiganEruptionTunnel.insert(pGo);
                 return;
             }
 
@@ -707,12 +724,16 @@ public:
                 case DATA_HEIGAN_ERUPTION:
                     HeiganEruptSections(data);
                     return;
+                case DATA_HEIGAN_ERUPTION_TUNNEL:
+                    HeiganEruptSectionsTunnel();
+                    return;
                 case DATA_HAD_THADDIUS_GREET:
                     _hadThaddiusGreet = (data == 1);
                 default:
                     return;
             }
         }
+
 
         uint32 GetData(uint32 id) const override
         {

@@ -76,7 +76,8 @@ enum NXData
     DATA_KELTHUZAD_PORTAL_3         = 128,
     DATA_KELTHUZAD_PORTAL_4         = 129,
     DATA_HEIGAN_EXIT_GATE_OLD       = 130,
-    DATA_HEIGAN_EXIT_GATE           = 131
+    DATA_HEIGAN_EXIT_GATE           = 131,
+    DATA_HEIGAN_ERUPTION_TUNNEL     = 130
 };
 
 enum NXGOs
