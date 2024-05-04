@@ -24,13 +24,13 @@
 
 enum Spells
 {
-    SPELL_BERSERK                       = 26662,
+    SPELL_BERSERK                    = 26662,
     // Marks
-    SPELL_MARK_OF_KORTHAZZ              = 28832,
-    SPELL_MARK_OF_BLAUMEUX              = 28833,
-    SPELL_MARK_OF_MOGRAINE              = 28834, // TODO: Requires Spell DBC Edit
-    SPELL_MARK_OF_ZELIEK                = 28835,
-    SPELL_MARK_DAMAGE                   = 28836,
+    SPELL_MARK_OF_KORTHAZZ           = 28832,
+    SPELL_MARK_OF_BLAUMEUX           = 28833,
+    SPELL_MARK_OF_MOGRAINE           = 28834, // TODO: Requires Spell DBC Edit
+    SPELL_MARK_OF_ZELIEK             = 28835,
+    SPELL_MARK_DAMAGE                = 28836,
     // Korth'azz
     SPELL_KORTHAZZ_METEOR            = 28884,
     // Blaumeux
@@ -48,7 +48,7 @@ enum Events
     EVENT_MARK_CAST                     = 1,
     EVENT_PRIMARY_SPELL                 = 2,
     EVENT_SECONDARY_SPELL               = 3,
-    EVENT_BERSERK                       = 4
+    EVENT_BERSERK                       = 4,
 };
 
 enum Misc
