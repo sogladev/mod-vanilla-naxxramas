@@ -63,6 +63,20 @@ enum Misc
     HORSEMAN_KORTHAZZ                   = 3
 };
 
+enum Spirits
+{
+    // Spells
+    SPELL_SUMMON_SPIRIT_ZELIEK    = 28934,
+    SPELL_SUMMON_SPIRIT_BLAUMEUX  = 28931,
+    SPELL_SUMMON_SPIRIT_MOGRAINE  = 28928,
+    SPELL_SUMMON_SPIRIT_KORTHAZZ  = 28932,
+    // NPCs
+    NPC_SPIRIT_ZELIEK             = 16777,
+    NPC_SPIRIT_BLAUMEUX           = 16776,
+    NPC_SPIRIT_MOGRAINE           = 16775,
+    NPC_SPIRIT_KORTHAZZ           = 16778
+};
+
 enum FourHorsemen
 {
     SAY_AGGRO       = 0,
@@ -75,6 +89,8 @@ enum FourHorsemen
 
 // MARKS
 const uint32 TABLE_SPELL_MARK[4] = {SPELL_MARK_OF_ZELIEK, SPELL_MARK_OF_BLAUMEUX, SPELL_MARK_OF_MOGRAINE, SPELL_MARK_OF_KORTHAZZ};
+// SPIRITS
+const uint32 TABLE_SPELL_SUMMON_SPIRIT[4] = {SPELL_SUMMON_SPIRIT_ZELIEK, SPELL_SUMMON_SPIRIT_BLAUMEUX, SPELL_SUMMON_SPIRIT_MOGRAINE, SPELL_SUMMON_SPIRIT_KORTHAZZ};
 
 class boss_four_horsemen_40 : public CreatureScript
 {
@@ -133,6 +149,7 @@ public:
             events.Reset();
             events.RescheduleEvent(EVENT_MARK_CAST, 20000);
             events.RescheduleEvent(EVENT_BERSERK, 600000);
+            summons.DespawnAll(); // despawn spirits
             if ((me->GetEntry() != NPC_LADY_BLAUMEUX_40 && me->GetEntry() != NPC_SIR_ZELIEK_40))
             {
                 events.RescheduleEvent(EVENT_PRIMARY_SPELL, 10000 + rand() % 5000);
@@ -172,6 +189,14 @@ public:
             {
                 if (pInstance->GetBossState(BOSS_HORSEMAN) == DONE)
                 {
+                    if (Creature* spirit = GetClosestCreatureWithEntry(me, NPC_SPIRIT_ZELIEK, 200.0f))
+                        spirit->DespawnOrUnsummon();
+                    if (Creature* spirit = GetClosestCreatureWithEntry(me, NPC_SPIRIT_BLAUMEUX, 200.0f))
+                        spirit->DespawnOrUnsummon();
+                    if (Creature* spirit = GetClosestCreatureWithEntry(me, NPC_SPIRIT_MOGRAINE, 200.0f))
+                        spirit->DespawnOrUnsummon();
+                    if (Creature* spirit = GetClosestCreatureWithEntry(me, NPC_SPIRIT_KORTHAZZ, 200.0f))
+                        spirit->DespawnOrUnsummon();
                     if (!me->GetMap()->GetPlayers().IsEmpty())
                     {
                         if (Player* player = me->GetMap()->GetPlayers().getFirst()->GetSource())
@@ -187,8 +212,20 @@ public:
                         go->SetGoState(GO_STATE_ACTIVE);
                     }
                 }
+                else
+                {
+                    // Prevent spawning if last horseman killed
+                    DoCastSelf(TABLE_SPELL_SUMMON_SPIRIT[horsemanId], true);
+                }
             }
             Talk(SAY_DEATH);
+        }
+
+        void JustSummoned(Creature* summon) override
+        {
+            summons.Summon(summon);
+            summons.DoZoneInCombat();
+            summon->SetUnitFlag(UNIT_FLAG_DISABLE_MOVE);
         }
 
         void JustEngagedWith(Unit* who) override
