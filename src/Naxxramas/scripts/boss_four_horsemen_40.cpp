@@ -25,6 +25,7 @@
 enum Spells
 {
     SPELL_BERSERK                    = 26662,
+    SPELL_SHIELDWALL                 = 29061, // Shield Wall - All 4 horsemen will shield wall at 50% hp and 20% hp for 20 seconds
     // Marks
     SPELL_MARK_OF_KORTHAZZ           = 28832,
     SPELL_MARK_OF_BLAUMEUX           = 28833,
@@ -49,6 +50,7 @@ enum Events
     EVENT_PRIMARY_SPELL                 = 2,
     EVENT_SECONDARY_SPELL               = 3,
     EVENT_BERSERK                       = 4,
+    EVENT_HEALTH_CHECK                  = 5
 };
 
 enum Misc
@@ -108,6 +110,7 @@ public:
         EventMap events;
         InstanceScript* pInstance;
         uint8 horsemanId;
+        bool doneFirstShieldWall;
 
         bool IsInRoom()
         {
@@ -125,6 +128,7 @@ public:
             me->SetPosition(me->GetHomePosition());
 
             me->SetReactState(REACT_AGGRESSIVE);
+            doneFirstShieldWall = false;
             events.Reset();
             events.RescheduleEvent(EVENT_MARK_CAST, 24000);
             events.RescheduleEvent(EVENT_BERSERK, 600000);
@@ -193,6 +197,7 @@ public:
             me->SetReactState(REACT_AGGRESSIVE);
             me->SetInCombatWithZone();
             if (pInstance)
+            events.ScheduleEvent(EVENT_HEALTH_CHECK, 1s);
             {
                 if (GameObject* go = me->GetMap()->GetGameObject(pInstance->GetGuidData(DATA_HORSEMEN_GATE)))
                 {
@@ -261,6 +266,24 @@ public:
                         me->CastSpell(me->GetVictim(), SPELL_BLAUMEUX_VOID_ZONE, false);
                     }
                     events.RepeatEvent(15000);
+                    return;
+                case EVENT_HEALTH_CHECK:
+                    if (!doneFirstShieldWall && me->GetHealthPct() <= 50.0f)
+                    {
+                        DoCastSelf(SPELL_SHIELDWALL, true);
+                        doneFirstShieldWall = true;
+                        events.Repeat(1s);
+                        break;
+                    }
+                    if (doneFirstShieldWall && me->GetHealthPct() <= 20.0f)
+                    {
+                        if (!me->HasAura(SPELL_SHIELDWALL)) // prevent refresh of first shield wall
+                        {
+                            DoCastSelf(SPELL_SHIELDWALL, true);
+                        }
+                        break;
+                    }
+                    events.Repeat(1s);
                     return;
             }
             DoMeleeAttackIfReady();
