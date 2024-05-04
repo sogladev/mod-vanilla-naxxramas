@@ -26,6 +26,7 @@ enum Spells
 {
     SPELL_BERSERK                    = 26662,
     SPELL_SHIELDWALL                 = 29061, // Shield Wall - All 4 horsemen will shield wall at 50% hp and 20% hp for 20 seconds
+    SPELL_SUMMON_PLAYER              = 25104,
     // Marks
     SPELL_MARK_OF_KORTHAZZ           = 28832,
     SPELL_MARK_OF_BLAUMEUX           = 28833,
@@ -213,6 +214,12 @@ public:
 
             if (!UpdateVictim())
                 return;
+
+            if (Unit* victim = me->GetVictim())
+            {
+                if (!me->IsWithinDistInMap(victim, VISIBILITY_DISTANCE_NORMAL))
+                    me->CastSpell(victim, SPELL_SUMMON_PLAYER, true);
+            }
 
             events.Update(diff);
             if (me->HasUnitState(UNIT_STATE_CASTING))
