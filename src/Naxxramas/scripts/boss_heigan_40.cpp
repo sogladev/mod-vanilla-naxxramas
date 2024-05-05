@@ -119,6 +119,7 @@ public:
             currentPhase = 0;
             currentSection = 3;
             portedPlayersThisPhase.clear();
+            KillPlayersInTheTunnel();
             moveRight = true;
             if (pInstance)
             {
@@ -222,6 +223,25 @@ public:
             return true;
         }
 
+        void KillPlayersInTheTunnel()
+        {
+            // hackfix: kill everyone in the tunnel
+            Map::PlayerList const& PlayerList = me->GetMap()->GetPlayers();
+            for (const auto& itr : PlayerList)
+            {
+                if (Player* player = itr.GetSource())
+                {
+                    if (player->IsAlive() && !player->IsGameMaster())
+                    {
+                        if (player->GetPositionX() <= 2769.0f)
+                        {
+                            player->KillSelf();
+                        }
+                    }
+                }
+            }
+        }
+
         void DoEventTeleportPlayer()
         {
             std::list<Unit*> candidates;
@@ -233,6 +253,7 @@ public:
                     return false;
                 if (me->GetVictim() == target) // never target tank
                     return false;
+                // skip players who already have been teleported this phase
                 if (std::find(portedPlayersThisPhase.begin(), portedPlayersThisPhase.end(), target->GetGUID()) != portedPlayersThisPhase.end())
                     return false;
                 return true;
@@ -303,22 +324,8 @@ public:
                     {
                         if (currentPhase == PHASE_FAST_DANCE)
                         {
-                            // ugly  hackfix: kill everyone who's not in the main room
-                            Map::PlayerList const& PlayerList = me->GetMap()->GetPlayers();
-                            for (const auto& itr : PlayerList)
-                            {
-                                if (Player* player = itr.GetSource())
-                                {
-                                    if (player->IsAlive() && !player->IsGameMaster())
-                                    {
-                                        if (player->GetPositionX() <= 2769.0f)
-                                        {
-                                            player->KillSelf();
-                                        }
-                                    }
-                                }
-                            }
-                            // pInstance->SetData(DATA_HEIGAN_ERUPTION_TUNNEL, 0);
+                            if (currentSection >= 1)
+                                KillPlayersInTheTunnel();
                         }
                         pInstance->SetData(DATA_HEIGAN_ERUPTION, currentSection);
                         if (currentSection == 3)
