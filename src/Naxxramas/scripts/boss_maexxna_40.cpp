@@ -15,11 +15,10 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "PassiveAI.h"
+#include "CreatureScript.h"
 #include "Player.h"
-#include "ScriptMgr.h"
+#include "PassiveAI.h"
 #include "ScriptedCreature.h"
-#include "SpellAuras.h"
 #include "SpellAuraEffects.h"
 #include "SpellScript.h"
 #include "SpellScriptLoader.h"
@@ -76,7 +75,7 @@ struct WebTargetSelector
     WebTargetSelector(Unit* maexxna) : _maexxna(maexxna) {}
     bool operator()(Unit const* target) const
     {
-        if (target->IsPlayer()) // never web nonplayers (pets, guardians, etc.)
+        if (!target->IsPlayer()) // never web nonplayers (pets, guardians, etc.)
             return false;
         if (_maexxna->GetVictim() == target) // never target tank
             return false;
@@ -349,51 +348,27 @@ public:
     };
 };
 
-class spell_web_wrap_damage : public SpellScriptLoader
+class spell_web_wrap_damage : public AuraScript
 {
 public:
-    spell_web_wrap_damage() : SpellScriptLoader("spell_web_wrap_damage") { }
+    PrepareAuraScript(spell_web_wrap_damage);
 
-    class spell_web_wrap_damage_AuraScript : public AuraScript
+    bool Validate(SpellInfo const* /*spellInfo*/) override
     {
-        PrepareAuraScript(spell_web_wrap_damage_AuraScript);
+        return ValidateSpellInfo({ SPELL_WEB_WRAP_SUMMON });
+    }
 
-        void OnPeriodic(AuraEffect const* aurEff)
-        {
-            if (aurEff->GetTickNumber() == 2)
-            {
-                Unit* caster = GetCaster();
-                if (!caster || (caster->GetMap()->GetDifficulty() != RAID_DIFFICULTY_10MAN_HEROIC))
-                {
-                    GetTarget()->CastSpell(GetTarget(), SPELL_WEB_WRAP_SUMMON, true);
-                }
-                else
-                {
-                    GetTarget()->CastSpell(GetTarget(), SPELL_WEB_WRAP_SUMMON_40, true);
-                }
-            }
-        }
-
-        void HandleEffectPeriodicUpdate(AuraEffect* aurEff)
-        {
-            Unit* caster = GetCaster();
-            if (!caster || (caster->GetMap()->GetDifficulty() != RAID_DIFFICULTY_10MAN_HEROIC))
-            {
-                return;
-            }
-            aurEff->SetAmount(urand(656,843));
-        }
-
-        void Register() override
-        {
-            OnEffectPeriodic += AuraEffectPeriodicFn(spell_web_wrap_damage_AuraScript::OnPeriodic, EFFECT_1, SPELL_AURA_PERIODIC_DAMAGE);
-            OnEffectUpdatePeriodic += AuraEffectUpdatePeriodicFn(spell_web_wrap_damage_AuraScript::HandleEffectPeriodicUpdate, EFFECT_1, SPELL_AURA_PERIODIC_DAMAGE);
-        }
-    };
-
-    AuraScript* GetAuraScript() const override
+    void OnPeriodic(AuraEffect const* aurEff)
     {
-        return new spell_web_wrap_damage_AuraScript();
+        if (aurEff->GetTickNumber() == 2)
+        {
+            GetTarget()->CastSpell(GetTarget(), SPELL_WEB_WRAP_SUMMON, true);
+        }
+    }
+
+    void Register() override
+    {
+        OnEffectPeriodic += AuraEffectPeriodicFn(spell_web_wrap_damage::OnPeriodic, EFFECT_1, SPELL_AURA_PERIODIC_DAMAGE);
     }
 };
 
@@ -401,5 +376,5 @@ void AddSC_boss_maexxna_40()
 {
     new boss_maexxna_40();
     new boss_maexxna_webwrap_40();
-    new spell_web_wrap_damage();
+    RegisterSpellScript(spell_web_wrap_damage);
 }
