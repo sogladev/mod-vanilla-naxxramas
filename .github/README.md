@@ -13,9 +13,9 @@ If you encounter any issues or have suggestions, please post them as Github issu
 ## Some Features
 * New Naxxramas difficulty 10man heroic which hosts level 60 version of Naxxramas
 * Power level adjustments to Vanilla values
-* Entrance from either Stratholme instance or through a teleporter located in Plaguewood near the original entrance
 * Restores no longer accessible NPCs, quests and items related to the original Naxxramas
 * Restore flying Naxxramas in Plaguewood
+* Enter from either Stratholme instance or through a teleporter located in Plaguewood near the original entrance
 
 wiki (to be written) hosts full list
 
@@ -50,6 +50,10 @@ clone into /modules so that /modules/mod-vanilla-naxxramas
 compile and updater loads SQL when launching worldserver
 
 TODO: wiki of install instructions
+
+## Breaking
+
+The same instance is used for both the vanilla, 10 and 25 man difficulties. This means that same instance/boss/spell may script(s) are used. Changes to Azerothcore's Naxxramas may cause breakage; more likely the WOTLK version. This module is setup so that Naxx10/25 should remain unaffected. So far only the Naxxramas instance script and Sapphiron are shared.
 
 ## History
 
