@@ -1,7 +1,7 @@
 -- Add Archmage Tarsis Kir-Moldir
 UPDATE `creature_template` SET `gossip_menu_id` = 7229, `npcflag` = 1, `unit_flags` = 512 WHERE (`entry` = 16381);
 
--- Sleep
+-- Dead
 DELETE FROM `creature_template_addon` WHERE (`entry` = 16381);
 INSERT INTO `creature_template_addon` (`entry`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES
 (16381, 0, 0, 3, 0, 0, 0, '');

@@ -1,3 +1,5 @@
+-- Custom GUIDs
+-- `gameobject_template` 9000
 -- Add MapDifficulty DBC Override
 -- https://wow.tools/dbc/?dbc=mapdifficulty&build=10.0.0.44895#page=1&search=533
 DELETE FROM `mapdifficulty_dbc` WHERE `ID` = 754;
