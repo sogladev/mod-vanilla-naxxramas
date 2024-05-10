@@ -59,7 +59,7 @@ VanillaNaxxramas.Naxxramas.RequireNaxxStrathEntrance = 1
 #    VanillaNaxxramas.Naxxramas.RequireNaxxStrathEntrance
 #        Description: Requires Players to first enter through Stratholme entrance
 #                     before being able to use teleporter like MC, BWL shortcuts
-#        Default:   1 - Enabled (requires dousing)
-#                   0 - Disabled (automatic, handled when bosses are defeated)
+#        Default:   1 - Enabled
+#                   0 - Disabled
 #
 #
