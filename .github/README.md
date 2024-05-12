@@ -2,7 +2,7 @@
 
 - Latest build status with azerothcore:
 
-[![Build Status](https://github.com/jellemeeus/mod-vanilla-naxxramas/workflows/core-build/badge.svg?branch=master&event=push)](https://github.com/jellemeeus/mod-vanilla-naxxramas)
+[![Build Status](https://github.com/sogladev/mod-vanilla-naxxramas/workflows/core-build/badge.svg?branch=master&event=push)](https://github.com/sogladev/mod-vanilla-naxxramas)
 
 This is a module for [AzerothCore](http://www.azerothcore.org) that reintroduces the vanilla version of Naxxramas back to 335.
 
@@ -12,29 +12,31 @@ If you encounter any issues or have suggestions, please post them as Github issu
 
 ## Some Features
 * New Naxxramas difficulty 10man heroic which hosts level 60 version of Naxxramas
-* Power level adjustments to Vanilla values
 * Restores no longer accessible NPCs, quests and items related to the original Naxxramas
 * Restore flying Naxxramas in Plaguewood
-* Enter from either Stratholme instance or through a teleporter located in Plaguewood near the original entrance
-
-wiki (to be written) hosts full list
+* Enter from either Stratholme instance, through a teleporter located in Plaguewood near the original entrance or the original entrance with an optional patch
+* Power level adjustments (WIP) to vanilla values
 
 TODO: wiki full list of features
 TODO: wiki full list of options
+
+![pictures: click here](../docs/picture_notes.md)
+
+https://github.com/sogladev/mod-vanilla-naxxramas/assets/46423958/2b56a239-001a-442a-aad4-df3717b21e9a
+
 
 ## Known Issues
 
 Some are due to being limited by 335a client. Some of these could be fixed by client-side patch
 
-* Icons are different for some spells i.g. Mark of Mograine, Loatheb's Deathbloom
-* Mechanics: Sapphiron's frost aura should tick every 1s instead of 2s, Blaumeux' Void Zone range should be 3yd instead of 2yd
-* Plaguewood Entrance missing (WIP-stuck)
-* Some models like Deathknight's use wotlk death knight starter gear instead of the original armor set
+- [ ] Icons are different for some spells i.g. Mark of Mograine, Loatheb's Deathbloom
+- [ ] Mechanics: Sapphiron's frost aura should tick every 1s instead of 2s, Blaumeux' Void Zone range should be 3yd instead of 2yd
+- [ ] Plaguewood Entrance
+- [ ] Some models like Deathknight's use wotlk death knight starter gear instead of the original armor set
 
-Not all vanilla mechanics are implemented yet due to scripts being ported from Azerothcore's WOTLK Naxx
+Not all vanilla mechanics are yet implemented yet due to scripts being ported from Azerothcore's WOTLK Naxx
 
-* 4 horsemen
-* Maexxna Web Wrap and missing Trash spell
+- [ ] Maexxna Web Wrap should stick to the wall
 
 Other issues are due to potential upstream bugs
 
@@ -46,7 +48,8 @@ Other issues are due to potential upstream bugs
 TODO: wiki full list of known issues
 
 ## How to install
-clone into /modules so that /modules/mod-vanilla-naxxramas
+clone into `/modules` so that `/modules/mod-vanilla-naxxramas`
+
 compile and updater loads SQL when launching worldserver
 
 TODO: wiki of install instructions
@@ -61,7 +64,7 @@ Version 1: Overwriting Naxx10 with lvl 60 Naxxramas, autobalancer
 https://github.com/azerothcore/mod-progression-system/pull/251/commits/0271f41137410efd06a6eb3c8a5619026f460345
 
 Version 2: Naxx10HC difficulty, Stratholme entrance, Remove autobalancer, add boss scripts/trash scripts/smartAIs, damage adjustments, minor vanilla mechanics, scripts included in [mod-individual-progression](https://github.com/ZhengPeiRu21/mod-individual-progression)
-https://github.com/jellemeeus/mod-progression-system-naxx25-60/tree/naxx
+https://github.com/sogladev/mod-progression-system-naxx25-60/tree/naxx
 
 Version3: stand-alone custom-module `mod-vanilla-naxxramas`
 
