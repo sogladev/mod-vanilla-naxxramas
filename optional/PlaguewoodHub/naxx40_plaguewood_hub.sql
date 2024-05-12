@@ -10,10 +10,5 @@ INSERT INTO `gameobject` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, 
 
 -- Move meeting stone near hub
 DELETE FROM `gameobject` WHERE `id`=193166 and `map`=0;
-INSERT INTO `gameobject`
-(`id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `position_x`,
-`position_y`, `position_z`, `orientation`, `rotation0`, `rotation1`,
-`rotation2`, `rotation3`, `spawntimesecs`, `animprogress`, `state`,
-`ScriptName`, `VerifiedBuild`) VALUES
-(193166, 0, 0, 0, 1, 1, 3172.668945, -3752.993896, 133.943527, 133.943527, 0.0, 0.0, -0.932239,
--0.361844, 300, 0, 1, '', 0);
+INSERT INTO `gameobject` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `position_x`, `position_y`, `position_z`, `orientation`, `rotation0`, `rotation1`, `rotation2`, `rotation3`, `spawntimesecs`, `animprogress`, `state`, `ScriptName`, `VerifiedBuild`, `Comment`) VALUES
+(5330511, 193166, 0, 0, 0, 1, 1, 3172.67, -3752.99, 133.944, 1.93617, 0, 0, -0.823802, -0.566877, 300, 0, 1, '', 0, 0);
