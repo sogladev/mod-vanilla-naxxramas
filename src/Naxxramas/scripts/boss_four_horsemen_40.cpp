@@ -416,9 +416,9 @@ public:
     }
 };
 
-class spell_four_horsemen_consumption : public SpellScript
+class spell_gen_consumption : public SpellScript
 {
-    PrepareSpellScript(spell_four_horsemen_consumption);
+    PrepareSpellScript(spell_gen_consumption);
 
     void CalculateDamage(SpellEffIndex /*effIndex*/)
     {
@@ -455,7 +455,7 @@ class spell_four_horsemen_consumption : public SpellScript
 
     void Register() override
     {
-        OnEffectLaunchTarget += SpellEffectFn(spell_four_horsemen_consumption::CalculateDamage, EFFECT_0, SPELL_EFFECT_SCHOOL_DAMAGE);
+        OnEffectLaunchTarget += SpellEffectFn(spell_gen_consumption::CalculateDamage, EFFECT_0, SPELL_EFFECT_SCHOOL_DAMAGE);
     }
 };
 
@@ -463,5 +463,5 @@ void AddSC_boss_four_horsemen_40()
 {
     new boss_four_horsemen_40();
     new spell_four_horsemen_mark();
-    RegisterSpellScript(spell_four_horsemen_consumption);
+    RegisterSpellScript(spell_gen_consumption);
 }
