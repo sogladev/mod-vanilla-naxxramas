@@ -17,13 +17,15 @@ If you encounter any issues or have suggestions, please post them as Github issu
 * Enter from either Stratholme instance, through a teleporter located in Plaguewood near the original entrance or the original entrance with an optional patch
 * Power level adjustments (WIP) to vanilla values
 
-TODO: wiki full list of features
-TODO: wiki full list of options
+![See Wiki for a summary of changes with pictures](https://github.com/sogladev/mod-vanilla-naxxramas/wiki/02-Summary-of-changes-with-pictures)
 
-![pictures: click here](../docs/picture_notes.md)
+![See Wiki for a full detailed list of changes](https://github.com/sogladev/mod-vanilla-naxxramas/wiki/04-List-of-changes-in-detail)
 
 https://github.com/sogladev/mod-vanilla-naxxramas/assets/46423958/2b56a239-001a-442a-aad4-df3717b21e9a
 
+## How to install
+
+![See Wiki for installation instructions](https://github.com/sogladev/mod-vanilla-naxxramas/wiki/03-How-to-Install)
 
 ## Known Issues
 
@@ -45,28 +47,11 @@ Other issues are due to potential upstream bugs
 * OOC RP of Heigans Eye Stalk
 * Gothik visuals
 
-TODO: wiki full list of known issues
-
-## How to install
-clone into `/modules` so that `/modules/mod-vanilla-naxxramas`
-
-compile and updater loads SQL when launching worldserver
-
-TODO: wiki of install instructions
+![See Wiki for a list of work to be done](https://github.com/sogladev/mod-vanilla-naxxramas/wiki/05-Work-To-Be-Done)
 
 ## Breaking
 
 The same instance is used for both the vanilla, 10 and 25 man difficulties. This means that same instance/boss/spell may script(s) are used. Changes to Azerothcore's Naxxramas may cause breakage; more likely the WOTLK version. This module is setup so that Naxx10/25 should remain unaffected. So far only the Naxxramas instance script and Sapphiron are shared.
-
-## History
-
-Version 1: Overwriting Naxx10 with lvl 60 Naxxramas, autobalancer
-https://github.com/azerothcore/mod-progression-system/pull/251/commits/0271f41137410efd06a6eb3c8a5619026f460345
-
-Version 2: Naxx10HC difficulty, Stratholme entrance, Remove autobalancer, add boss scripts/trash scripts/smartAIs, damage adjustments, minor vanilla mechanics, scripts included in [mod-individual-progression](https://github.com/ZhengPeiRu21/mod-individual-progression)
-https://github.com/sogladev/mod-progression-system-naxx25-60/tree/naxx
-
-Version3: stand-alone custom-module `mod-vanilla-naxxramas`
 
 ## Acknowledgements
 - [cmangos](https://github.com/cmangos), [vmangos](https://github.com/vmangos) for vanilla game data
