@@ -2,7 +2,8 @@
 
 - Latest build status with azerothcore:
 
-[![Build Status](https://github.com/sogladev/mod-vanilla-naxxramas/workflows/core-build/badge.svg?branch=master&event=push)](https://github.com/sogladev/mod-vanilla-naxxramas)
+[![Build Status](
+https://github.com/sogladev/mod-vanilla-naxxramas/actions/workflows/core-build.yml/badge.svg?branch=master&event=push)](https://github.com/sogladev/mod-vanilla-naxxramas)
 
 This is a module for [AzerothCore](http://www.azerothcore.org) that reintroduces the vanilla version of Naxxramas back to 335.
 
