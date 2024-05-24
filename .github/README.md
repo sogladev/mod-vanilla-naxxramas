@@ -32,10 +32,10 @@ https://github.com/sogladev/mod-vanilla-naxxramas/assets/46423958/2b56a239-001a-
 
 Some are due to being limited by 335a client. Some of these could be fixed by client-side patch
 
-- [ ] Icons are different for some spells i.g. Mark of Mograine, Loatheb's Deathbloom
+- [ ] Icons are different for some spells e.g. Mark of Mograine, Loatheb's Deathbloom
 - [ ] Mechanics: Sapphiron's frost aura should tick every 1s instead of 2s, Blaumeux' Void Zone range should be 3yd instead of 2yd
-- [ ] Plaguewood Entrance
-- [ ] Some models like Deathknight's use wotlk death knight starter gear instead of the original armor set
+- [ ] Plaguewood Entrance was replaced with a Cauldron
+- [ ] Some models like Deathknight's use wrath death knight starter gear instead of the original armor set
 
 Not all vanilla mechanics are yet implemented yet due to scripts being ported from Azerothcore's WOTLK Naxx
 
@@ -46,13 +46,13 @@ Other issues are due to potential upstream bugs
 * Thaddius not moving
 * OOC RP of Razuvious' DK Study
 * OOC RP of Heigans Eye Stalk
-* Gothik visuals
+* Gothik visuals (WIP)
 
 ![See Wiki for a list of work to be done](https://github.com/sogladev/mod-vanilla-naxxramas/wiki/05-Work-To-Be-Done)
 
 ## Breaking
 
-The same instance is used for both the vanilla, 10 and 25 man difficulties. This means that same instance/boss/spell may script(s) are used. Changes to Azerothcore's Naxxramas may cause breakage; more likely the WOTLK version. This module is setup so that Naxx10/25 should remain unaffected. So far only the Naxxramas instance script and Sapphiron are shared.
+The same instance is used for both the vanilla, 10 and 25 man difficulties. This means that same instance/boss/spell script(s) are used. Changes to Azerothcore's Naxxramas may cause breakage; more likely to the WOTLK version. So far only the Naxxramas instance script and Sapphiron are shared.
 
 ## Acknowledgements
 - [cmangos](https://github.com/cmangos), [vmangos](https://github.com/vmangos) for vanilla game data
