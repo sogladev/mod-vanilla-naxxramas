@@ -395,34 +395,23 @@ class spell_heigan_plague_cloud_40_aura : public AuraScript
     }
 };
 
-class spell_heigan_eruption_40 : public SpellScriptLoader
+class spell_heigan_eruption_40 : public SpellScript
 {
-public:
-    spell_heigan_eruption_40() : SpellScriptLoader("spell_heigan_eruption_40") { }
+    PrepareSpellScript(spell_heigan_eruption_40);
 
-    class spell_heigan_eruption_40_SpellScript : public SpellScript
+    void HandleDamageCalc(SpellEffIndex /*effIndex*/)
     {
-        PrepareSpellScript(spell_heigan_eruption_40_SpellScript);
-
-        void HandleDamageCalc(SpellEffIndex /*effIndex*/)
+        Unit* caster = GetCaster();
+        if (!caster || (caster->GetMap()->GetDifficulty() != RAID_DIFFICULTY_10MAN_HEROIC))
         {
-            Unit* caster = GetCaster();
-            if (!caster || (caster->GetMap()->GetDifficulty() != RAID_DIFFICULTY_10MAN_HEROIC))
-            {
-                return;
-            }
-            SetEffectValue(urand(3500, 4500));
+            return;
         }
+        SetEffectValue(urand(3500, 4500));
+    }
 
-        void Register() override
-        {
-            OnEffectLaunchTarget += SpellEffectFn(spell_heigan_eruption_40_SpellScript::HandleDamageCalc, EFFECT_0, SPELL_EFFECT_SCHOOL_DAMAGE);
-        }
-    };
-
-    SpellScript* GetSpellScript() const override
+    void Register() override
     {
-        return new spell_heigan_eruption_40_SpellScript();
+        OnEffectLaunchTarget += SpellEffectFn(spell_heigan_eruption_40::HandleDamageCalc, EFFECT_0, SPELL_EFFECT_SCHOOL_DAMAGE);
     }
 };
 
@@ -563,7 +552,7 @@ void AddSC_boss_heigan_40()
 {
     new boss_heigan_40();
     RegisterSpellScript(spell_heigan_plague_cloud_40_aura);
-    new spell_heigan_eruption_40();
+    RegisterSpellScript(spell_heigan_eruption_40);
     new spell_submerge_visual();
     new boss_heigan_eye_stalk_40();
 }
