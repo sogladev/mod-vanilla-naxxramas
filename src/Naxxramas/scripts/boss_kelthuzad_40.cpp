@@ -662,82 +662,60 @@ public:
     };
 };
 
-class spell_kelthuzad_frost_blast : public SpellScriptLoader
+class spell_kelthuzad_frost_blast : public SpellScript
 {
-public:
-    spell_kelthuzad_frost_blast() : SpellScriptLoader("spell_kelthuzad_frost_blast") { }
+    PrepareSpellScript(spell_kelthuzad_frost_blast);
 
-    class spell_kelthuzad_frost_blast_SpellScript : public SpellScript
+    void FilterTargets(std::list<WorldObject*>& targets)
     {
-        PrepareSpellScript(spell_kelthuzad_frost_blast_SpellScript);
+        Unit* caster = GetCaster();
+        if (!caster || !caster->ToCreature())
+            return;
 
-        void FilterTargets(std::list<WorldObject*>& targets)
+        std::list<WorldObject*> tmplist;
+        for (auto& target : targets)
         {
-            Unit* caster = GetCaster();
-            if (!caster || !caster->ToCreature())
-                return;
-
-            std::list<WorldObject*> tmplist;
-            for (auto& target : targets)
+            if (!target->ToUnit()->HasAura(SPELL_FROST_BLAST))
             {
-                if (!target->ToUnit()->HasAura(SPELL_FROST_BLAST))
-                {
-                    tmplist.push_back(target);
-                }
-            }
-            targets.clear();
-            for (auto& itr : tmplist)
-            {
-                targets.push_back(itr);
+                tmplist.push_back(target);
             }
         }
-
-        void Register() override
+        targets.clear();
+        for (auto& itr : tmplist)
         {
-            OnObjectAreaTargetSelect += SpellObjectAreaTargetSelectFn(spell_kelthuzad_frost_blast_SpellScript::FilterTargets, EFFECT_ALL, TARGET_UNIT_DEST_AREA_ENEMY);
+            targets.push_back(itr);
         }
-    };
+    }
 
-    SpellScript* GetSpellScript() const override
+    void Register() override
     {
-        return new spell_kelthuzad_frost_blast_SpellScript();
+        OnObjectAreaTargetSelect += SpellObjectAreaTargetSelectFn(spell_kelthuzad_frost_blast::FilterTargets, EFFECT_ALL, TARGET_UNIT_DEST_AREA_ENEMY);
     }
 };
 
-class spell_kelthuzad_detonate_mana : public SpellScriptLoader
+class spell_kelthuzad_detonate_mana_aura : public AuraScript
 {
-public:
-    spell_kelthuzad_detonate_mana() : SpellScriptLoader("spell_kelthuzad_detonate_mana") { }
+    PrepareAuraScript(spell_kelthuzad_detonate_mana_aura);
 
-    class spell_kelthuzad_detonate_mana_AuraScript : public AuraScript
+    bool Validate(SpellInfo const* /*spell*/) override
     {
-        PrepareAuraScript(spell_kelthuzad_detonate_mana_AuraScript);
+        return ValidateSpellInfo({ SPELL_MANA_DETONATION_DAMAGE });
+    }
 
-        bool Validate(SpellInfo const* /*spell*/) override
-        {
-            return ValidateSpellInfo({ SPELL_MANA_DETONATION_DAMAGE });
-        }
-
-        void HandleScript(AuraEffect const* aurEff)
-        {
-            PreventDefaultAction();
-            Unit* target = GetTarget();
-            if (auto mana = int32(target->GetMaxPower(POWER_MANA) / 10))
-            {
-                mana = target->ModifyPower(POWER_MANA, -mana);
-                target->CastCustomSpell(SPELL_MANA_DETONATION_DAMAGE, SPELLVALUE_BASE_POINT0, -mana * 10, target, true, nullptr, aurEff);
-            }
-        }
-
-        void Register() override
-        {
-            OnEffectPeriodic += AuraEffectPeriodicFn(spell_kelthuzad_detonate_mana_AuraScript::HandleScript, EFFECT_0, SPELL_AURA_PERIODIC_TRIGGER_SPELL);
-        }
-    };
-
-    AuraScript* GetAuraScript() const override
+    void HandleScript(AuraEffect const* aurEff)
     {
-        return new spell_kelthuzad_detonate_mana_AuraScript();
+        PreventDefaultAction();
+        Unit* target = GetTarget();
+        if (auto mana = int32(target->GetMaxPower(POWER_MANA) / 10))
+        {
+            mana = target->ModifyPower(POWER_MANA, -mana);
+            target->CastCustomSpell(SPELL_MANA_DETONATION_DAMAGE, SPELLVALUE_BASE_POINT0, -mana * 10, target, true, nullptr, aurEff);
+        }
+    }
+
+    void Register() override
+    {
+        OnEffectPeriodic += AuraEffectPeriodicFn(spell_kelthuzad_detonate_mana_aura::HandleScript, EFFECT_0, SPELL_AURA_PERIODIC_TRIGGER_SPELL);
     }
 };
 
@@ -765,7 +743,7 @@ void AddSC_boss_kelthuzad_40()
 {
     new boss_kelthuzad_40();
     new boss_kelthuzad_minion_40();
-//    new spell_kelthuzad_frost_blast();
-//    new spell_kelthuzad_detonate_mana();
+    // RegisterSpellScript(spell_kelthuzad_frost_blast);
+    // RegisterSpellScript(spell_kelthuzad_detonate_mana_aura);
     RegisterSpellScript(spell_kelthuzad_dark_blast);
 }

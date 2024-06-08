@@ -368,105 +368,72 @@ public:
     };
 };
 
-class spell_heigan_plague_cloud_40 : public SpellScriptLoader
+class spell_heigan_plague_cloud_40_aura : public AuraScript
 {
-public:
-    spell_heigan_plague_cloud_40() : SpellScriptLoader("spell_heigan_plague_cloud_40") { }
+    PrepareAuraScript(spell_heigan_plague_cloud_40_aura);
 
-    class spell_heigan_plague_cloud_40_AuraScript : public AuraScript
+    bool Validate(SpellInfo const* /*spellInfo*/) override
     {
-        PrepareAuraScript(spell_heigan_plague_cloud_40_AuraScript);
+        return ValidateSpellInfo({ SPELL_PLAGUE_CLOUD_TRIGGER });
+    }
 
-        bool Validate(SpellInfo const* /*spellInfo*/) override
-        {
-            return ValidateSpellInfo({ SPELL_PLAGUE_CLOUD_TRIGGER });
-        }
-
-        void HandleTriggerSpell(AuraEffect const* /*aurEff*/)
-        {
-            Unit* caster = GetCaster();
-            if (!caster || (caster->GetMap()->GetDifficulty() != RAID_DIFFICULTY_10MAN_HEROIC))
-            {
-                return;
-            }
-            PreventDefaultAction();
-            int32 bp0 = 4000;
-            caster->CastCustomSpell(caster, SPELL_PLAGUE_CLOUD_TRIGGER, &bp0, 0, 0, true);
-        }
-
-        void Register() override
-        {
-            OnEffectPeriodic += AuraEffectPeriodicFn(spell_heigan_plague_cloud_40_AuraScript::HandleTriggerSpell, EFFECT_0, SPELL_AURA_PERIODIC_TRIGGER_SPELL);
-        }
-    };
-
-    AuraScript* GetAuraScript() const override
+    void HandleTriggerSpell(AuraEffect const* /*aurEff*/)
     {
-        return new spell_heigan_plague_cloud_40_AuraScript();
+        Unit* caster = GetCaster();
+        if (!caster || (caster->GetMap()->GetDifficulty() != RAID_DIFFICULTY_10MAN_HEROIC))
+        {
+            return;
+        }
+        PreventDefaultAction();
+        int32 bp0 = 4000;
+        caster->CastCustomSpell(caster, SPELL_PLAGUE_CLOUD_TRIGGER, &bp0, 0, 0, true);
+    }
+
+    void Register() override
+    {
+        OnEffectPeriodic += AuraEffectPeriodicFn(spell_heigan_plague_cloud_40_aura::HandleTriggerSpell, EFFECT_0, SPELL_AURA_PERIODIC_TRIGGER_SPELL);
     }
 };
 
-class spell_heigan_eruption_40 : public SpellScriptLoader
+class spell_heigan_eruption_40 : public SpellScript
 {
-public:
-    spell_heigan_eruption_40() : SpellScriptLoader("spell_heigan_eruption_40") { }
+    PrepareSpellScript(spell_heigan_eruption_40);
 
-    class spell_heigan_eruption_40_SpellScript : public SpellScript
+    void HandleDamageCalc(SpellEffIndex /*effIndex*/)
     {
-        PrepareSpellScript(spell_heigan_eruption_40_SpellScript);
-
-        void HandleDamageCalc(SpellEffIndex /*effIndex*/)
+        Unit* caster = GetCaster();
+        if (!caster || (caster->GetMap()->GetDifficulty() != RAID_DIFFICULTY_10MAN_HEROIC))
         {
-            Unit* caster = GetCaster();
-            if (!caster || (caster->GetMap()->GetDifficulty() != RAID_DIFFICULTY_10MAN_HEROIC))
-            {
-                return;
-            }
-            SetEffectValue(urand(3500, 4500));
+            return;
         }
+        SetEffectValue(urand(3500, 4500));
+    }
 
-        void Register() override
-        {
-            OnEffectLaunchTarget += SpellEffectFn(spell_heigan_eruption_40_SpellScript::HandleDamageCalc, EFFECT_0, SPELL_EFFECT_SCHOOL_DAMAGE);
-        }
-    };
-
-    SpellScript* GetSpellScript() const override
+    void Register() override
     {
-        return new spell_heigan_eruption_40_SpellScript();
+        OnEffectLaunchTarget += SpellEffectFn(spell_heigan_eruption_40::HandleDamageCalc, EFFECT_0, SPELL_EFFECT_SCHOOL_DAMAGE);
     }
 };
 
 // 28819 - Submerge Visual
-class spell_submerge_visual : public SpellScriptLoader
+class spell_submerge_visual_aura : public AuraScript
 {
-public:
-    spell_submerge_visual() : SpellScriptLoader("spell_submerge_visual") { }
+    PrepareAuraScript(spell_submerge_visual_aura);
 
-    class spell_submerge_visual_AuraScript : public AuraScript
+    void OnApply(AuraEffect const* /*aurEff*/, AuraEffectHandleModes /*mode*/)
     {
-        PrepareAuraScript(spell_submerge_visual_AuraScript);
+        GetTarget()->SetStandState(UNIT_STAND_STATE_SUBMERGED);
+    }
 
-        void OnApply(AuraEffect const* /*aurEff*/, AuraEffectHandleModes /*mode*/)
-        {
-            GetTarget()->SetStandState(UNIT_STAND_STATE_SUBMERGED);
-        }
-
-        void OnRemove(AuraEffect const* /*aurEff*/, AuraEffectHandleModes /*mode*/)
-        {
-            GetTarget()->SetStandState(UNIT_STAND_STATE_STAND);
-        }
-
-        void Register() override
-        {
-            OnEffectApply += AuraEffectApplyFn(spell_submerge_visual_AuraScript::OnApply, EFFECT_0, SPELL_AURA_DUMMY, AURA_EFFECT_HANDLE_REAL);
-            OnEffectRemove += AuraEffectRemoveFn(spell_submerge_visual_AuraScript::OnRemove, EFFECT_0, SPELL_AURA_DUMMY, AURA_EFFECT_HANDLE_REAL);
-        }
-    };
-
-    AuraScript* GetAuraScript() const override
+    void OnRemove(AuraEffect const* /*aurEff*/, AuraEffectHandleModes /*mode*/)
     {
-        return new spell_submerge_visual_AuraScript();
+        GetTarget()->SetStandState(UNIT_STAND_STATE_STAND);
+    }
+
+    void Register() override
+    {
+        OnEffectApply += AuraEffectApplyFn(spell_submerge_visual_aura::OnApply, EFFECT_0, SPELL_AURA_DUMMY, AURA_EFFECT_HANDLE_REAL);
+        OnEffectRemove += AuraEffectRemoveFn(spell_submerge_visual_aura::OnRemove, EFFECT_0, SPELL_AURA_DUMMY, AURA_EFFECT_HANDLE_REAL);
     }
 };
 
@@ -573,8 +540,8 @@ public:
 void AddSC_boss_heigan_40()
 {
     new boss_heigan_40();
-    new spell_heigan_plague_cloud_40();
-    new spell_heigan_eruption_40();
-    new spell_submerge_visual();
+    RegisterSpellScript(spell_heigan_plague_cloud_40_aura);
+    RegisterSpellScript(spell_heigan_eruption_40);
+    RegisterSpellScript(spell_submerge_visual_aura);
     new boss_heigan_eye_stalk_40();
 }

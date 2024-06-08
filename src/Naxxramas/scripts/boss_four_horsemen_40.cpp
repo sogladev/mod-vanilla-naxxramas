@@ -343,76 +343,65 @@ public:
     };
 };
 
-class spell_four_horsemen_mark : public SpellScriptLoader
+class spell_four_horsemen_mark_aura : public AuraScript
 {
-public:
-    spell_four_horsemen_mark() : SpellScriptLoader("spell_four_horsemen_mark") { }
+    PrepareAuraScript(spell_four_horsemen_mark_aura);
 
-    class spell_four_horsemen_mark_AuraScript : public AuraScript
+    void OnApply(AuraEffect const* /*aurEff*/, AuraEffectHandleModes /*mode*/)
     {
-        PrepareAuraScript(spell_four_horsemen_mark_AuraScript);
-
-        void OnApply(AuraEffect const* /*aurEff*/, AuraEffectHandleModes /*mode*/)
+        if (Unit* caster = GetCaster())
         {
-            if (Unit* caster = GetCaster())
-            {
-                int32 damage;
+            int32 damage;
 
+            switch (GetStackAmount())
+            {
+                case 1:
+                    damage = 0;
+                    break;
+                case 2:
+                    damage = 500;
+                    break;
+                case 3:
+                    damage = 1500;
+                    break;
+                case 4:
+                    damage = 4000;
+                    break;
+                case 5:
+                    damage = 12000;
+                    break;
+                case 6:
+                    damage = 20000;
+                    break;
+                default:
+                    damage = 20000 + 1000 * (GetStackAmount() - 7);
+                    break;
+            }
+
+            if (caster->GetMap()->GetDifficulty() == RAID_DIFFICULTY_10MAN_HEROIC)
+            {
                 switch (GetStackAmount())
                 {
-                    case 1:
-                        damage = 0;
-                        break;
-                    case 2:
-                        damage = 500;
-                        break;
-                    case 3:
-                        damage = 1500;
-                        break;
-                    case 4:
-                        damage = 4000;
-                        break;
-                    case 5:
-                        damage = 12000;
-                        break;
-                    case 6:
-                        damage = 20000;
-                        break;
+                    case 1: damage =     0; break;
+                    case 2: damage =   250; break;
+                    case 3: damage =  1000; break;
+                    case 4: damage =  3000; break;
                     default:
-                        damage = 20000 + 1000 * (GetStackAmount() - 7);
+                        damage = 1000 * GetStackAmount();
                         break;
-                }
-
-                if (caster->GetMap()->GetDifficulty() == RAID_DIFFICULTY_10MAN_HEROIC)
-                {
-                    switch (GetStackAmount())
-                    {
-                        case 1: damage =     0; break;
-                        case 2: damage =   250; break;
-                        case 3: damage =  1000; break;
-                        case 4: damage =  3000; break;
-                        default:
-                            damage = 1000 * GetStackAmount();
-                            break;
-                    }
-                }
-
-                if (damage)
-                {
-                    caster->CastCustomSpell(SPELL_MARK_DAMAGE, SPELLVALUE_BASE_POINT0, damage, GetTarget());
                 }
             }
-        }
 
-        void Register() override
-        {
-            AfterEffectApply += AuraEffectApplyFn(spell_four_horsemen_mark_AuraScript::OnApply, EFFECT_0, SPELL_AURA_DUMMY, AURA_EFFECT_HANDLE_REAL_OR_REAPPLY_MASK);
+            if (damage)
+            {
+                caster->CastCustomSpell(SPELL_MARK_DAMAGE, SPELLVALUE_BASE_POINT0, damage, GetTarget());
+            }
         }
-    };
+    }
 
-    AuraScript* GetAuraScript() const override
+    void Register() override
     {
-        return new spell_four_horsemen_mark_AuraScript();
+        AfterEffectApply += AuraEffectApplyFn(spell_four_horsemen_mark_aura::OnApply, EFFECT_0, SPELL_AURA_DUMMY, AURA_EFFECT_HANDLE_REAL_OR_REAPPLY_MASK);
     }
 };
 
@@ -462,6 +451,6 @@ class spell_gen_consumption : public SpellScript
 void AddSC_boss_four_horsemen_40()
 {
     new boss_four_horsemen_40();
-    new spell_four_horsemen_mark();
+    RegisterSpellScript(spell_four_horsemen_mark_aura);
     RegisterSpellScript(spell_gen_consumption);
 }
