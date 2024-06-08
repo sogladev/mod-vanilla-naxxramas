@@ -416,35 +416,24 @@ class spell_heigan_eruption_40 : public SpellScript
 };
 
 // 28819 - Submerge Visual
-class spell_submerge_visual : public SpellScriptLoader
+class spell_submerge_visual_aura : public AuraScript
 {
-public:
-    spell_submerge_visual() : SpellScriptLoader("spell_submerge_visual") { }
+    PrepareAuraScript(spell_submerge_visual_aura);
 
-    class spell_submerge_visual_AuraScript : public AuraScript
+    void OnApply(AuraEffect const* /*aurEff*/, AuraEffectHandleModes /*mode*/)
     {
-        PrepareAuraScript(spell_submerge_visual_AuraScript);
+        GetTarget()->SetStandState(UNIT_STAND_STATE_SUBMERGED);
+    }
 
-        void OnApply(AuraEffect const* /*aurEff*/, AuraEffectHandleModes /*mode*/)
-        {
-            GetTarget()->SetStandState(UNIT_STAND_STATE_SUBMERGED);
-        }
-
-        void OnRemove(AuraEffect const* /*aurEff*/, AuraEffectHandleModes /*mode*/)
-        {
-            GetTarget()->SetStandState(UNIT_STAND_STATE_STAND);
-        }
-
-        void Register() override
-        {
-            OnEffectApply += AuraEffectApplyFn(spell_submerge_visual_AuraScript::OnApply, EFFECT_0, SPELL_AURA_DUMMY, AURA_EFFECT_HANDLE_REAL);
-            OnEffectRemove += AuraEffectRemoveFn(spell_submerge_visual_AuraScript::OnRemove, EFFECT_0, SPELL_AURA_DUMMY, AURA_EFFECT_HANDLE_REAL);
-        }
-    };
-
-    AuraScript* GetAuraScript() const override
+    void OnRemove(AuraEffect const* /*aurEff*/, AuraEffectHandleModes /*mode*/)
     {
-        return new spell_submerge_visual_AuraScript();
+        GetTarget()->SetStandState(UNIT_STAND_STATE_STAND);
+    }
+
+    void Register() override
+    {
+        OnEffectApply += AuraEffectApplyFn(spell_submerge_visual_aura::OnApply, EFFECT_0, SPELL_AURA_DUMMY, AURA_EFFECT_HANDLE_REAL);
+        OnEffectRemove += AuraEffectRemoveFn(spell_submerge_visual_aura::OnRemove, EFFECT_0, SPELL_AURA_DUMMY, AURA_EFFECT_HANDLE_REAL);
     }
 };
 
@@ -553,6 +542,6 @@ void AddSC_boss_heigan_40()
     new boss_heigan_40();
     RegisterSpellScript(spell_heigan_plague_cloud_40_aura);
     RegisterSpellScript(spell_heigan_eruption_40);
-    new spell_submerge_visual();
+    RegisterSpellScript(spell_submerge_visual_aura);
     new boss_heigan_eye_stalk_40();
 }
