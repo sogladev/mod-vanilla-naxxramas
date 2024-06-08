@@ -745,5 +745,5 @@ void AddSC_boss_kelthuzad_40()
     new boss_kelthuzad_minion_40();
     // RegisterSpellScript(spell_kelthuzad_frost_blast);
     // RegisterSpellScript(spell_kelthuzad_detonate_mana_aura);
-    RegisterSpellScript(spell_kelthkzad_dark_blast);
+    RegisterSpellScript(spell_kelthuzad_dark_blast);
 }
