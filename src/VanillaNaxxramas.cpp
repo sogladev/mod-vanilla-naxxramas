@@ -35,7 +35,7 @@ public:
 
         if (DBUpdater<LoginDatabaseConnection>::IsEnabled(updateFlags))
         {
-            if (sConfigMgr->GetOption<bool>("VanillaNaxxramas.ReapplyUpdates", true))
+            if (sConfigMgr->GetOption<bool>("VanillaNaxxramas.ReapplyUpdates", false))
             {
                 LoginDatabase.Query("DELETE FROM updates WHERE name LIKE '%naxx40%'");
             }
@@ -49,7 +49,7 @@ public:
 
         if (DBUpdater<CharacterDatabaseConnection>::IsEnabled(updateFlags))
         {
-            if (sConfigMgr->GetOption<bool>("VanillaNaxxramas.ReapplyUpdates", true))
+            if (sConfigMgr->GetOption<bool>("VanillaNaxxramas.ReapplyUpdates", false))
             {
                 CharacterDatabase.Query("DELETE FROM updates WHERE name LIKE '%naxx40%'");
             }
@@ -63,7 +63,7 @@ public:
 
         if (DBUpdater<WorldDatabaseConnection>::IsEnabled(updateFlags))
         {
-            if (sConfigMgr->GetOption<bool>("VanillaNaxxramas.ReapplyUpdates", true))
+            if (sConfigMgr->GetOption<bool>("VanillaNaxxramas.ReapplyUpdates", false))
             {
                 WorldDatabase.Query("DELETE FROM updates WHERE name LIKE '%naxx40%'");
             }
@@ -89,7 +89,7 @@ private:
     static void LoadConfig()
     {
         sVanillaNaxxramas->enabled = sConfigMgr->GetOption<bool>("VanillaNaxxramas.Enable", true);
-        // sVanillaNaxxramas->requireAttunement = sConfigMgr->GetOption<bool>("VanillaNaxxramas.Naxxramas.RequireAttunement", true);
+        sVanillaNaxxramas->requireAttunement = sConfigMgr->GetOption<bool>("VanillaNaxxramas.Naxxramas.RequireAttunement", true);
         sVanillaNaxxramas->requireNaxxStrath = sConfigMgr->GetOption<bool>("VanillaNaxxramas.Naxxramas.RequireNaxxStrathEntrance", true);
     }
 
