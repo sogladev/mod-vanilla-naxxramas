@@ -693,40 +693,29 @@ class spell_kelthuzad_frost_blast : public SpellScript
     }
 };
 
-class spell_kelthuzad_detonate_mana : public SpellScriptLoader
+class spell_kelthuzad_detonate_mana_aura : public AuraScript
 {
-public:
-    spell_kelthuzad_detonate_mana() : SpellScriptLoader("spell_kelthuzad_detonate_mana") { }
+    PrepareAuraScript(spell_kelthuzad_detonate_mana_aura);
 
-    class spell_kelthuzad_detonate_mana_AuraScript : public AuraScript
+    bool Validate(SpellInfo const* /*spell*/) override
     {
-        PrepareAuraScript(spell_kelthuzad_detonate_mana_AuraScript);
+        return ValidateSpellInfo({ SPELL_MANA_DETONATION_DAMAGE });
+    }
 
-        bool Validate(SpellInfo const* /*spell*/) override
-        {
-            return ValidateSpellInfo({ SPELL_MANA_DETONATION_DAMAGE });
-        }
-
-        void HandleScript(AuraEffect const* aurEff)
-        {
-            PreventDefaultAction();
-            Unit* target = GetTarget();
-            if (auto mana = int32(target->GetMaxPower(POWER_MANA) / 10))
-            {
-                mana = target->ModifyPower(POWER_MANA, -mana);
-                target->CastCustomSpell(SPELL_MANA_DETONATION_DAMAGE, SPELLVALUE_BASE_POINT0, -mana * 10, target, true, nullptr, aurEff);
-            }
-        }
-
-        void Register() override
-        {
-            OnEffectPeriodic += AuraEffectPeriodicFn(spell_kelthuzad_detonate_mana_AuraScript::HandleScript, EFFECT_0, SPELL_AURA_PERIODIC_TRIGGER_SPELL);
-        }
-    };
-
-    AuraScript* GetAuraScript() const override
+    void HandleScript(AuraEffect const* aurEff)
     {
-        return new spell_kelthuzad_detonate_mana_AuraScript();
+        PreventDefaultAction();
+        Unit* target = GetTarget();
+        if (auto mana = int32(target->GetMaxPower(POWER_MANA) / 10))
+        {
+            mana = target->ModifyPower(POWER_MANA, -mana);
+            target->CastCustomSpell(SPELL_MANA_DETONATION_DAMAGE, SPELLVALUE_BASE_POINT0, -mana * 10, target, true, nullptr, aurEff);
+        }
+    }
+
+    void Register() override
+    {
+        OnEffectPeriodic += AuraEffectPeriodicFn(spell_kelthuzad_detonate_mana_aura::HandleScript, EFFECT_0, SPELL_AURA_PERIODIC_TRIGGER_SPELL);
     }
 };
 
@@ -755,6 +744,6 @@ void AddSC_boss_kelthuzad_40()
     new boss_kelthuzad_40();
     new boss_kelthuzad_minion_40();
     RegisterSpellScript(spell_kelthuzad_frost_blast);
-    new spell_kelthuzad_detonate_mana();
+    RegisterSpellScript(spell_kelthuzad_detonate_mana_aura);
     RegisterSpellScript(spell_kelthuzad_dark_blast);
 }
