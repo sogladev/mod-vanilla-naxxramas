@@ -1600,35 +1600,23 @@ class spell_unholy_staff_arcane_explosion_40 : public SpellScript
     }
 };
 
-class spell_disease_cloud_damage_40 : public SpellScriptLoader
+class spell_disease_cloud_damage_40 : public SpellScript
 {
-public:
-    spell_disease_cloud_damage_40() : SpellScriptLoader("spell_disease_cloud_damage_40") { }
+    PrepareSpellScript(spell_disease_cloud_damage_40);
 
-    class spell_disease_cloud_damage_40_SpellScript : public SpellScript
+    void HandleDamageCalc(SpellEffIndex /*effIndex*/)
     {
-        PrepareSpellScript(spell_disease_cloud_damage_40_SpellScript);
-
-        void HandleDamageCalc(SpellEffIndex /*effIndex*/)
+        Unit* caster = GetCaster();
+        if (!caster || (caster->GetMap()->GetDifficulty() != RAID_DIFFICULTY_10MAN_HEROIC))
         {
-            Unit* caster = GetCaster();
-            if (!caster || (caster->GetMap()->GetDifficulty() != RAID_DIFFICULTY_10MAN_HEROIC))
-            {
-                return;
-            }
-            SetEffectValue(urand(278,322));
+            return;
         }
+        SetEffectValue(urand(278,322));
+    }
 
-        void Register() override
-        {
-            OnEffectLaunchTarget += SpellEffectFn(spell_disease_cloud_damage_40_SpellScript::HandleDamageCalc, EFFECT_0, SPELL_EFFECT_SCHOOL_DAMAGE);
-        }
-
-    };
-
-    SpellScript* GetSpellScript() const override
+    void Register() override
     {
-        return new spell_disease_cloud_damage_40_SpellScript();
+        OnEffectLaunchTarget += SpellEffectFn(spell_disease_cloud_damage_40::HandleDamageCalc, EFFECT_0, SPELL_EFFECT_SCHOOL_DAMAGE);
     }
 };
 
@@ -1644,5 +1632,5 @@ void AddSC_instance_naxxramas_combined()
     new gobject_naxx40_tele();
 //    new boss_naxxramas_misc();
     RegisterSpellScript(spell_unholy_staff_arcane_explosion_40);
-    new spell_disease_cloud_damage_40();
+    RegisterSpellScript(spell_disease_cloud_damage_40);
 }
