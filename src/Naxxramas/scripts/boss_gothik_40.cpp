@@ -684,18 +684,29 @@ public:
     };
 };
 
-class spell_gothik_shadow_bolt_volley : public SpellScript
+class spell_gothik_shadow_bolt_volley : public SpellScriptLoader
 {
-    PrepareSpellScript(spell_gothik_shadow_bolt_volley);
+public:
+    spell_gothik_shadow_bolt_volley() : SpellScriptLoader("spell_gothik_shadow_bolt_volley") { }
 
-    void FilterTargets(std::list<WorldObject*>& targets)
+    class spell_gothik_shadow_bolt_volley_SpellScript : public SpellScript
     {
-        targets.remove_if(Acore::UnitAuraCheck(false, SPELL_SHADOW_MARK));
-    }
+        PrepareSpellScript(spell_gothik_shadow_bolt_volley_SpellScript);
 
-    void Register() override
+        void FilterTargets(std::list<WorldObject*>& targets)
+        {
+            targets.remove_if(Acore::UnitAuraCheck(false, SPELL_SHADOW_MARK));
+        }
+
+        void Register() override
+        {
+            OnObjectAreaTargetSelect += SpellObjectAreaTargetSelectFn(spell_gothik_shadow_bolt_volley_SpellScript::FilterTargets, EFFECT_0, TARGET_UNIT_SRC_AREA_ENEMY);
+        }
+    };
+
+    SpellScript* GetSpellScript() const override
     {
-        OnObjectAreaTargetSelect += SpellObjectAreaTargetSelectFn(spell_gothik_shadow_bolt_volley::FilterTargets, EFFECT_0, TARGET_UNIT_SRC_AREA_ENEMY);
+        return new spell_gothik_shadow_bolt_volley_SpellScript();
     }
 };
 
@@ -703,5 +714,5 @@ void AddSC_boss_gothik_40()
 {
     new boss_gothik_40();
     new npc_boss_gothik_minion_40();
-    // RegisterSpellScript(spell_gothik_shadow_bolt_volley);
+//    new spell_gothik_shadow_bolt_volley();
 }

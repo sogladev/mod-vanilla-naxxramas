@@ -253,38 +253,49 @@ public:
     };
 };
 
-class spell_anub_locust_swarm_40_aura : public AuraScript
+class spell_anub_locust_swarm_40 : public SpellScriptLoader
 {
-    PrepareAuraScript(spell_anub_locust_swarm_40_aura);
+public:
+    spell_anub_locust_swarm_40() : SpellScriptLoader("spell_anub_locust_swarm_40") { }
 
-    bool Validate(SpellInfo const* /*spellInfo*/) override
+    class spell_anub_locust_swarm_40_AuraScript : public AuraScript
     {
-        return ValidateSpellInfo({ SPELL_LOCUST_SWARM_TRIGGER });
-    }
+        PrepareAuraScript(spell_anub_locust_swarm_40_AuraScript);
 
-    void HandleTriggerSpell(AuraEffect const* /*aurEff*/)
-    {
-        Unit* caster = GetCaster();
-        if (!caster || (caster->GetMap()->GetDifficulty() != RAID_DIFFICULTY_10MAN_HEROIC))
+        bool Validate(SpellInfo const* /*spellInfo*/) override
         {
-            return;
+            return ValidateSpellInfo({ SPELL_LOCUST_SWARM_TRIGGER });
         }
-        PreventDefaultAction();
-        int32 modifiedLocustSwarmDamage = 812;
-        CustomSpellValues values;
-        values.AddSpellMod(SPELLVALUE_BASE_POINT0, modifiedLocustSwarmDamage);
-        values.AddSpellMod(SPELLVALUE_RADIUS_MOD, 3000); // 30yd
-        caster->CastCustomSpell(SPELL_LOCUST_SWARM_TRIGGER, values, caster, TRIGGERED_FULL_MASK, nullptr, nullptr, GetCasterGUID());
-    }
 
-    void Register() override
+        void HandleTriggerSpell(AuraEffect const* /*aurEff*/)
+        {
+            Unit* caster = GetCaster();
+            if (!caster || (caster->GetMap()->GetDifficulty() != RAID_DIFFICULTY_10MAN_HEROIC))
+            {
+                return;
+            }
+            PreventDefaultAction();
+            int32 modifiedLocustSwarmDamage = 812;
+            CustomSpellValues values;
+            values.AddSpellMod(SPELLVALUE_BASE_POINT0, modifiedLocustSwarmDamage);
+            values.AddSpellMod(SPELLVALUE_RADIUS_MOD, 3000); // 30yd
+            caster->CastCustomSpell(SPELL_LOCUST_SWARM_TRIGGER, values, caster, TRIGGERED_FULL_MASK, nullptr, nullptr, GetCasterGUID());
+        }
+
+        void Register() override
+        {
+            OnEffectPeriodic += AuraEffectPeriodicFn(spell_anub_locust_swarm_40_AuraScript::HandleTriggerSpell, EFFECT_0, SPELL_AURA_PERIODIC_TRIGGER_SPELL);
+        }
+    };
+
+    AuraScript* GetAuraScript() const override
     {
-        OnEffectPeriodic += AuraEffectPeriodicFn(spell_anub_locust_swarm_40_aura::HandleTriggerSpell, EFFECT_0, SPELL_AURA_PERIODIC_TRIGGER_SPELL);
+        return new spell_anub_locust_swarm_40_AuraScript();
     }
 };
 
 void AddSC_boss_anubrekhan_40()
 {
     new boss_anubrekhan_40();
-    RegisterSpellScript(spell_anub_locust_swarm_40_aura);
+    new spell_anub_locust_swarm_40();
 }
