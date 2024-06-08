@@ -610,9 +610,9 @@ public:
 };
 
 // This will overwrite the declared 10 and 25 man pos_neg_charge to handle all versions of the spell script
-class spell_thaddius_pos_neg_charge : public SpellScript
+class spell_thaddius_pos_neg_charge_40 : public SpellScript
 {
-    PrepareSpellScript(spell_thaddius_pos_neg_charge);
+    PrepareSpellScript(spell_thaddius_pos_neg_charge_40);
 
     void HandleTargets(std::list<WorldObject*>& targets)
     {
@@ -753,9 +753,9 @@ public:
     }
 };
 
-class spell_feugen_static_field : public SpellScript
+class spell_feugen_static_field_40 : public SpellScript
 {
-    PrepareSpellScript(spell_feugen_static_field);
+    PrepareSpellScript(spell_feugen_static_field_40);
 
     void HandleDamageCalc(SpellEffIndex /*effIndex*/)
     {
@@ -783,8 +783,8 @@ void AddSC_boss_thaddius_40()
     new boss_thaddius_40();
     new boss_thaddius_summon_40();
 //    new npc_tesla();
-    RegisterSpellScript(spell_thaddius_pos_neg_charge);
+    RegisterSpellScript(spell_thaddius_pos_neg_charge_40);
     // RegisterSpellScript(spell_thaddius_polarity_shift);
 //    new at_thaddius_entrance();
-    RegisterSpellScript(spell_feugen_static_field);
+    RegisterSpellScript(spell_feugen_static_field_40);
 }
