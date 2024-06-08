@@ -278,7 +278,6 @@ public:
         return new spell_grobbulus_poison_SpellScript();
     }
 };
-
 // This will overwrite the declared 10 and 25 man mutating injection to handle all versions of the spell script
 class spell_grobbulus_mutating_injection_aura : public AuraScript
 {
@@ -319,34 +318,23 @@ class spell_grobbulus_mutating_injection_aura : public AuraScript
     }
 };
 
-class spell_grobbulus_poison_cloud_poison_damage_40 : public SpellScriptLoader
+class spell_grobbulus_poison_cloud_poison_damage_40 : public SpellScript
 {
-public:
-    spell_grobbulus_poison_cloud_poison_damage_40() : SpellScriptLoader("spell_grobbulus_poison_cloud_poison_damage_40") { }
+    PrepareSpellScript(spell_grobbulus_poison_cloud_poison_damage_40);
 
-    class spell_grobbulus_poison_cloud_poison_damage_40_SpellScript : public SpellScript
+    void HandleDamageCalc(SpellEffIndex /*effIndex*/)
     {
-        PrepareSpellScript(spell_grobbulus_poison_cloud_poison_damage_40_SpellScript);
-
-        void HandleDamageCalc(SpellEffIndex /*effIndex*/)
+        Unit* caster = GetCaster();
+        if (!caster || (caster->GetMap()->GetDifficulty() != RAID_DIFFICULTY_10MAN_HEROIC))
         {
-            Unit* caster = GetCaster();
-            if (!caster || (caster->GetMap()->GetDifficulty() != RAID_DIFFICULTY_10MAN_HEROIC))
-            {
-                return;
-            }
-            SetEffectValue(urand(1110, 1290));
+            return;
         }
+        SetEffectValue(urand(1110, 1290));
+    }
 
-        void Register() override
-        {
-            OnEffectLaunchTarget += SpellEffectFn(spell_grobbulus_poison_cloud_poison_damage_40_SpellScript::HandleDamageCalc, EFFECT_0, SPELL_EFFECT_SCHOOL_DAMAGE);
-        }
-    };
-
-    SpellScript* GetSpellScript() const override
+    void Register() override
     {
-        return new spell_grobbulus_poison_cloud_poison_damage_40_SpellScript();
+        OnEffectLaunchTarget += SpellEffectFn(spell_grobbulus_poison_cloud_poison_damage_40::HandleDamageCalc, EFFECT_0, SPELL_EFFECT_SCHOOL_DAMAGE);
     }
 };
 
@@ -355,6 +343,6 @@ void AddSC_boss_grobbulus_40()
     new boss_grobbulus_40();
     new boss_grobbulus_poison_cloud_40();
     RegisterSpellScript(spell_grobbulus_mutating_injection_aura);
-    new spell_grobbulus_poison_cloud_poison_damage_40();
+    RegisterSpellScript(spell_grobbulus_poison_cloud_poison_damage_40);
     // new spell_grobbulus_poison();
 }
