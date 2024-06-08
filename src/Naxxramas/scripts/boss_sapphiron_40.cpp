@@ -469,9 +469,9 @@ public:
 };
 
 // This will overwrite the declared 10 and 25 man frost explosion to handle all versions of the spell script
-class spell_sapphiron_frost_explosion : public SpellScript
+class spell_sapphiron_frost_explosion_40 : public SpellScript
 {
-    PrepareSpellScript(spell_sapphiron_frost_explosion);
+    PrepareSpellScript(spell_sapphiron_frost_explosion_40);
 
     void FilterTargets(std::list<WorldObject*>& targets)
     {
@@ -503,5 +503,5 @@ class spell_sapphiron_frost_explosion : public SpellScript
 void AddSC_boss_sapphiron_40()
 {
     new boss_sapphiron_40();
-    RegisterSpellScript(spell_sapphiron_frost_explosion);
+    RegisterSpellScript(spell_sapphiron_frost_explosion_40);
 }
