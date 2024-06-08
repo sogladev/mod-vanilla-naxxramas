@@ -368,41 +368,30 @@ public:
     };
 };
 
-class spell_heigan_plague_cloud_40 : public SpellScriptLoader
+class spell_heigan_plague_cloud_40_aura : public AuraScript
 {
-public:
-    spell_heigan_plague_cloud_40() : SpellScriptLoader("spell_heigan_plague_cloud_40") { }
+    PrepareAuraScript(spell_heigan_plague_cloud_40_aura);
 
-    class spell_heigan_plague_cloud_40_AuraScript : public AuraScript
+    bool Validate(SpellInfo const* /*spellInfo*/) override
     {
-        PrepareAuraScript(spell_heigan_plague_cloud_40_AuraScript);
+        return ValidateSpellInfo({ SPELL_PLAGUE_CLOUD_TRIGGER });
+    }
 
-        bool Validate(SpellInfo const* /*spellInfo*/) override
-        {
-            return ValidateSpellInfo({ SPELL_PLAGUE_CLOUD_TRIGGER });
-        }
-
-        void HandleTriggerSpell(AuraEffect const* /*aurEff*/)
-        {
-            Unit* caster = GetCaster();
-            if (!caster || (caster->GetMap()->GetDifficulty() != RAID_DIFFICULTY_10MAN_HEROIC))
-            {
-                return;
-            }
-            PreventDefaultAction();
-            int32 bp0 = 4000;
-            caster->CastCustomSpell(caster, SPELL_PLAGUE_CLOUD_TRIGGER, &bp0, 0, 0, true);
-        }
-
-        void Register() override
-        {
-            OnEffectPeriodic += AuraEffectPeriodicFn(spell_heigan_plague_cloud_40_AuraScript::HandleTriggerSpell, EFFECT_0, SPELL_AURA_PERIODIC_TRIGGER_SPELL);
-        }
-    };
-
-    AuraScript* GetAuraScript() const override
+    void HandleTriggerSpell(AuraEffect const* /*aurEff*/)
     {
-        return new spell_heigan_plague_cloud_40_AuraScript();
+        Unit* caster = GetCaster();
+        if (!caster || (caster->GetMap()->GetDifficulty() != RAID_DIFFICULTY_10MAN_HEROIC))
+        {
+            return;
+        }
+        PreventDefaultAction();
+        int32 bp0 = 4000;
+        caster->CastCustomSpell(caster, SPELL_PLAGUE_CLOUD_TRIGGER, &bp0, 0, 0, true);
+    }
+
+    void Register() override
+    {
+        OnEffectPeriodic += AuraEffectPeriodicFn(spell_heigan_plague_cloud_40_aura::HandleTriggerSpell, EFFECT_0, SPELL_AURA_PERIODIC_TRIGGER_SPELL);
     }
 };
 
@@ -573,7 +562,7 @@ public:
 void AddSC_boss_heigan_40()
 {
     new boss_heigan_40();
-    new spell_heigan_plague_cloud_40();
+    RegisterSpellScript(spell_heigan_plague_cloud_40_aura);
     new spell_heigan_eruption_40();
     new spell_submerge_visual();
     new boss_heigan_eye_stalk_40();
