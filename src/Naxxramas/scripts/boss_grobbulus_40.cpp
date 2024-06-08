@@ -269,9 +269,9 @@ class spell_grobbulus_poison : public SpellScript
 };
 
 // This will overwrite the declared 10 and 25 man mutating injection to handle all versions of the spell script
-class spell_grobbulus_mutating_injection_aura : public AuraScript
+class spell_grobbulus_mutating_injection_40_aura : public AuraScript
 {
-    PrepareAuraScript(spell_grobbulus_mutating_injection_aura);
+    PrepareAuraScript(spell_grobbulus_mutating_injection_40_aura);
 
     bool Validate(SpellInfo const* /*spellInfo*/) override
     {
@@ -333,6 +333,6 @@ void AddSC_boss_grobbulus_40()
     new boss_grobbulus_40();
     new boss_grobbulus_poison_cloud_40();
     // RegisterSpellScript(spell_grobbulus_poison);
-    RegisterSpellScript(spell_grobbulus_mutating_injection_aura);
+    RegisterSpellScript(spell_grobbulus_mutating_injection_40_aura);
     RegisterSpellScript(spell_grobbulus_poison_cloud_poison_damage_40);
 }
