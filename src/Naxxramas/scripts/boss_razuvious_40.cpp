@@ -227,9 +227,9 @@ public:
     };
 };
 
-class spell_razuvious_disrupting_shout : public SpellScript
+class spell_razuvious_disrupting_shout_40 : public SpellScript
 {
-    PrepareSpellScript(spell_razuvious_disrupting_shout);
+    PrepareSpellScript(spell_razuvious_disrupting_shout_40);
 
     void PreventLaunchHit(SpellEffIndex effIndex)
     {
@@ -266,5 +266,5 @@ void AddSC_boss_razuvious_40()
 {
     new boss_razuvious_40();
     new boss_razuvious_minion_40();
-    RegisterSpellScript(spell_razuvious_disrupting_shout);
+    RegisterSpellScript(spell_razuvious_disrupting_shout_40);
 }
