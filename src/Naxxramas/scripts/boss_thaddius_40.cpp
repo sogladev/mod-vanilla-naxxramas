@@ -753,39 +753,28 @@ public:
     }
 };
 
-class spell_feugen_static_field_40 : public SpellScriptLoader
+class spell_feugen_static_field : public SpellScript
 {
-public:
-    spell_feugen_static_field_40() : SpellScriptLoader("spell_feugen_static_field") { }
+    PrepareSpellScript(spell_feugen_static_field);
 
-    class spell_feugen_static_field_40_SpellScript : public SpellScript
+    void HandleDamageCalc(SpellEffIndex /*effIndex*/)
     {
-        PrepareSpellScript(spell_feugen_static_field_40_SpellScript);
-
-        void HandleDamageCalc(SpellEffIndex /*effIndex*/)
+        Unit* caster = GetCaster();
+        if (!caster || (caster->GetMap()->GetDifficulty() != RAID_DIFFICULTY_10MAN_HEROIC))
         {
-            Unit* caster = GetCaster();
-            if (!caster || (caster->GetMap()->GetDifficulty() != RAID_DIFFICULTY_10MAN_HEROIC))
-            {
-                return;
-            }
-            if (Unit* target = GetHitUnit())
-            {
-                Powers PowerType = POWER_MANA;
-                int32 drainedAmount = -target->ModifyPower(PowerType, -500);
-                SetEffectValue(drainedAmount);
-            }
+            return;
         }
-
-        void Register() override
+        if (Unit* target = GetHitUnit())
         {
-            OnEffectLaunchTarget += SpellEffectFn(spell_feugen_static_field_40_SpellScript::HandleDamageCalc, EFFECT_0, SPELL_EFFECT_SCHOOL_DAMAGE);
+            Powers PowerType = POWER_MANA;
+            int32 drainedAmount = -target->ModifyPower(PowerType, -500);
+            SetEffectValue(drainedAmount);
         }
-    };
+    }
 
-    SpellScript* GetSpellScript() const override
+    void Register() override
     {
-        return new spell_feugen_static_field_40_SpellScript();
+        OnEffectLaunchTarget += SpellEffectFn(spell_feugen_static_field_40::HandleDamageCalc, EFFECT_0, SPELL_EFFECT_SCHOOL_DAMAGE);
     }
 };
 
@@ -797,5 +786,5 @@ void AddSC_boss_thaddius_40()
     RegisterSpellScript(spell_thaddius_pos_neg_charge);
     // RegisterSpellScript(spell_thaddius_polarity_shift);
 //    new at_thaddius_entrance();
-    new spell_feugen_static_field_40();
+    RegisterSpellScript(spell_feugen_static_field);
 }
