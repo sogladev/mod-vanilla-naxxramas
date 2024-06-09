@@ -227,44 +227,8 @@ public:
     };
 };
 
-class spell_razuvious_disrupting_shout_40 : public SpellScript
-{
-    PrepareSpellScript(spell_razuvious_disrupting_shout_40);
-
-    void PreventLaunchHit(SpellEffIndex effIndex)
-    {
-        Unit* caster = GetCaster();
-        if (!caster || (caster->GetMap()->GetDifficulty() != RAID_DIFFICULTY_10MAN_HEROIC))
-        {
-            return;
-        }
-        if (Unit* target = GetHitUnit())
-        {
-            // ignore los -> not ignore los
-            // radius 60yd -> 45yd
-            PreventHitDefaultEffect(effIndex);
-            if (!target->IsWithinLOSInMap(caster) || !target->IsWithinDist2d(caster, 45.0f))
-            {
-                SetEffectValue(0);
-                return;
-            }
-            Powers PowerType = POWER_MANA;
-            // int32 amountToDrain = urand(4050,4950);
-            int32 amountToDrain = urand(500,501);
-            int32 drainedAmount = -target->ModifyPower(PowerType, -amountToDrain);
-            SetEffectValue(drainedAmount);
-        }
-    }
-
-    void Register() override
-    {
-        OnEffectHitTarget += SpellEffectFn(spell_razuvious_disrupting_shout_40::PreventLaunchHit, EFFECT_0, SPELL_EFFECT_SCHOOL_DAMAGE);
-    }
-};
-
 void AddSC_boss_razuvious_40()
 {
     new boss_razuvious_40();
     new boss_razuvious_minion_40();
-    RegisterSpellScript(spell_razuvious_disrupting_shout_40);
 }

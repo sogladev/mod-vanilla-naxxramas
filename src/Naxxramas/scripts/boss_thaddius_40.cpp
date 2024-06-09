@@ -610,9 +610,9 @@ public:
 };
 
 // This will overwrite the declared 10 and 25 man pos_neg_charge to handle all versions of the spell script
-class spell_thaddius_pos_neg_charge_40 : public SpellScript
+class spell_thaddius_pos_neg_charge : public SpellScript
 {
-    PrepareSpellScript(spell_thaddius_pos_neg_charge_40);
+    PrepareSpellScript(spell_thaddius_pos_neg_charge);
 
     void HandleTargets(std::list<WorldObject*>& targets)
     {
@@ -706,6 +706,72 @@ class spell_thaddius_polarity_shift : public SpellScript
 
     void Register() override
     {
+        if (!GetTriggeringSpell())
+            return;
+
+        Unit* target = GetHitUnit();
+        if (!target)
+            return;
+
+        if (target->HasAura(GetTriggeringSpell()->Id) || target->GetTypeId() != TYPEID_PLAYER)
+        {
+            SetHitDamage(0);
+        }
+        else if (target->GetInstanceScript())
+        {
+            target->GetInstanceScript()->SetData(DATA_CHARGES_CROSSED, 0);
+        }
+        // Adjust damage to 2000 from 4500 for naxx40
+        if (target->GetMap()->GetDifficulty() == RAID_DIFFICULTY_10MAN_HEROIC)
+        {
+            SetHitDamage(2000);
+        }
+    }
+
+    void Register() override
+    {
+        OnEffectHitTarget += SpellEffectFn(spell_thaddius_pos_neg_charge::HandleDamage, EFFECT_0, SPELL_EFFECT_SCHOOL_DAMAGE);
+        OnObjectAreaTargetSelect += SpellObjectAreaTargetSelectFn(spell_thaddius_pos_neg_charge::HandleTargets, EFFECT_0, TARGET_UNIT_SRC_AREA_ALLY);
+    }
+};
+
+class spell_thaddius_polarity_shift : public SpellScript
+{
+    PrepareSpellScript(spell_thaddius_polarity_shift);
+
+    bool Validate(SpellInfo const* /*spell*/) override
+    {
+        return ValidateSpellInfo({ SPELL_POSITIVE_POLARITY, SPELL_NEGATIVE_POLARITY });
+    }
+
+    void HandleDummy(SpellEffIndex /* effIndex */)
+    {
+        Unit* caster = GetCaster();
+        if (Unit* target = GetHitUnit())
+        {
+            target->RemoveAurasDueToSpell(SPELL_POSITIVE_CHARGE_STACK);
+            target->RemoveAurasDueToSpell(SPELL_NEGATIVE_CHARGE_STACK);
+            target->CastSpell(target, roll_chance_i(50) ? SPELL_POSITIVE_POLARITY : SPELL_NEGATIVE_POLARITY, true, nullptr, nullptr, caster->GetGUID());
+        }
+    }
+
+    void HandleAfterCast()
+    {
+        if (GetCaster())
+        {
+            if (Creature* caster = GetCaster()->ToCreature())
+            {
+                if (caster->GetEntry() == NPC_THADDIUS_40)
+                {
+                    caster->AI()->Talk(SAY_ELECT);
+                    caster->AI()->Talk(EMOTE_POLARITY_SHIFTED);
+                }
+            }
+        }
+    }
+
+    void Register() override
+    {
         OnEffectHitTarget += SpellEffectFn(spell_thaddius_polarity_shift::HandleDummy, EFFECT_0, SPELL_EFFECT_DUMMY);
         AfterCast += SpellCastFn(spell_thaddius_polarity_shift::HandleAfterCast);
     }
@@ -753,9 +819,9 @@ public:
     }
 };
 
-class spell_feugen_static_field_40 : public SpellScript
+class spell_feugen_static_field : public SpellScript
 {
-    PrepareSpellScript(spell_feugen_static_field_40);
+    PrepareSpellScript(spell_feugen_static_field);
 
     void HandleDamageCalc(SpellEffIndex /*effIndex*/)
     {
@@ -774,7 +840,7 @@ class spell_feugen_static_field_40 : public SpellScript
 
     void Register() override
     {
-        OnEffectLaunchTarget += SpellEffectFn(spell_feugen_static_field_40::HandleDamageCalc, EFFECT_0, SPELL_EFFECT_SCHOOL_DAMAGE);
+        OnEffectLaunchTarget += SpellEffectFn(spell_feugen_static_field::HandleDamageCalc, EFFECT_0, SPELL_EFFECT_SCHOOL_DAMAGE);
     }
 };
 
@@ -783,8 +849,8 @@ void AddSC_boss_thaddius_40()
     new boss_thaddius_40();
     new boss_thaddius_summon_40();
 //    new npc_tesla();
-    RegisterSpellScript(spell_thaddius_pos_neg_charge_40);
+    RegisterSpellScript(spell_thaddius_pos_neg_charge);
     // RegisterSpellScript(spell_thaddius_polarity_shift);
 //    new at_thaddius_entrance();
-    RegisterSpellScript(spell_feugen_static_field_40);
+    RegisterSpellScript(spell_feugen_static_field);
 }

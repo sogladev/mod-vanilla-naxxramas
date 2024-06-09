@@ -21,6 +21,8 @@ void AddSC_boss_patchwerk_40();
 void AddSC_boss_razuvious_40();
 void AddSC_boss_sapphiron_40();
 void AddSC_boss_thaddius_40();
+void AddSC_custom_spells_40();
+void AddSC_custom_creatures_40();
 
 void AddNaxxramas_Scripts()
 {
@@ -43,4 +45,6 @@ void AddNaxxramas_Scripts()
     AddSC_boss_razuvious_40();
     AddSC_boss_sapphiron_40();
     AddSC_boss_thaddius_40();
+    AddSC_custom_spells_40();
+    AddSC_custom_creatures_40();
 }

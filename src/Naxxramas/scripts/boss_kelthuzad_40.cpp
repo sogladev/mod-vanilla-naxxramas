@@ -719,31 +719,10 @@ class spell_kelthuzad_detonate_mana_aura : public AuraScript
     }
 };
 
-class spell_kelthuzad_dark_blast : public SpellScript
-{
-    PrepareSpellScript(spell_kelthuzad_dark_blast);
-
-    void CalculateDamage(SpellEffIndex /*effIndex*/)
-    {
-        Unit* caster = GetCaster();
-        if (!caster || (caster->GetMap()->GetDifficulty() != RAID_DIFFICULTY_10MAN_HEROIC))
-        {
-            return;
-        }
-        SetEffectValue(urand(1750,2250));
-    }
-
-    void Register() override
-    {
-        OnEffectLaunchTarget += SpellEffectFn(spell_kelthuzad_dark_blast::CalculateDamage, EFFECT_0, SPELL_EFFECT_SCHOOL_DAMAGE);
-    }
-};
-
 void AddSC_boss_kelthuzad_40()
 {
     new boss_kelthuzad_40();
     new boss_kelthuzad_minion_40();
     // RegisterSpellScript(spell_kelthuzad_frost_blast);
     // RegisterSpellScript(spell_kelthuzad_detonate_mana_aura);
-    RegisterSpellScript(spell_kelthuzad_dark_blast);
 }
