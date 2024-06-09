@@ -253,7 +253,38 @@ public:
     };
 };
 
+class spell_anub_locust_swarm_aura : public AuraScript
+{
+    PrepareAuraScript(spell_anub_locust_swarm_aura);
+
+    bool Validate(SpellInfo const* /*spellInfo*/) override
+    {
+        return ValidateSpellInfo({ SPELL_LOCUST_SWARM_TRIGGER });
+    }
+
+    void HandleTriggerSpell(AuraEffect const* /*aurEff*/)
+    {
+        Unit* caster = GetCaster();
+        if (!caster || (caster->GetMap()->GetDifficulty() != RAID_DIFFICULTY_10MAN_HEROIC))
+        {
+            return;
+        }
+        PreventDefaultAction();
+        int32 modifiedLocustSwarmDamage = 812;
+        CustomSpellValues values;
+        values.AddSpellMod(SPELLVALUE_BASE_POINT0, modifiedLocustSwarmDamage);
+        values.AddSpellMod(SPELLVALUE_RADIUS_MOD, 3000); // 30yd
+        caster->CastCustomSpell(SPELL_LOCUST_SWARM_TRIGGER, values, caster, TRIGGERED_FULL_MASK, nullptr, nullptr, GetCasterGUID());
+    }
+
+    void Register() override
+    {
+        OnEffectPeriodic += AuraEffectPeriodicFn(spell_anub_locust_swarm_aura::HandleTriggerSpell, EFFECT_0, SPELL_AURA_PERIODIC_TRIGGER_SPELL);
+    }
+};
+
 void AddSC_boss_anubrekhan_40()
 {
     new boss_anubrekhan_40();
+    RegisterSpellScript(spell_anub_locust_swarm_aura);
 }

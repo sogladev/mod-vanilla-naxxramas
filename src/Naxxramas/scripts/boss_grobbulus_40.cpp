@@ -282,7 +282,25 @@ class spell_grobbulus_mutating_injection_aura : public AuraScript
     {
         switch (GetTargetApplication()->GetRemoveMode())
         {
-            PrepareAuraScript(spell_grobbulus_mutating_injection_40_AuraScript);
+            case AURA_REMOVE_BY_ENEMY_SPELL:
+            case AURA_REMOVE_BY_EXPIRE:
+                if (auto caster = GetCaster())
+                {
+                    if (caster->GetMap()->GetDifficulty() == RAID_DIFFICULTY_10MAN_HEROIC)
+                    {
+                        int32 modifiedMutatingExplosionDamage = 2379;
+                        caster->CastCustomSpell(GetTarget(), SPELL_MUTATING_EXPLOSION, &modifiedMutatingExplosionDamage, 0, 0, true);
+                    }
+                    else
+                    {
+                        caster->CastSpell(GetTarget(), SPELL_MUTATING_EXPLOSION, true);
+                    }
+                }
+                break;
+            default:
+                return;
+        }
+    }
 
     void Register() override
     {
