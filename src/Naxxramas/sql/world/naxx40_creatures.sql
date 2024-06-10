@@ -5548,10 +5548,6 @@ DELETE FROM `smart_scripts` WHERE (`source_type` = 0 AND `entryorguid` = 351086)
 INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES
 (351086, 0, 0, 0, 0, 0, 100, 0, 2000, 5000, 9000, 11000, 0, 0, 11, 32736, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 'Cast Spell IC (Naxx 40)'),
 (351086, 0, 1, 0, 0, 0, 100, 0, 5000, 8000, 13000, 15000, 0, 0, 218, 30138, 0, 554, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 'Plagued Champion - In Combat - Custom Cast Shadow Shock (Naxx 40)');
--- Wrath of the Plaguebringer, if failed to decurse
-DELETE FROM `spell_script_names` WHERE `spell_id` = 29213;
-INSERT INTO `spell_script_names` (`spell_id`, `ScriptName`)
-VALUES(29213, 'spell_gothik_curse_of_the_plaguebringer_40');
 
 -- Mutaged Grub
 -- Reduce damage Slime Burst - AoE ~450 to ~200
@@ -5576,19 +5572,6 @@ INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_
 DELETE FROM `smart_scripts` WHERE (`source_type` = 0 AND `entryorguid` = 351030);
 INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES
 (351030, 0, 0, 0, 0, 0, 100, 0, 0, 0, 3000, 3000, 0, 0, 11, 5568, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 'Plague Beast - In Combat - Cast \'Trample\' (Naxx40)');
-
--- Heigan, Plague Cloud
-DELETE FROM `spell_script_names` WHERE `spell_id` = 29350;
-INSERT INTO `spell_script_names` (`spell_id`, `ScriptName`)
-VALUES(29350, 'spell_heigan_plague_cloud_40');
--- Heigan, Eruption
-DELETE FROM `spell_script_names` WHERE `spell_id` = 29371;
-INSERT INTO `spell_script_names` (`spell_id`, `ScriptName`)
-VALUES(29371, 'spell_heigan_eruption_40');
--- Grobullus, Poison damage by Poison Cloud ~3k to ~1k
-DELETE FROM `spell_script_names` WHERE `spell_id` = 28241;
-INSERT INTO `spell_script_names` (`spell_id`, `ScriptName`)
-VALUES(28241, 'spell_grobbulus_poison_cloud_poison_damage_40');
 
 -- Eye Stalk
 -- Reduce damage 2.5k to 750, movement speed reduction -50 to -20 (as unsigned int)

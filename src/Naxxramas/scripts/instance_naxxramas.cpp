@@ -1257,6 +1257,7 @@ public:
         }
     };
 };
+
 class boss_naxxramas_misc : public CreatureScript
 {
 public:
@@ -1543,10 +1544,7 @@ public:
 class NaxxEntryFlag_AllMapScript : public AllMapScript
 {
 public:
-    NaxxEntryFlag_AllMapScript()
-            : AllMapScript("NaxxEntryFlag_AllMapScript")
-    {
-    }
+    NaxxEntryFlag_AllMapScript() : AllMapScript("NaxxEntryFlag_AllMapScript") { }
 
     void OnPlayerEnterAll(Map* map, Player* player) override
     {
@@ -1570,79 +1568,6 @@ public:
     }
 };
 
-class spell_unholy_staff_arcane_explosion_40 : public SpellScriptLoader
-{
-public:
-    spell_unholy_staff_arcane_explosion_40() : SpellScriptLoader("spell_unholy_staff_arcane_explosion_40") { }
-
-    class spell_unholy_staff_arcane_explosion_40_SpellScript : public SpellScript
-    {
-        PrepareSpellScript(spell_unholy_staff_arcane_explosion_40_SpellScript);
-
-        void PreventLaunchHit(SpellEffIndex effIndex)
-        {
-            Unit* caster = GetCaster();
-            if (!caster || (caster->GetMap()->GetDifficulty() != RAID_DIFFICULTY_10MAN_HEROIC))
-            {
-                return;
-            }
-            if (Unit* target = GetHitUnit())
-            {
-                if (target->IsWithinDist2d(caster, 20.0f))
-                {
-                    SetEffectValue(urand(1838, 2361));
-                }
-                else
-                {
-                    PreventHitDefaultEffect(effIndex);
-                }
-            }
-        }
-
-        void Register() override
-        {
-            OnEffectLaunchTarget += SpellEffectFn(spell_unholy_staff_arcane_explosion_40_SpellScript::PreventLaunchHit, EFFECT_1, SPELL_EFFECT_SCHOOL_DAMAGE);
-        }
-    };
-
-    SpellScript* GetSpellScript() const override
-    {
-        return new spell_unholy_staff_arcane_explosion_40_SpellScript();
-    }
-};
-
-class spell_disease_cloud_damage_40 : public SpellScriptLoader
-{
-public:
-    spell_disease_cloud_damage_40() : SpellScriptLoader("spell_disease_cloud_damage_40") { }
-
-    class spell_disease_cloud_damage_40_SpellScript : public SpellScript
-    {
-        PrepareSpellScript(spell_disease_cloud_damage_40_SpellScript);
-
-        void HandleDamageCalc(SpellEffIndex /*effIndex*/)
-        {
-            Unit* caster = GetCaster();
-            if (!caster || (caster->GetMap()->GetDifficulty() != RAID_DIFFICULTY_10MAN_HEROIC))
-            {
-                return;
-            }
-            SetEffectValue(urand(278,322));
-        }
-
-        void Register() override
-        {
-            OnEffectLaunchTarget += SpellEffectFn(spell_disease_cloud_damage_40_SpellScript::HandleDamageCalc, EFFECT_0, SPELL_EFFECT_SCHOOL_DAMAGE);
-        }
-
-    };
-
-    SpellScript* GetSpellScript() const override
-    {
-        return new spell_disease_cloud_damage_40_SpellScript();
-    }
-};
-
 void AddSC_instance_naxxramas_combined()
 {
     new instance_naxxramas_combined();
@@ -1654,6 +1579,4 @@ void AddSC_instance_naxxramas_combined()
     new NaxxEntryFlag_AllMapScript();
     new gobject_naxx40_tele();
 //    new boss_naxxramas_misc();
-    new spell_unholy_staff_arcane_explosion_40();
-    new spell_disease_cloud_damage_40();
 }
