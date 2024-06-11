@@ -3,6 +3,7 @@
 #include "ScriptedCreature.h"
 #include "SpellAuraEffects.h"
 #include "SpellScript.h"
+#include "Player.h"
 #include "naxxramas.h"
 
 class npc_naxx40_area_trigger : public CreatureScript
