@@ -23,7 +23,6 @@
 #include "ScriptedCreature.h"
 #include "DBCEnums.h"
 #include "ObjectMgr.h"
-#include "GameObjectAI.h"
 #include "naxxramas.h"
 
 const float HeiganPos[2] = {2796, -3707};
