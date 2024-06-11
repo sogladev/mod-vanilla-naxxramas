@@ -25,7 +25,6 @@
 #include "ObjectMgr.h"
 #include "GameObjectAI.h"
 #include "naxxramas.h"
-#include "VanillaNaxxramas.h"
 
 const float HeiganPos[2] = {2796, -3707};
 const float HeiganEruptionSlope[3] =
@@ -1329,106 +1328,6 @@ public:
     };
 };
 
-class npc_naxx40_area_trigger : public CreatureScript
-{
-private:
-    static bool isAttuned(Player* player)
-    {
-        if (player->GetQuestStatus(NAXX40_ATTUNEMENT_1) == QUEST_STATUS_REWARDED)
-            return true;
-        if (player->GetQuestStatus(NAXX40_ATTUNEMENT_2) == QUEST_STATUS_REWARDED)
-            return true;
-        if (player->GetQuestStatus(NAXX40_ATTUNEMENT_3) == QUEST_STATUS_REWARDED)
-            return true;
-        return false;
-    }
-
-public:
-    npc_naxx40_area_trigger() : CreatureScript("npc_naxx40_area_trigger") {}
-
-    struct npc_naxx40_area_triggerAI: public ScriptedAI
-    {
-        npc_naxx40_area_triggerAI(Creature* creature) : ScriptedAI(creature)
-        {
-            me->SetDisplayId(11686); // Invisible
-        }
-
-        void MoveInLineOfSight(Unit* who) override
-        {
-            if (who && me->GetDistance2d(who) < 5.0f)
-            {
-                if (Player* player = who->ToPlayer())
-                {
-                    if (isAttuned(player))
-                    {
-                        player->SetRaidDifficulty(RAID_DIFFICULTY_10MAN_HEROIC);
-                        player->TeleportTo(533, 3005.51f, -3434.64f, 304.195f, 6.2831f);
-                    }
-                }
-
-            }
-            else if (who && me->GetDistance2d(who) < 20.0f)
-            {
-                if (Player* player = who->ToPlayer())
-                {
-                    if (isAttuned(player))
-                    {
-                        GameObject* door = me->FindNearestGameObject(NAXX_STRATH_GATE, 100.0f);
-                        if (door)
-                        {
-                            door->SetGoState(GO_STATE_ACTIVE);
-                        }
-                    }
-                }
-            }
-        }
-    };
-
-    CreatureAI* GetAI(Creature* creature) const override
-    {
-        return new npc_naxx40_area_triggerAI(creature);
-    }
-};
-
-class gobject_naxx40_tele : public GameObjectScript
-{
-private:
-    static bool isAttuned(Player* player)
-    {
-        if (player->GetQuestStatus(NAXX40_ATTUNEMENT_1) == QUEST_STATUS_REWARDED)
-            return true;
-        if (player->GetQuestStatus(NAXX40_ATTUNEMENT_2) == QUEST_STATUS_REWARDED)
-            return true;
-        if (player->GetQuestStatus(NAXX40_ATTUNEMENT_3) == QUEST_STATUS_REWARDED)
-            return true;
-        return false;
-    }
-
-public:
-    gobject_naxx40_tele() : GameObjectScript("gobject_naxx40_tele") { }
-
-    struct gobject_naxx40_teleAI: GameObjectAI
-    {
-        explicit gobject_naxx40_teleAI(GameObject* object) : GameObjectAI(object) { };
-
-    };
-
-    GameObjectAI* GetAI(GameObject* object) const override
-    {
-        return new gobject_naxx40_teleAI(object);
-    }
-
-    bool OnGossipHello(Player* player, GameObject* /*go*/) override
-    {
-        if ((!sVanillaNaxxramas->requireNaxxStrath || player->GetQuestStatus(NAXX40_ENTRANCE_FLAG) == QUEST_STATUS_REWARDED) && isAttuned(player))
-        {
-            player->SetRaidDifficulty(RAID_DIFFICULTY_10MAN_HEROIC);
-            player->TeleportTo(533, 3005.51f, -3434.64f, 304.195f, 6.2831f);
-        }
-        return true;
-    }
-};
-
 class NaxxPlayerScript : public PlayerScript
 {
 public:
@@ -1473,7 +1372,8 @@ public:
                 player->TeleportTo(533, 2992.5f, -3434.42f, 293.94f, 3.13f);
                 break;
         }
-        return true;    }
+        return true;
+    }
 };
 
 class naxx_exit_trigger : public AreaTriggerScript
@@ -1571,12 +1471,10 @@ public:
 void AddSC_instance_naxxramas_combined()
 {
     new instance_naxxramas_combined();
-    new npc_naxx40_area_trigger();
     new NaxxPlayerScript();
     new naxx_exit_trigger();
     new naxx_northrend_entrance();
     new at_naxxramas_hub_portal();
     new NaxxEntryFlag_AllMapScript();
-    new gobject_naxx40_tele();
 //    new boss_naxxramas_misc();
 }
