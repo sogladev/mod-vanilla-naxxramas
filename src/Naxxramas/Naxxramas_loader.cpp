@@ -4,7 +4,7 @@
 
 #include "VanillaNaxxramas.h"
 
-void AddSC_omarion_40();
+void AddSC_npc_omarion_40();
 void AddSC_instance_naxxramas_combined();
 void AddSC_boss_anubrekhan_40();
 void AddSC_boss_faerlina_40();
@@ -29,7 +29,7 @@ void AddNaxxramas_Scripts()
 {
     if (!(sConfigMgr->GetOption<bool>("VanillaNaxxramas.Naxxramas", false)))
         return;
-    AddSC_omarion_40();
+    AddSC_npc_omarion_40();
     AddSC_instance_naxxramas_combined();
     AddSC_boss_anubrekhan_40();
     AddSC_boss_faerlina_40();
