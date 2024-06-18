@@ -4,6 +4,11 @@ on:
     branches: [ master ]
   pull_request:
     branches: [ master ]
+    types:
+      - opened
+      - reopened
+      - synchronize
+      - ready_for_review
   workflow_dispatch:
   schedule:
     - cron: '0 6 * * *'
