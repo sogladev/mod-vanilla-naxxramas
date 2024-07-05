@@ -6,7 +6,7 @@ SET @ENTRY:=351000;
 SET @CGUID:=361000; -- creature guids
 SET @SPELL:=90001; -- used by smartAI below
 
-DELETE FROM `creature_template` WHERE `entry` BETWEEN @ENTRY AND @ID+089;
+DELETE FROM `creature_template` WHERE `entry` BETWEEN @ENTRY AND @ENTRY+089;
 INSERT INTO `creature_template` (`entry`, `name`, `subname`, `minlevel`, `maxlevel`, `faction`, `speed_walk`, `speed_run`, `detection_range`,`scale`,`rank`,`dmgschool`,`DamageModifier`,`BaseAttackTime`,`RangeAttackTime`,`BaseVariance`,`RangeVariance`,`unit_class`,`unit_flags`,`unit_flags2`,`family`,`type`,`type_flags`,`lootid`,`skinloot`,`PetSpellDataId`,`mingold`,`maxgold`,`AIName`,`MovementType`,`HoverHeight`,`HealthModifier`,`ManaModifier`,`ArmorModifier`,`ExperienceModifier`,`movementId`,`RegenHealth`,`mechanic_immune_mask`,`spell_school_immune_mask`,`flags_extra`,`ScriptName`) VALUES
 (@ENTRY+000, 'Thaddius', '', 63, 63, 21, 1.0, 1.42857, 20.0, 1.0, 3, 0, 50.0, 2000, 3700, 1.0, 1.0, 1, 0, 2048, 0, 6, 76, 351000, 0, 0, 1513636, 1850000, '', 0, 1.0, 2000.0, 2.0, 1.5, 1.0, 0, 1, 2093694843, 0, 3221225473, 'boss_thaddius_40'),
 (@ENTRY+001, 'Stalagg', '', 63, 63, 21, 0.8, 1.14286, 20.0, 1.0, 3, 0, 54.85, 2500, 3700, 1.0, 1.0, 1, 64, 2048, 0, 6, 76, 0, 0, 0, 0, 0, '', 0, 1.0, 150.0, 2.0, 1.3, 1.0, 0, 1, 2093694843, 0, 1073741825, 'boss_thaddius_summon_40'),
@@ -4450,7 +4450,7 @@ DELETE FROM `creature_text` WHERE `CreatureID` IN (
 @ENTRY+28, @ENTRY+35, @ENTRY+36, @ENTRY+37, @ENTRY+38, @ENTRY+39, @ENTRY+40,
 @ENTRY+65, @ENTRY+76, @ENTRY+78, @ENTRY+82);
 INSERT INTO `creature_text` (`CreatureID`, `GroupID`, `ID`, `Text`, `Type`, `Language`, `Probability`, `Emote`, `Duration`, `Sound`, `BroadcastTextId`, `TextRange`, `comment`) VALUES
-(@ENTRY+00: 0, 0, "You are too late!! I... must... obey!!", 14, 0, 100.0, 0, 0, 8872, 13091, 0, "thaddius SAY_GREET (Naxx 40)"),
+(@ENTRY+00, 0, 0, "You are too late!! I... must... obey!!", 14, 0, 100.0, 0, 0, 8872, 13091, 0, "thaddius SAY_GREET (Naxx 40)"),
 (@ENTRY+00, 1, 0, "Kill...", 14, 0, 100.0, 0, 0, 8867, 13086, 0, "thaddius SAY_AGGRO1 (Naxx 40)"),
 (@ENTRY+00, 1, 1, "Eat... your... bones...", 14, 0, 100.0, 0, 0, 8868, 13087, 0, "thaddius SAY_AGGRO2 (Naxx 40)"),
 (@ENTRY+00, 1, 2, "Break... you!!", 14, 0, 100.0, 0, 0, 8869, 13088, 0, "thaddius SAY_AGGRO3 (Naxx 40)"),
@@ -4918,516 +4918,93 @@ INSERT INTO `creature_template_model` (`CreatureID`, `Idx`, `CreatureDisplayID`,
 (@ENTRY+097, 0, 17035, 1.0, 1.0, 0),
 (@ENTRY+097, 1, 11686, 1.0, 1.0, 0);
 
--- Deathknight
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351049, 2);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351049, 3);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351049, 4);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351049, 5);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351049, 6);
-
--- Spectral Horse
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (15, 351051, 2);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (15, 351051, 3);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (15, 351051, 4);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (15, 351051, 5);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (15, 351051, 6);
-
--- Risen Deathknight
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351053, 2);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351053, 3);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351053, 4);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351053, 5);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351053, 6);
-
--- Dark Touched Warrior
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351054, 2);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351054, 3);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351054, 4);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351054, 5);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351054, 6);
-
--- Death Touched Warrior
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 16158, 2);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 16158, 3);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 16158, 4);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 16158, 5);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 16158, 6);
-
--- Deathknight Cavalier
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351055, 2);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351055, 3);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351055, 4);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351055, 5);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351055, 6);
-
---  Dread Creeper  */
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351010, 2);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351010, 3);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351010, 4);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351010, 5);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351010, 6);
-
---  Necro Knight  */
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351057, 2);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351057, 3);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351057, 4);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351057, 5);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351057, 6);
-
--- Bony Construct
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351058, 2);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351058, 3);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351058, 4);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351058, 5);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351058, 6);
-
--- Stoneskin Gargoyle
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351059, 2);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351059, 3);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351059, 4);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351059, 5);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351059, 6);
-
--- Skeletal Smith
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351060, 2);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351060, 3);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351060, 4);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351060, 5);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351060, 6);
-
--- Unholy Axe
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351061, 2);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351061, 3);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351061, 4);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351061, 5);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351061, 6);
-
--- Unholy Staff
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351062, 2);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351062, 3);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351062, 4);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351062, 5);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351062, 6);
-
--- Unholy Swords
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351063, 2);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351063, 3);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351063, 4);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351063, 5);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351063, 6);
-
--- Plague Slime
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351064, 2);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351064, 3);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351064, 4);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351064, 5);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351064, 6);
-
--- Infectious Ghoul
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351065, 2);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351065, 3);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351065, 4);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351065, 5);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351065, 6);
-
--- Mutated Grub
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351068, 2);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351068, 3);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351068, 4);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351068, 5);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351068, 6);
-
--- Plagued Gargoyle
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351077, 2);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351077, 3);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351077, 4);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351077, 5);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351077, 6);
-
--- Plagued Ghoul
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351078, 2);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351078, 3);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351078, 4);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351078, 5);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351078, 6);
-
--- Plagued Deathhound
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 16448, 2);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 16448, 3);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 16448, 4);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 16448, 5);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 16448, 6);
-
--- Necro Stalker
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 16453, 2);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 16453, 3);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 16453, 4);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 16453, 5);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 16453, 6);
-
--- Naxxramas Follower
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351080, 2);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351080, 3);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351080, 4);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351080, 5);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351080, 6);
-
--- Crypt Guard
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351082, 2);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351082, 3);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351082, 4);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351082, 5);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351082, 6);
-
--- Anub'Rekhan
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (15, 351009, 2);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (15, 351009, 3);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (15, 351009, 4);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (15, 351009, 5);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (15, 351009, 6);
-
--- Bile Retcher
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351022, 2);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351022, 3);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351022, 4);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351022, 5);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351022, 6);
-
--- Carrion Spinner
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351011, 2);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351011, 3);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351011, 4);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351011, 5);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351011, 6);
-
--- Crypt Reaver
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351014, 2);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351014, 3);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351014, 4);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351014, 5);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351014, 6);
-
--- Feugen
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (15, 351002, 2);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (15, 351002, 3);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (15, 351002, 4);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (15, 351002, 5);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (15, 351002, 6);
-
--- Gluth
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (15, 351004, 2);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (15, 351004, 3);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (15, 351004, 4);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (15, 351004, 5);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (15, 351004, 6);
-
--- Gothik the Harvester
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (15, 351035, 2);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (15, 351035, 3);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (15, 351035, 4);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (15, 351035, 5);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (15, 351035, 6);
-
--- Grand Widow Faerlina
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (15, 351007, 2);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (15, 351007, 3);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (15, 351007, 4);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (15, 351007, 5);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (15, 351007, 6);
-
--- Grobbulus
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (15, 351003, 2);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (15, 351003, 3);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (15, 351003, 4);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (15, 351003, 5);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (15, 351003, 6);
-
--- Heigan the Unclean
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (15, 351005, 2);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (15, 351005, 3);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (15, 351005, 4);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (15, 351005, 5);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (15, 351005, 6);
-
--- Highlord Mograine
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (15, 351037, 2);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (15, 351037, 3);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (15, 351037, 4);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (15, 351037, 5);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (15, 351037, 6);
-
--- Infectious Skitterer
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351013, 2);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351013, 3);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351013, 4);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351013, 5);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351013, 6);
-
--- Kel'Thuzad
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (15, 351019, 2);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (15, 351019, 3);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (200, 351019, 4);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (100, 351019, 5);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (15, 351019, 6);
-
--- Lady Blaumeux
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (15, 351040, 2);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (15, 351040, 3);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (15, 351040, 4);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (15, 351040, 5);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (15, 351040, 6);
-
--- Living Monstrosity
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (10, 351024, 2);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (10, 351024, 3);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (10, 351024, 4);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (10, 351024, 5);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (10, 351024, 6);
-
--- Loatheb
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (15, 351020, 2);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (15, 351020, 3);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (15, 351020, 4);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (15, 351020, 5);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (15, 351020, 6);
-
--- Mad Scientist
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351023, 2);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351023, 3);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351023, 4);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351023, 5);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351023, 6);
-
--- Maexxna
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (15, 351006, 2);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (15, 351006, 3);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (15, 351006, 4);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (15, 351006, 5);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (15, 351006, 6);
-
--- Naxxramas Cultist
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351016, 2);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351016, 3);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351016, 4);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351016, 5);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351016, 6);
-
--- Naxxramas Acolyte
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351017, 2);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351017, 3);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351017, 4);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351017, 5);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351017, 6);
-
--- Noth the Plaguebringer
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (15, 351008, 2);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (15, 351008, 3);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (15, 351008, 4);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (15, 351008, 5);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (15, 351008, 6);
-
--- Patchwerk
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (15, 351028, 2);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (15, 351028, 3);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (15, 351028, 4);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (15, 351028, 5);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (15, 351028, 6);
-
--- Patchwork Golem
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351021, 2);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351021, 3);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351021, 4);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351021, 5);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351021, 6);
-
--- Plague Beast
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351030, 2);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351030, 3);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351030, 4);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351030, 5);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351030, 6);
-
--- Sapphiron
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (15, 351018, 2);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (15, 351018, 3);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (15, 351018, 4);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (15, 351018, 5);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (15, 351018, 6);
-
--- Shade of Naxxramas
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351056, 2);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351056, 3);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351056, 4);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351056, 5);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351056, 6);
-
--- Sir Zeliek
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (15, 351038, 2);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (15, 351038, 3);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (15, 351038, 4);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (15, 351038, 5);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (15, 351038, 6);
-
--- Skeletal Steed
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351041, 2);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351041, 3);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351041, 4);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351041, 5);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351041, 6);
-
--- Sludge Belcher
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (10, 351029, 2);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (10, 351029, 3);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (10, 351029, 4);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (10, 351029, 5);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (10, 351029, 6);
-
--- Stalagg
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (15, 351001, 2);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (15, 351001, 3);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (15, 351001, 4);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (15, 351001, 5);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (15, 351001, 6);
-
--- Stitched Spewer
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (15, 351027, 2);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (15, 351027, 3);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (15, 351027, 4);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (15, 351027, 5);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (15, 351027, 6);
-
--- Thaddius
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (15, 351000, 2);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (15, 351000, 3);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (15, 351000, 4);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (15, 351000, 5);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (15, 351000, 6);
-
--- Thane Korth'azz
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (15, 351039, 2);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (15, 351039, 3);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (15, 351039, 4);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (15, 351039, 5);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (15, 351039, 6);
-
--- Venom Stalker
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351012, 2);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351012, 3);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351012, 4);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351012, 5);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351012, 6);
-
--- Deathknight Captain
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351048, 2);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351048, 3);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351048, 4);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351048, 5);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351048, 6);
-
--- Instructor Razuvious
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (15, 351036, 2);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (15, 351036, 3);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (15, 351036, 4);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (15, 351036, 5);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (15, 351036, 6);
-
--- Unrelenting Deathknight
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351044, 2);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351044, 3);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351044, 4);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351044, 5);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351044, 6);
-
--- Unrelenting Rider
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (10, 351045, 2);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (10, 351045, 3);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (10, 351045, 4);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (10, 351045, 5);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (10, 351045, 6);
-
--- Spectral Deathknight
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (10, 351050, 2);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (10, 351050, 3);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (10, 351050, 4);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (10, 351050, 5);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (10, 351050, 6);
-
--- Spectral Rider
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (15, 351052, 2);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (15, 351052, 3);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (15, 351052, 4);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (15, 351052, 5);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (15, 351052, 6);
-
--- Plagued Guardian
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351085, 2);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351085, 3);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351085, 4);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351085, 5);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351085, 6);
-
--- Plagued Champion
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351086, 2);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351086, 3);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351086, 4);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351086, 5);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351086, 6);
-
--- Plagued Warrior
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351087, 2);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351087, 3);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351087, 4);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351087, 5);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351087, 6);
-
--- Death Lord
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 16861, 2);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 16861, 3);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 16861, 4);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 16861, 5);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 16861, 6);
-
--- Necro Knight Guardian
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (10, 16452, 2);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (10, 16452, 3);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (10, 16452, 4);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (10, 16452, 5);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (10, 16452, 6);
-
--- Deathknight Vindicator
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (10, 16451, 2);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (10, 16451, 3);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (10, 16451, 4);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (10, 16451, 5);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (10, 16451, 6);
-
--- Spirit of Naxxramas
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 16449, 2);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 16449, 3);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 16449, 4);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 16449, 5);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 16449, 6);
-
--- Necropolis Acolyte
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (10, 351070, 2);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (10, 351070, 3);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (10, 351070, 4);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (10, 351070, 5);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (10, 351070, 6);
-
--- Doom Touched Warrior
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 16157, 2);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 16157, 3);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 16157, 4);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 16157, 5);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 16157, 6);
-
--- Tomb Horror
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351015, 2);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351015, 3);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351015, 4);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351015, 5);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351015, 6);
+DELETE FROM `creature_template_resistance` WHERE `CreatureID` IN (16158, 16448, 16453, 16861, 16452, 16451, 16449, 16157);
+INSERT INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES
+(5,   16158,  2),  (5,   16158,  3),  (5,   16158,  4),  (5,   16158,  5),  (5,   16158,  6),
+(5,   16448,  2),  (5,   16448,  3),  (5,   16448,  4),  (5,   16448,  5),  (5,   16448,  6),
+(5,   16453,  2),  (5,   16453,  3),  (5,   16453,  4),  (5,   16453,  5),  (5,   16453,  6),
+(5,   16861,  2),  (5,   16861,  3),  (5,   16861,  4),  (5,   16861,  5),  (5,   16861,  6),
+(10,  16452,  2),  (10,  16452,  3),  (10,  16452,  4),  (10,  16452,  5),  (10,  16452,  6),
+(10,  16451,  2),  (10,  16451,  3),  (10,  16451,  4),  (10,  16451,  5),  (10,  16451,  6),
+(5,   16449,  2),  (5,   16449,  3),  (5,   16449,  4),  (5,   16449,  5),  (5,   16449,  6),
+(5,   16157,  2),  (5,   16157,  3),  (5,   16157,  4),  (5,   16157,  5),  (5,   16157,  6);
+
+DELETE FROM `creature_template_resistance` WHERE `CreatureID` IN
+(@ENTRY+000, @ENTRY+001, @ENTRY+002, @ENTRY+003, @ENTRY+004, @ENTRY+005, @ENTRY+006, @ENTRY+007,
+@ENTRY+008, @ENTRY+009, @ENTRY+010, @ENTRY+011, @ENTRY+012, @ENTRY+013, @ENTRY+014, @ENTRY+015,
+@ENTRY+016, @ENTRY+017, @ENTRY+018, @ENTRY+019, @ENTRY+020, @ENTRY+021, @ENTRY+022, @ENTRY+023,
+@ENTRY+024, @ENTRY+027, @ENTRY+028, @ENTRY+029, @ENTRY+030, @ENTRY+035, @ENTRY+036, @ENTRY+037,
+@ENTRY+038, @ENTRY+039, @ENTRY+040, @ENTRY+041, @ENTRY+044, @ENTRY+045, @ENTRY+048, @ENTRY+049,
+@ENTRY+050, @ENTRY+051, @ENTRY+052, @ENTRY+053, @ENTRY+054, @ENTRY+055, @ENTRY+056, @ENTRY+057,
+@ENTRY+058, @ENTRY+059, @ENTRY+060, @ENTRY+061, @ENTRY+062, @ENTRY+063, @ENTRY+064, @ENTRY+065,
+@ENTRY+068, @ENTRY+070, @ENTRY+077, @ENTRY+078, @ENTRY+080, @ENTRY+082, @ENTRY+085, @ENTRY+086,
+@ENTRY+087);
+INSERT INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES
+(5,   @ENTRY+049,  2),  (5,   @ENTRY+049,  3),  (5,    @ENTRY+049,  4),  (5,    @ENTRY+049,  5),  (5,   @ENTRY+049,  6),
+(15,  @ENTRY+051,  2),  (15,  @ENTRY+051,  3),  (15,   @ENTRY+051,  4),  (15,   @ENTRY+051,  5),  (15,  @ENTRY+051,  6),
+(5,   @ENTRY+053,  2),  (5,   @ENTRY+053,  3),  (5,    @ENTRY+053,  4),  (5,    @ENTRY+053,  5),  (5,   @ENTRY+053,  6),
+(5,   @ENTRY+054,  2),  (5,   @ENTRY+054,  3),  (5,    @ENTRY+054,  4),  (5,    @ENTRY+054,  5),  (5,   @ENTRY+054,  6),
+(5,   @ENTRY+055,  2),  (5,   @ENTRY+055,  3),  (5,    @ENTRY+055,  4),  (5,    @ENTRY+055,  5),  (5,   @ENTRY+055,  6),
+(5,   @ENTRY+010,  2),  (5,   @ENTRY+010,  3),  (5,    @ENTRY+010,  4),  (5,    @ENTRY+010,  5),  (5,   @ENTRY+010,  6),
+(5,   @ENTRY+057,  2),  (5,   @ENTRY+057,  3),  (5,    @ENTRY+057,  4),  (5,    @ENTRY+057,  5),  (5,   @ENTRY+057,  6),
+(5,   @ENTRY+058,  2),  (5,   @ENTRY+058,  3),  (5,    @ENTRY+058,  4),  (5,    @ENTRY+058,  5),  (5,   @ENTRY+058,  6),
+(5,   @ENTRY+059,  2),  (5,   @ENTRY+059,  3),  (5,    @ENTRY+059,  4),  (5,    @ENTRY+059,  5),  (5,   @ENTRY+059,  6),
+(5,   @ENTRY+060,  2),  (5,   @ENTRY+060,  3),  (5,    @ENTRY+060,  4),  (5,    @ENTRY+060,  5),  (5,   @ENTRY+060,  6),
+(5,   @ENTRY+061,  2),  (5,   @ENTRY+061,  3),  (5,    @ENTRY+061,  4),  (5,    @ENTRY+061,  5),  (5,   @ENTRY+061,  6),
+(5,   @ENTRY+062,  2),  (5,   @ENTRY+062,  3),  (5,    @ENTRY+062,  4),  (5,    @ENTRY+062,  5),  (5,   @ENTRY+062,  6),
+(5,   @ENTRY+063,  2),  (5,   @ENTRY+063,  3),  (5,    @ENTRY+063,  4),  (5,    @ENTRY+063,  5),  (5,   @ENTRY+063,  6),
+(5,   @ENTRY+064,  2),  (5,   @ENTRY+064,  3),  (5,    @ENTRY+064,  4),  (5,    @ENTRY+064,  5),  (5,   @ENTRY+064,  6),
+(5,   @ENTRY+065,  2),  (5,   @ENTRY+065,  3),  (5,    @ENTRY+065,  4),  (5,    @ENTRY+065,  5),  (5,   @ENTRY+065,  6),
+(5,   @ENTRY+068,  2),  (5,   @ENTRY+068,  3),  (5,    @ENTRY+068,  4),  (5,    @ENTRY+068,  5),  (5,   @ENTRY+068,  6),
+(5,   @ENTRY+077,  2),  (5,   @ENTRY+077,  3),  (5,    @ENTRY+077,  4),  (5,    @ENTRY+077,  5),  (5,   @ENTRY+077,  6),
+(5,   @ENTRY+078,  2),  (5,   @ENTRY+078,  3),  (5,    @ENTRY+078,  4),  (5,    @ENTRY+078,  5),  (5,   @ENTRY+078,  6),
+(5,   @ENTRY+080,  2),  (5,   @ENTRY+080,  3),  (5,    @ENTRY+080,  4),  (5,    @ENTRY+080,  5),  (5,   @ENTRY+080,  6),
+(5,   @ENTRY+082,  2),  (5,   @ENTRY+082,  3),  (5,    @ENTRY+082,  4),  (5,    @ENTRY+082,  5),  (5,   @ENTRY+082,  6),
+(15,  @ENTRY+009,  2),  (15,  @ENTRY+009,  3),  (15,   @ENTRY+009,  4),  (15,   @ENTRY+009,  5),  (15,  @ENTRY+009,  6),
+(5,   @ENTRY+022,  2),  (5,   @ENTRY+022,  3),  (5,    @ENTRY+022,  4),  (5,    @ENTRY+022,  5),  (5,   @ENTRY+022,  6),
+(5,   @ENTRY+011,  2),  (5,   @ENTRY+011,  3),  (5,    @ENTRY+011,  4),  (5,    @ENTRY+011,  5),  (5,   @ENTRY+011,  6),
+(5,   @ENTRY+014,  2),  (5,   @ENTRY+014,  3),  (5,    @ENTRY+014,  4),  (5,    @ENTRY+014,  5),  (5,   @ENTRY+014,  6),
+(15,  @ENTRY+002,  2),  (15,  @ENTRY+002,  3),  (15,   @ENTRY+002,  4),  (15,   @ENTRY+002,  5),  (15,  @ENTRY+002,  6),
+(15,  @ENTRY+004,  2),  (15,  @ENTRY+004,  3),  (15,   @ENTRY+004,  4),  (15,   @ENTRY+004,  5),  (15,  @ENTRY+004,  6),
+(15,  @ENTRY+035,  2),  (15,  @ENTRY+035,  3),  (15,   @ENTRY+035,  4),  (15,   @ENTRY+035,  5),  (15,  @ENTRY+035,  6),
+(15,  @ENTRY+007,  2),  (15,  @ENTRY+007,  3),  (15,   @ENTRY+007,  4),  (15,   @ENTRY+007,  5),  (15,  @ENTRY+007,  6),
+(15,  @ENTRY+003,  2),  (15,  @ENTRY+003,  3),  (15,   @ENTRY+003,  4),  (15,   @ENTRY+003,  5),  (15,  @ENTRY+003,  6),
+(15,  @ENTRY+005,  2),  (15,  @ENTRY+005,  3),  (15,   @ENTRY+005,  4),  (15,   @ENTRY+005,  5),  (15,  @ENTRY+005,  6),
+(15,  @ENTRY+037,  2),  (15,  @ENTRY+037,  3),  (15,   @ENTRY+037,  4),  (15,   @ENTRY+037,  5),  (15,  @ENTRY+037,  6),
+(5,   @ENTRY+013,  2),  (5,   @ENTRY+013,  3),  (5,    @ENTRY+013,  4),  (5,    @ENTRY+013,  5),  (5,   @ENTRY+013,  6),
+(15,  @ENTRY+019,  2),  (15,  @ENTRY+019,  3),  (200,  @ENTRY+019,  4),  (100,  @ENTRY+019,  5),  (15,  @ENTRY+019,  6),
+(15,  @ENTRY+040,  2),  (15,  @ENTRY+040,  3),  (15,   @ENTRY+040,  4),  (15,   @ENTRY+040,  5),  (15,  @ENTRY+040,  6),
+(10,  @ENTRY+024,  2),  (10,  @ENTRY+024,  3),  (10,   @ENTRY+024,  4),  (10,   @ENTRY+024,  5),  (10,  @ENTRY+024,  6),
+(15,  @ENTRY+020,  2),  (15,  @ENTRY+020,  3),  (15,   @ENTRY+020,  4),  (15,   @ENTRY+020,  5),  (15,  @ENTRY+020,  6),
+(5,   @ENTRY+023,  2),  (5,   @ENTRY+023,  3),  (5,    @ENTRY+023,  4),  (5,    @ENTRY+023,  5),  (5,   @ENTRY+023,  6),
+(15,  @ENTRY+006,  2),  (15,  @ENTRY+006,  3),  (15,   @ENTRY+006,  4),  (15,   @ENTRY+006,  5),  (15,  @ENTRY+006,  6),
+(5,   @ENTRY+016,  2),  (5,   @ENTRY+016,  3),  (5,    @ENTRY+016,  4),  (5,    @ENTRY+016,  5),  (5,   @ENTRY+016,  6),
+(5,   @ENTRY+017,  2),  (5,   @ENTRY+017,  3),  (5,    @ENTRY+017,  4),  (5,    @ENTRY+017,  5),  (5,   @ENTRY+017,  6),
+(15,  @ENTRY+008,  2),  (15,  @ENTRY+008,  3),  (15,   @ENTRY+008,  4),  (15,   @ENTRY+008,  5),  (15,  @ENTRY+008,  6),
+(15,  @ENTRY+028,  2),  (15,  @ENTRY+028,  3),  (15,   @ENTRY+028,  4),  (15,   @ENTRY+028,  5),  (15,  @ENTRY+028,  6),
+(5,   @ENTRY+021,  2),  (5,   @ENTRY+021,  3),  (5,    @ENTRY+021,  4),  (5,    @ENTRY+021,  5),  (5,   @ENTRY+021,  6),
+(5,   @ENTRY+030,  2),  (5,   @ENTRY+030,  3),  (5,    @ENTRY+030,  4),  (5,    @ENTRY+030,  5),  (5,   @ENTRY+030,  6),
+(15,  @ENTRY+018,  2),  (15,  @ENTRY+018,  3),  (15,   @ENTRY+018,  4),  (15,   @ENTRY+018,  5),  (15,  @ENTRY+018,  6),
+(5,   @ENTRY+056,  2),  (5,   @ENTRY+056,  3),  (5,    @ENTRY+056,  4),  (5,    @ENTRY+056,  5),  (5,   @ENTRY+056,  6),
+(15,  @ENTRY+038,  2),  (15,  @ENTRY+038,  3),  (15,   @ENTRY+038,  4),  (15,   @ENTRY+038,  5),  (15,  @ENTRY+038,  6),
+(5,   @ENTRY+041,  2),  (5,   @ENTRY+041,  3),  (5,    @ENTRY+041,  4),  (5,    @ENTRY+041,  5),  (5,   @ENTRY+041,  6),
+(10,  @ENTRY+029,  2),  (10,  @ENTRY+029,  3),  (10,   @ENTRY+029,  4),  (10,   @ENTRY+029,  5),  (10,  @ENTRY+029,  6),
+(15,  @ENTRY+001,  2),  (15,  @ENTRY+001,  3),  (15,   @ENTRY+001,  4),  (15,   @ENTRY+001,  5),  (15,  @ENTRY+001,  6),
+(15,  @ENTRY+027,  2),  (15,  @ENTRY+027,  3),  (15,   @ENTRY+027,  4),  (15,   @ENTRY+027,  5),  (15,  @ENTRY+027,  6),
+(15,  @ENTRY+000,  2),  (15,  @ENTRY+000,  3),  (15,   @ENTRY+000,  4),  (15,   @ENTRY+000,  5),  (15,  @ENTRY+000,  6),
+(15,  @ENTRY+039,  2),  (15,  @ENTRY+039,  3),  (15,   @ENTRY+039,  4),  (15,   @ENTRY+039,  5),  (15,  @ENTRY+039,  6),
+(5,   @ENTRY+012,  2),  (5,   @ENTRY+012,  3),  (5,    @ENTRY+012,  4),  (5,    @ENTRY+012,  5),  (5,   @ENTRY+012,  6),
+(5,   @ENTRY+048,  2),  (5,   @ENTRY+048,  3),  (5,    @ENTRY+048,  4),  (5,    @ENTRY+048,  5),  (5,   @ENTRY+048,  6),
+(15,  @ENTRY+036,  2),  (15,  @ENTRY+036,  3),  (15,   @ENTRY+036,  4),  (15,   @ENTRY+036,  5),  (15,  @ENTRY+036,  6),
+(5,   @ENTRY+044,  2),  (5,   @ENTRY+044,  3),  (5,    @ENTRY+044,  4),  (5,    @ENTRY+044,  5),  (5,   @ENTRY+044,  6),
+(10,  @ENTRY+045,  2),  (10,  @ENTRY+045,  3),  (10,   @ENTRY+045,  4),  (10,   @ENTRY+045,  5),  (10,  @ENTRY+045,  6),
+(10,  @ENTRY+050,  2),  (10,  @ENTRY+050,  3),  (10,   @ENTRY+050,  4),  (10,   @ENTRY+050,  5),  (10,  @ENTRY+050,  6),
+(15,  @ENTRY+052,  2),  (15,  @ENTRY+052,  3),  (15,   @ENTRY+052,  4),  (15,   @ENTRY+052,  5),  (15,  @ENTRY+052,  6),
+(5,   @ENTRY+085,  2),  (5,   @ENTRY+085,  3),  (5,    @ENTRY+085,  4),  (5,    @ENTRY+085,  5),  (5,   @ENTRY+085,  6),
+(5,   @ENTRY+086,  2),  (5,   @ENTRY+086,  3),  (5,    @ENTRY+086,  4),  (5,    @ENTRY+086,  5),  (5,   @ENTRY+086,  6),
+(5,   @ENTRY+087,  2),  (5,   @ENTRY+087,  3),  (5,    @ENTRY+087,  4),  (5,    @ENTRY+087,  5),  (5,   @ENTRY+087,  6),
+(10,  @ENTRY+070,  2),  (10,  @ENTRY+070,  3),  (10,   @ENTRY+070,  4),  (10,   @ENTRY+070,  5),  (10,  @ENTRY+070,  6),
+(5,   @ENTRY+015,  2),  (5,   @ENTRY+015,  3),  (5,    @ENTRY+015,  4),  (5,    @ENTRY+015,  5),  (5,   @ENTRY+015,  6);
 
 -- Doom Touched Warrior
 UPDATE `creature_template` SET `speed_walk` = 1.0, `speed_run` = 1.42857, `DamageModifier` = 17.1, `ArmorModifier` = 1.15, `RangeAttackTime` = 1265 WHERE `entry`=16157;
@@ -5465,88 +5042,90 @@ UPDATE `creature_template` SET `name` = 'Death Lord', `speed_run` = 1.42857, `Da
 -- Mr. Bigglesworth
 UPDATE `creature_template` SET `speed_run` = 0.857143, `DamageModifier` = 400.0, `RangeAttackTime` = 1265 WHERE `entry`=16998;
 
-/* Eye Stalk */
-DELETE FROM `creature_template` WHERE (`entry` = 351090);
+-- Eye Stalk
+DELETE FROM `creature_template` WHERE (`entry` = @ENTRY+90);
 INSERT INTO `creature_template` (`entry`, `difficulty_entry_1`, `difficulty_entry_2`, `difficulty_entry_3`, `KillCredit1`, `KillCredit2`, `name`, `subname`, `IconName`, `gossip_menu_id`, `minlevel`, `maxlevel`, `exp`, `faction`, `npcflag`, `speed_walk`, `speed_run`, `speed_swim`, `speed_flight`, `detection_range`, `scale`, `rank`, `dmgschool`, `DamageModifier`, `BaseAttackTime`, `RangeAttackTime`, `BaseVariance`, `RangeVariance`, `unit_class`, `unit_flags`, `unit_flags2`, `dynamicflags`, `family`, `trainer_type`, `trainer_spell`, `trainer_class`, `trainer_race`, `type`, `type_flags`, `lootid`, `pickpocketloot`, `skinloot`, `PetSpellDataId`, `VehicleId`, `mingold`, `maxgold`, `AIName`, `MovementType`, `HoverHeight`, `HealthModifier`, `ManaModifier`, `ArmorModifier`, `ExperienceModifier`, `RacialLeader`, `movementId`, `RegenHealth`, `mechanic_immune_mask`, `spell_school_immune_mask`, `flags_extra`, `ScriptName`, `VerifiedBuild`) VALUES
-(351090, 0, 0, 0, 0, 0, 'Eye Stalk', '', '', 0, 61, 61, 2, 16, 0, 1, 1, 1, 1, 20, 1, 1, 0, 7.5, 1000, 2000, 1, 1, 1, 4, 2048, 8, 0, 0, 0, 0, 0, 10, 72, 0, 0, 0, 0, 0, 0, 0, 'SmartAI', 0, 1, 1, 1, 1, 1, 0, 0, 1, 1022042641, 0, 0, '', 12340);
+(@ENTRY+90, 0, 0, 0, 0, 0, 'Eye Stalk', '', '', 0, 61, 61, 2, 16, 0, 1, 1, 1, 1, 20, 1, 1, 0, 7.5, 1000, 2000, 1, 1, 1, 4, 2048, 8, 0, 0, 0, 0, 0, 10, 72, 0, 0, 0, 0, 0, 0, 0, 'SmartAI', 0, 1, 1, 1, 1, 1, 0, 0, 1, 1022042641, 0, 0, '', 12340);
 
-DELETE FROM `smart_scripts` WHERE (`source_type` = 0 AND `entryorguid` = 351090);
+DELETE FROM `smart_scripts` WHERE (`source_type` = 0 AND `entryorguid` = @ENTRY+90);
 INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES
-(351090, 0, 0, 0, 0, 0, 100, 0, 5000, 7000, 14000, 17000, 0, 0, 11, 29407, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 'Cast Spell IC (Naxx 40)');
+(@ENTRY+90, 0, 0, 0, 0, 0, 100, 0, 5000, 7000, 14000, 17000, 0, 0, 11, 29407, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 'Cast Spell IC (Naxx 40)');
 
-DELETE FROM `creature` WHERE `guid` BETWEEN 362043 AND 362059;
+DELETE FROM `creature` WHERE `guid` BETWEEN @CGUID+1043 AND @CGUID+1059;
 INSERT INTO `creature` (`guid`, `id1`, `id2`, `id3`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`, `wander_distance`, `currentwaypoint`, `curhealth`, `curmana`, `MovementType`, `npcflag`, `unit_flags`, `dynamicflags`, `ScriptName`, `VerifiedBuild`, `CreateObject`, `Comment`) VALUES
-(362043, 351090, 0, 0, 533, 0, 0, 4, 1, 0, 2798.06, -3788.95, 274.983, 1.51844, 3600, 0, 0, 13033, 0, 0, 0, 0, 0, '', 0, 0, NULL),
-(362044, 351090, 0, 0, 533, 0, 0, 4, 1, 0, 2804.25, -3757.44, 274.983, 3.64774, 3600, 0, 0, 13033, 0, 0, 0, 0, 0, '', 0, 0, NULL),
-(362045, 351090, 0, 0, 533, 0, 0, 4, 1, 0, 2867.35, -3778.54, 274.983, 2.47837, 3600, 0, 0, 13033, 0, 0, 0, 0, 0, '', 0, 0, NULL),
-(362046, 351090, 0, 0, 533, 0, 0, 4, 1, 0, 2895.12, -3779.74, 274.983, 2.6529, 3600, 0, 0, 13033, 0, 0, 0, 0, 0, '', 0, 0, NULL),
-(362047, 351090, 0, 0, 533, 0, 0, 4, 1, 0, 2830.7, -3777.03, 274.983, 2.9147, 3600, 0, 0, 13033, 0, 0, 0, 0, 0, '', 0, 0, NULL),
-(362048, 351090, 0, 0, 533, 0, 0, 4, 1, 0, 2851.92, -3776.44, 274.983, 2.53073, 3600, 0, 0, 13033, 0, 0, 0, 0, 0, '', 0, 0, NULL),
-(362049, 351090, 0, 0, 533, 0, 0, 4, 1, 0, 2789.62, -3752.53, 274.983, 2.61799, 3600, 0, 0, 13033, 0, 0, 0, 0, 0, '', 0, 0, NULL),
-(362050, 351090, 0, 0, 533, 0, 0, 4, 1, 0, 2843.34, -3767.74, 274.983, 3.31613, 3600, 0, 0, 13033, 0, 0, 0, 0, 0, '', 0, 0, NULL),
-(362051, 351090, 0, 0, 533, 0, 0, 4, 1, 0, 2797.94, -3776.81, 274.983, 2.35619, 3600, 0, 0, 13033, 0, 0, 0, 0, 0, '', 0, 0, NULL),
-(362052, 351090, 0, 0, 533, 0, 0, 4, 1, 0, 2834.6, -3751.34, 274.983, 4.20624, 3600, 0, 0, 13033, 0, 0, 0, 0, 0, '', 0, 0, NULL),
-(362053, 351090, 0, 0, 533, 0, 0, 4, 1, 0, 2862.27, -3758.34, 274.983, 3.36848, 3600, 0, 0, 13033, 0, 0, 0, 0, 0, '', 0, 0, NULL),
-(362054, 351090, 0, 0, 533, 0, 0, 4, 1, 0, 2813.24, -3780.76, 274.983, 2.49582, 3600, 0, 0, 13033, 0, 0, 0, 0, 0, '', 0, 0, NULL),
-(362055, 351090, 0, 0, 533, 0, 0, 4, 1, 0, 2881.55, -3782.26, 274.983, 2.47837, 3600, 0, 0, 13033, 0, 0, 0, 0, 0, '', 0, 0, NULL),
-(362056, 351090, 0, 0, 533, 0, 0, 4, 1, 0, 2791.84, -3762.35, 274.983, 3.35103, 3600, 0, 0, 13033, 0, 0, 0, 0, 0, '', 0, 0, NULL),
-(362057, 351090, 0, 0, 533, 0, 0, 4, 1, 0, 2877.97, -3761.82, 274.983, 3.64774, 3600, 0, 0, 13033, 0, 0, 0, 0, 0, '', 0, 0, NULL),
-(362058, 351090, 0, 0, 533, 0, 0, 4, 1, 0, 2770.1, -3782.59, 274.983, 1.02974, 3600, 0, 0, 13033, 0, 0, 0, 0, 0, '', 0, 0, NULL),
-(362059, 351090, 0, 0, 533, 0, 0, 4, 1, 0, 2846.52, -3789.07, 274.983, 2.23402, 3600, 0, 0, 13033, 0, 0, 0, 0, 0, '', 0, 0, NULL);
+(@CGUID+1043, @ENTRY+90, 0, 0, 533, 0, 0, 4, 1, 0, 2798.06, -3788.95, 274.983, 1.51844, 3600, 0, 0, 13033, 0, 0, 0, 0, 0, '', 0, 0, NULL),
+(@CGUID+1044, @ENTRY+90, 0, 0, 533, 0, 0, 4, 1, 0, 2804.25, -3757.44, 274.983, 3.64774, 3600, 0, 0, 13033, 0, 0, 0, 0, 0, '', 0, 0, NULL),
+(@CGUID+1045, @ENTRY+90, 0, 0, 533, 0, 0, 4, 1, 0, 2867.35, -3778.54, 274.983, 2.47837, 3600, 0, 0, 13033, 0, 0, 0, 0, 0, '', 0, 0, NULL),
+(@CGUID+1046, @ENTRY+90, 0, 0, 533, 0, 0, 4, 1, 0, 2895.12, -3779.74, 274.983, 2.6529, 3600, 0, 0, 13033, 0, 0, 0, 0, 0, '', 0, 0, NULL),
+(@CGUID+1047, @ENTRY+90, 0, 0, 533, 0, 0, 4, 1, 0, 2830.7, -3777.03, 274.983, 2.9147, 3600, 0, 0, 13033, 0, 0, 0, 0, 0, '', 0, 0, NULL),
+(@CGUID+1048, @ENTRY+90, 0, 0, 533, 0, 0, 4, 1, 0, 2851.92, -3776.44, 274.983, 2.53073, 3600, 0, 0, 13033, 0, 0, 0, 0, 0, '', 0, 0, NULL),
+(@CGUID+1049, @ENTRY+90, 0, 0, 533, 0, 0, 4, 1, 0, 2789.62, -3752.53, 274.983, 2.61799, 3600, 0, 0, 13033, 0, 0, 0, 0, 0, '', 0, 0, NULL),
+(@CGUID+1050, @ENTRY+90, 0, 0, 533, 0, 0, 4, 1, 0, 2843.34, -3767.74, 274.983, 3.31613, 3600, 0, 0, 13033, 0, 0, 0, 0, 0, '', 0, 0, NULL),
+(@CGUID+1051, @ENTRY+90, 0, 0, 533, 0, 0, 4, 1, 0, 2797.94, -3776.81, 274.983, 2.35619, 3600, 0, 0, 13033, 0, 0, 0, 0, 0, '', 0, 0, NULL),
+(@CGUID+1052, @ENTRY+90, 0, 0, 533, 0, 0, 4, 1, 0, 2834.6, -3751.34, 274.983, 4.20624, 3600, 0, 0, 13033, 0, 0, 0, 0, 0, '', 0, 0, NULL),
+(@CGUID+1053, @ENTRY+90, 0, 0, 533, 0, 0, 4, 1, 0, 2862.27, -3758.34, 274.983, 3.36848, 3600, 0, 0, 13033, 0, 0, 0, 0, 0, '', 0, 0, NULL),
+(@CGUID+1054, @ENTRY+90, 0, 0, 533, 0, 0, 4, 1, 0, 2813.24, -3780.76, 274.983, 2.49582, 3600, 0, 0, 13033, 0, 0, 0, 0, 0, '', 0, 0, NULL),
+(@CGUID+1055, @ENTRY+90, 0, 0, 533, 0, 0, 4, 1, 0, 2881.55, -3782.26, 274.983, 2.47837, 3600, 0, 0, 13033, 0, 0, 0, 0, 0, '', 0, 0, NULL),
+(@CGUID+1056, @ENTRY+90, 0, 0, 533, 0, 0, 4, 1, 0, 2791.84, -3762.35, 274.983, 3.35103, 3600, 0, 0, 13033, 0, 0, 0, 0, 0, '', 0, 0, NULL),
+(@CGUID+1057, @ENTRY+90, 0, 0, 533, 0, 0, 4, 1, 0, 2877.97, -3761.82, 274.983, 3.64774, 3600, 0, 0, 13033, 0, 0, 0, 0, 0, '', 0, 0, NULL),
+(@CGUID+1058, @ENTRY+90, 0, 0, 533, 0, 0, 4, 1, 0, 2770.1, -3782.59, 274.983, 1.02974, 3600, 0, 0, 13033, 0, 0, 0, 0, 0, '', 0, 0, NULL),
+(@CGUID+1059, @ENTRY+90, 0, 0, 533, 0, 0, 4, 1, 0, 2846.52, -3789.07, 274.983, 2.23402, 3600, 0, 0, 13033, 0, 0, 0, 0, 0, '', 0, 0, NULL);
 
 -- Fix Patchwork Golem 4man group: Delete creature_formation, set wander_distance to 1, and set MovementType to 1
-UPDATE `creature` SET `wander_distance`=1, `MovementType`=1 WHERE `guid` BETWEEN 361326 and 361329;
-DELETE FROM `creature_formations` WHERE `leaderGUID` = 361329;
+UPDATE `creature` SET `wander_distance`=1, `MovementType`=1 WHERE `guid` BETWEEN @CGUID+326 and @CGUID+329;
+DELETE FROM `creature_formations` WHERE `leaderGUID` = @CGUID+329;
 
 -- Lightning Totem, summoned by Living Monstrosity
-DELETE FROM `creature_template` WHERE (`entry` = 351091);
+DELETE FROM `creature_template` WHERE (`entry` = @ENTRY+091);
 INSERT INTO `creature_template` (`entry`, `difficulty_entry_1`, `difficulty_entry_2`, `difficulty_entry_3`, `KillCredit1`, `KillCredit2`, `name`, `subname`, `IconName`, `gossip_menu_id`, `minlevel`, `maxlevel`, `exp`, `faction`, `npcflag`, `speed_walk`, `speed_run`, `speed_swim`, `speed_flight`, `detection_range`, `scale`, `rank`, `dmgschool`, `DamageModifier`, `BaseAttackTime`, `RangeAttackTime`, `BaseVariance`, `RangeVariance`, `unit_class`, `unit_flags`, `unit_flags2`, `dynamicflags`, `family`, `trainer_type`, `trainer_spell`, `trainer_class`, `trainer_race`, `type`, `type_flags`, `lootid`, `pickpocketloot`, `skinloot`, `PetSpellDataId`, `VehicleId`, `mingold`, `maxgold`, `AIName`, `MovementType`, `HoverHeight`, `HealthModifier`, `ManaModifier`, `ArmorModifier`, `ExperienceModifier`, `RacialLeader`, `movementId`, `RegenHealth`, `mechanic_immune_mask`, `spell_school_immune_mask`, `flags_extra`, `ScriptName`, `VerifiedBuild`) VALUES
-(351091, 0, 0, 0, 0, 0, 'Lightning Totem', '', '', 0, 62, 62, 2, 21, 0, 1.0, 1.0, 1.0, 1.0, 18.0, 1.0, 0, 0, 1.0, 2000, 2000, 1.0, 1.0, 1, 4, 2048, 8, 0, 0, 0, 0, 0, 11, 0, 0, 0, 0, 0, 0, 0, 0, 'SmartAI', 1, 1.0, 0.2, 1.0, 1.0, 1.0, 0, 0, 1, 0, 0, 0, '', 12340);
-UPDATE `creature_template` SET `AIName` = 'SmartAI' WHERE `entry` = 351091;
-DELETE FROM `smart_scripts` WHERE (`source_type` = 0 AND `entryorguid` = 351091);
+(@ENTRY+091, 0, 0, 0, 0, 0, 'Lightning Totem', '', '', 0, 62, 62, 2, 21, 0, 1.0, 1.0, 1.0, 1.0, 18.0, 1.0, 0, 0, 1.0, 2000, 2000, 1.0, 1.0, 1, 4, 2048, 8, 0, 0, 0, 0, 0, 11, 0, 0, 0, 0, 0, 0, 0, 0, 'SmartAI', 1, 1.0, 0.2, 1.0, 1.0, 1.0, 0, 0, 1, 0, 0, 0, '', 12340);
+UPDATE `creature_template` SET `AIName` = 'SmartAI' WHERE `entry` = @ENTRY+091;
+DELETE FROM `smart_scripts` WHERE (`source_type` = 0 AND `entryorguid` = @ENTRY+091);
 INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES
-(351091, 0, 0, 0, 0, 0, 100, 0, 1000, 3000, 4000, 4000, 0, 0, 218, 28297, 0, 1899, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 'Cast Spell IC (Naxx 40)');
+(@ENTRY+091, 0, 0, 0, 0, 0, 100, 0, 1000, 3000, 4000, 4000, 0, 0, 218, 28297, 0, 1899, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 'Cast Spell IC (Naxx 40)');
 
 -- Lightning Totem
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351091, 2);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351091, 3);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351091, 4);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351091, 5);
-REPLACE INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, 351091, 6);
+DELETE FROM `creature_template_resistance` WHERE `CreatureID` = @ENTRY+091;
+INSERT INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, @ENTRY+091, 2);
+INSERT INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, @ENTRY+091, 3);
+INSERT INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, @ENTRY+091, 4);
+INSERT INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, @ENTRY+091, 5);
+INSERT INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`) VALUES (5, @ENTRY+091, 6);
 
  -- Toxic Slime Tunnel
-DELETE FROM `creature_template_addon` WHERE (`entry` = 351072);
+DELETE FROM `creature_template_addon` WHERE (`entry` = @ENTRY+072);
 INSERT INTO `creature_template_addon` (`entry`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES
-(351072, 0, 0, 0, 1, 0, 0, '28370');
-DELETE FROM `creature_template_movement` WHERE (`CreatureId` = 351072);
+(@ENTRY+072, 0, 0, 0, 1, 0, 0, '28370');
+DELETE FROM `creature_template_movement` WHERE (`CreatureId` = @ENTRY+072);
 INSERT INTO `creature_template_movement` (`CreatureId`, `Ground`, `Swim`, `Flight`, `Rooted`, `Chase`, `Random`, `InteractionPauseTimer`) VALUES
-(351072, 1, 1, 0, 0, 0, 0, 0);
+(@ENTRY+072, 1, 1, 0, 0, 0, 0, 0);
 -- set pathId to 1276310
-DELETE FROM `creature_addon` WHERE (`guid` IN (361539, 361540, 361541, 361542, 361543, 361544, 361545));
+DELETE FROM `creature_addon` WHERE (`guid` IN (@CGUID+539, @CGUID+540, @CGUID+541, @CGUID+542, @CGUID+543, @CGUID+544, @CGUID+545));
 INSERT INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES
-(361539, 1276310, 0, 0, 0, 0, 0, '28370'),
-(361540, 1276310, 0, 0, 0, 0, 0, '28370'),
-(361541, 1276310, 0, 0, 0, 0, 0, '28370'),
-(361542, 1276310, 0, 0, 0, 0, 0, '28370'),
-(361543, 1276310, 0, 0, 0, 0, 0, '28370'),
-(361544, 1276310, 0, 0, 0, 0, 0, '28370'),
-(361545, 1276310, 0, 0, 0, 0, 0, '28370');
+(@CGUID+539, 1276310, 0, 0, 0, 0, 0, '28370'),
+(@CGUID+540, 1276310, 0, 0, 0, 0, 0, '28370'),
+(@CGUID+541, 1276310, 0, 0, 0, 0, 0, '28370'),
+(@CGUID+542, 1276310, 0, 0, 0, 0, 0, '28370'),
+(@CGUID+543, 1276310, 0, 0, 0, 0, 0, '28370'),
+(@CGUID+544, 1276310, 0, 0, 0, 0, 0, '28370'),
+(@CGUID+545, 1276310, 0, 0, 0, 0, 0, '28370');
+
 -- Set disable move flag
 UPDATE `creature_template` SET `unit_flags` = (`unit_flags`|4) WHERE (`entry` = 351072);
 
 -- Necropolis Acolyte should cast Shadow Bolt Volley and Arcane Explosion
-UPDATE `creature_template` SET `AIName` = 'SmartAI' WHERE `entry` = 351070;
-DELETE FROM `smart_scripts` WHERE (`source_type` = 0 AND `entryorguid` = 351070);
+UPDATE `creature_template` SET `AIName` = 'SmartAI' WHERE `entry` = @ENTRY+070;
+DELETE FROM `smart_scripts` WHERE (`source_type` = 0 AND `entryorguid` = @ENTRY+070);
 INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES
-(351070, 0, 0, 0, 106, 0, 100, 0, 2000, 2000, 5000, 5000, 0, 13, 11, 22271, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 'Necropolis Acolyte - On Hostile in Range - Cast \'Arcane Explosion\''),
-(351070, 0, 1, 0, 0, 0, 100, 0, 4000, 4000, 6000, 6000, 0, 0, 11, 28448, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 'Necropolis Acolyte - In Combat - Cast \'Shadow Bolt Volley\'');
+(@ENTRY+070, 0, 0, 0, 106, 0, 100, 0, 2000, 2000, 5000, 5000, 0, 13, 11, 22271, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 'Necropolis Acolyte - On Hostile in Range - Cast \'Arcane Explosion\''),
+(@ENTRY+070, 0, 1, 0, 0, 0, 100, 0, 4000, 4000, 6000, 6000, 0, 0, 11, 28448, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 'Necropolis Acolyte - In Combat - Cast \'Shadow Bolt Volley\'');
 
 -- Plagued Ghoul
-DELETE FROM `smart_scripts` WHERE (`source_type` = 0 AND `entryorguid` = 351078);
+DELETE FROM `smart_scripts` WHERE (`source_type` = 0 AND `entryorguid` = @ENTRY+078);
 INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES
-(351078, 0, 0, 0, 2, 0, 100, 1, 0, 30, 0, 0, 0, 0, 11, 24318, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 'Plagued Ghoul - Between 0-30% Health - Cast \'Frenzy\' (No Repeat)'),
-(351078, 0, 1, 0, 0, 0, 100, 0, 5000, 15000, 9000, 18000, 0, 0, 11, 29915, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 'Plagued Ghoul - In Combat - Cast \'Flesh Rot\''),
-(351078, 0, 2, 0, 0, 0, 100, 0, 3000, 5000, 8000, 12000, 0, 0, 11, 13738, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 'Plagued Ghoul - In Combat - Cast \'Rend\'');
+(@ENTRY+078, 0, 0, 0, 2, 0, 100, 1, 0, 30, 0, 0, 0, 0, 11, 24318, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 'Plagued Ghoul - Between 0-30% Health - Cast \'Frenzy\' (No Repeat)'),
+(@ENTRY+078, 0, 1, 0, 0, 0, 100, 0, 5000, 15000, 9000, 18000, 0, 0, 11, 29915, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 'Plagued Ghoul - In Combat - Cast \'Flesh Rot\''),
+(@ENTRY+078, 0, 2, 0, 0, 0, 100, 0, 3000, 5000, 8000, 12000, 0, 0, 11, 13738, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 'Plagued Ghoul - In Combat - Cast \'Rend\'');
 
 -- Plagued Deathhound
 -- stealth and invisibility detection
@@ -5577,47 +5156,47 @@ INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_
 (16452, 0, 4, 0, 0, 0, 90, 0, 12000, 12000, 15000, 15000, 0, 0, 11, 28391, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 'Necro Knight Guardian - In Combat - Cast \'Blink\''),
 (16452, 0, 5, 0, 0, 0, 90, 0, 14000, 14000, 15000, 15000, 0, 0, 11, 30095, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 'Necro Knight Guardian - In Combat - Cast \'Cone of Cold\'');
 
--- Update Bile Retcher 351022  - 27807 Bile Vomit - ~5k instant, ~1200 dot to ~1500 instant, 250 dot
-DELETE FROM `smart_scripts` WHERE (`entryorguid` = 351022) AND (`source_type` = 0) AND (`id` IN (0));
+-- Update Bile Retcher @ENTRY+022  - 27807 Bile Vomit - ~5k instant, ~1200 dot to ~1500 instant, 250 dot
+DELETE FROM `smart_scripts` WHERE (`entryorguid` = @ENTRY+022) AND (`source_type` = 0) AND (`id` IN (0));
 INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`,
  `event_flags`, `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES
-(351022, 0, 0, 0, 0, 0, 100, 0, 3600, 6800, 13700, 19700, 0, 0, 218, 27807, 0, 1374, 249, 26, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 'Bile Retcher - In combat - Cast Bile Vomit (Naxx 40)');
--- 351023 - Mad Scientist - Heal, reduced from ~20% hp to ~10% hp. Vanilla is raw ~3k
--- 351023 - Mad Scientist - Mana Burn ~3.5k to ~1.5k
-DELETE FROM `smart_scripts` WHERE (`entryorguid` = 351023) AND (`source_type` = 0) AND (`id` IN (0, 2));
+(@ENTRY+022, 0, 0, 0, 0, 0, 100, 0, 3600, 6800, 13700, 19700, 0, 0, 218, 27807, 0, 1374, 249, 26, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 'Bile Retcher - In combat - Cast Bile Vomit (Naxx 40)');
+-- @ENTRY+023 - Mad Scientist - Heal, reduced from ~20% hp to ~10% hp. Vanilla is raw ~3k
+-- @ENTRY+023 - Mad Scientist - Mana Burn ~3.5k to ~1.5k
+DELETE FROM `smart_scripts` WHERE (`entryorguid` = @ENTRY+023) AND (`source_type` = 0) AND (`id` IN (0, 2));
 INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES
-(351023, 0, 0, 0, 0, 0, 100, 0, 7600, 17300, 6000, 13300, 0, 0, 218, 28301, 0, 1062, 0, 0, 0, 5, 0, 0, 1, 0, 0, 0, 0, 0, 'Mad Scientist - In combat - Cast Mana Burn (Naxx 40)'),
-(351023, 0, 2, 0, 2, 0, 100, 0, 0, 30, 18000, 21000, 0, 0, 218, 28306, 0, 10, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 'Mad Scientist - At 30% HP - Cast Great Heal (Naxx 40)');
--- 351025 - Surgical Assistant - Mind Flay damage from 1.5k to 600 per tick
-DELETE FROM `smart_scripts` WHERE (`entryorguid` = 351025) AND (`source_type` = 0) AND (`id` IN (0));
+(@ENTRY+023, 0, 0, 0, 0, 0, 100, 0, 7600, 17300, 6000, 13300, 0, 0, 218, 28301, 0, 1062, 0, 0, 0, 5, 0, 0, 1, 0, 0, 0, 0, 0, 'Mad Scientist - In combat - Cast Mana Burn (Naxx 40)'),
+(@ENTRY+023, 0, 2, 0, 2, 0, 100, 0, 0, 30, 18000, 21000, 0, 0, 218, 28306, 0, 10, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 'Mad Scientist - At 30% HP - Cast Great Heal (Naxx 40)');
+-- @ENTRY+025 - Surgical Assistant - Mind Flay damage from 1.5k to 600 per tick
+DELETE FROM `smart_scripts` WHERE (`entryorguid` = @ENTRY+025) AND (`source_type` = 0) AND (`id` IN (0));
 INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES
-(351025, 0, 0, 0, 0, 0, 100, 0, 1600, 2800, 7700, 11900, 0, 0, 218, 28310, 0, 554, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 'Surgical Assistant - In combat - Cast Mind Flay (Naxx 40)');
--- 351024 - Living Monstrosity - Chain Lightning damage from ~4k to ~1k. (Chain Lightning should 3 to 10. Range 45 to 30, requires custom script)
-DELETE FROM `smart_scripts` WHERE (`source_type` = 0 AND `entryorguid` = 351024);
+(@ENTRY+025, 0, 0, 0, 0, 0, 100, 0, 1600, 2800, 7700, 11900, 0, 0, 218, 28310, 0, 554, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 'Surgical Assistant - In combat - Cast Mind Flay (Naxx 40)');
+-- @ENTRY+024 - Living Monstrosity - Chain Lightning damage from ~4k to ~1k. (Chain Lightning should 3 to 10. Range 45 to 30, requires custom script)
+DELETE FROM `smart_scripts` WHERE (`source_type` = 0 AND `entryorguid` = @ENTRY+024);
 INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES
-(351024, 0, 0, 0, 0, 0, 100, 0, 7100, 12500, 18100, 20900, 0, 0, 218, 28293, 0, 599, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 'Living Monstrosity - In combat - Cast Chain Lightning (Naxx 40)'),
-(351024, 0, 1, 0, 0, 0, 100, 0, 6400, 10000, 16900, 18500, 0, 0, 11, @SPELL+4, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 'Living Monstrosity - In combat - Cast Lightning Totem (Naxx 40)');
+(@ENTRY+024, 0, 0, 0, 0, 0, 100, 0, 7100, 12500, 18100, 20900, 0, 0, 218, 28293, 0, 599, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 'Living Monstrosity - In combat - Cast Chain Lightning (Naxx 40)'),
+(@ENTRY+024, 0, 1, 0, 0, 0, 100, 0, 6400, 10000, 16900, 18500, 0, 0, 11, @SPELL+4, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 'Living Monstrosity - In combat - Cast Lightning Totem (Naxx 40)');
 
 -- Trash military quarter
 -- Military Quarter Trash
 -- Plagued Gargoyle
 -- stealth and invisibility detection
-UPDATE `creature_template_addon` SET `auras` = '18950' WHERE (`entry` = 35107);
-DELETE FROM `smart_scripts` WHERE (`source_type` = 0 AND `entryorguid` = 351077);
+UPDATE `creature_template_addon` SET `auras` = '18950' WHERE (`entry` = @ENTRY+07);
+DELETE FROM `smart_scripts` WHERE (`source_type` = 0 AND `entryorguid` = @ENTRY+077);
 INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES
-(351077, 0, 0, 0, 0, 0, 100, 0, 0, 0, 10000, 10000, 0, 0, 218, 29325, 0, 0, 121, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 'Plagued Gargoyle - In Combat - Custom Cast Acid Volley'),
-(351077, 0, 1, 0, 2, 0, 75, 0, 0, 50, 30000, 30000, 0, 0, 11, 28995, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 'Plagued Gargoyle - Between 0-50% Health - Cast \'Stoneskin\'');
+(@ENTRY+077, 0, 0, 0, 0, 0, 100, 0, 0, 0, 10000, 10000, 0, 0, 218, 29325, 0, 0, 121, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 'Plagued Gargoyle - In Combat - Custom Cast Acid Volley'),
+(@ENTRY+077, 0, 1, 0, 2, 0, 75, 0, 0, 50, 30000, 30000, 0, 0, 11, 28995, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 'Plagued Gargoyle - Between 0-50% Health - Cast \'Stoneskin\'');
 -- Death Knight Captain
 -- Cast whirlwind every 5 seconds
-DELETE FROM `smart_scripts` WHERE (`source_type` = 0 AND `entryorguid` = 351048);
+DELETE FROM `smart_scripts` WHERE (`source_type` = 0 AND `entryorguid` = @ENTRY+048);
 INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES
-(351048, 0, 0, 0, 0, 0, 100, 0, 1000, 1000, 5000, 5000, 0, 0, 11, 28335, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 'Deathknight Captain - In Combat - Cast \'Whirlwind\'');
+(@ENTRY+048, 0, 0, 0, 0, 0, 100, 0, 1000, 1000, 5000, 5000, 0, 0, 11, 28335, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 'Deathknight Captain - In Combat - Cast \'Whirlwind\'');
 -- Death Knight Cavalier
-DELETE FROM `smart_scripts` WHERE (`source_type` = 0 AND `entryorguid` = 351055);
+DELETE FROM `smart_scripts` WHERE (`source_type` = 0 AND `entryorguid` = @ENTRY+055);
 INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES
-(351055, 0, 0, 0, 0, 0, 90, 0, 0, 0, 8000, 8000, 0, 0, 11, 28413, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 'Deathknight Cavalier - In Combat - Cast \'Aura of Agony\''),
-(351055, 0, 1, 0, 0, 0, 95, 0, 1000, 1000, 4000, 4000, 0, 0, 11, 15284, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 'Deathknight Cavalier - In Combat - Cast \'Cleave\''),
-(351055, 0, 2, 0, 0, 0, 80, 0, 3000, 3000, 5000, 5000, 0, 0, 11, 28412, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 'Deathknight Cavalier - In Combat - Cast \'Death Coil\'');
+(@ENTRY+055, 0, 0, 0, 0, 0, 90, 0, 0, 0, 8000, 8000, 0, 0, 11, 28413, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 'Deathknight Cavalier - In Combat - Cast \'Aura of Agony\''),
+(@ENTRY+055, 0, 1, 0, 0, 0, 95, 0, 1000, 1000, 4000, 4000, 0, 0, 11, 15284, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 'Deathknight Cavalier - In Combat - Cast \'Cleave\''),
+(@ENTRY+055, 0, 2, 0, 0, 0, 80, 0, 3000, 3000, 5000, 5000, 0, 0, 11, 28412, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 'Deathknight Cavalier - In Combat - Cast \'Death Coil\'');
 -- Death Lord
 UPDATE `creature_template` SET `AIName` = 'SmartAI' WHERE `entry` = 16861;
 DELETE FROM `smart_scripts` WHERE (`source_type` = 0 AND `entryorguid` = 16861);
@@ -5626,152 +5205,152 @@ INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_
 (16861, 0, 1, 0, 0, 0, 95, 0, 1000, 1000, 4000, 4000, 0, 0, 11, 15284, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 'Death Lord - In Combat - Cast \'Cleave\' (Naxx40)'),
 (16861, 0, 2, 0, 0, 0, 80, 0, 3000, 3000, 5000, 5000, 0, 0, 11, 28412, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 'Death Lord - In Combat - Cast \'Death Coil\' (Naxx40)');
 -- Deathknight
-DELETE FROM `smart_scripts` WHERE (`source_type` = 0 AND `entryorguid` = 351049);
+DELETE FROM `smart_scripts` WHERE (`source_type` = 0 AND `entryorguid` = @ENTRY+049);
 INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES
-(351049, 0, 0, 0, 0, 0, 100, 0, 0, 0, 8000, 8000, 0, 0, 11, 19134, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 'Deathknight - In Combat - Cast \'Frightening Shout\''),
-(351049, 0, 1, 0, 0, 0, 100, 0, 0, 0, 7000, 7000, 0, 0, 11, 28350, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 'Deathknight - In Combat - Cast \'Veil of Darkness\'');
+(@ENTRY+049, 0, 0, 0, 0, 0, 100, 0, 0, 0, 8000, 8000, 0, 0, 11, 19134, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 'Deathknight - In Combat - Cast \'Frightening Shout\''),
+(@ENTRY+049, 0, 1, 0, 0, 0, 100, 0, 0, 0, 7000, 7000, 0, 0, 11, 28350, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 'Deathknight - In Combat - Cast \'Veil of Darkness\'');
 -- Set Doom/Death Touched Warrior immune to disorient (1), charm (2)
-UPDATE `creature_template` SET `mechanic_immune_mask` = `mechanic_immune_mask` | 3 WHERE (`entry` IN (351054, 16158));
+UPDATE `creature_template` SET `mechanic_immune_mask` = `mechanic_immune_mask` | 3 WHERE (`entry` IN (@ENTRY+054, 16158));
 -- Bony Construct
-DELETE FROM `smart_scripts` WHERE (`source_type` = 0 AND `entryorguid` = 351058);
+DELETE FROM `smart_scripts` WHERE (`source_type` = 0 AND `entryorguid` = @ENTRY+058);
 INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES
-(351058, 0, 0, 0, 0, 0, 100, 0, 3000, 3000, 4000, 4000, 0, 0, 11, 19632, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 'Bony Construct - In Combat - Cast \'Cleave\''),
-(351058, 0, 1, 0, 0, 0, 100, 0, 0, 0, 7000, 7000, 0, 0, 11, 25322, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 'Bony Construct - In Combat - Cast \'Sweeping Slam\'');
+(@ENTRY+058, 0, 0, 0, 0, 0, 100, 0, 3000, 3000, 4000, 4000, 0, 0, 11, 19632, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 'Bony Construct - In Combat - Cast \'Cleave\''),
+(@ENTRY+058, 0, 1, 0, 0, 0, 100, 0, 0, 0, 7000, 7000, 0, 0, 11, 25322, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 'Bony Construct - In Combat - Cast \'Sweeping Slam\'');
 -- Skeletal Smith
-DELETE FROM `smart_scripts` WHERE (`source_type` = 0 AND `entryorguid` = 351060);
+DELETE FROM `smart_scripts` WHERE (`source_type` = 0 AND `entryorguid` = @ENTRY+060);
 INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES
-(351060, 0, 0, 0, 0, 0, 100, 0, 1000, 1000, 2000, 2000, 0, 0, 11, 24317, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 'Skeletal Smith - In Combat - Cast \'Sunder Armor\''),
-(351060, 0, 1, 0, 0, 0, 85, 0, 0, 0, 6000, 6000, 0, 0, 11, 6713, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 'Skeletal Smith - In Combat - Cast \'Disarm\''),
-(351060, 0, 2, 0, 0, 0, 90, 0, 2000, 2000, 10000, 10000, 0, 0, 11, 23931, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 'Skeletal Smith - In Combat - Cast \'Thunderclap\'');
+(@ENTRY+060, 0, 0, 0, 0, 0, 100, 0, 1000, 1000, 2000, 2000, 0, 0, 11, 24317, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 'Skeletal Smith - In Combat - Cast \'Sunder Armor\''),
+(@ENTRY+060, 0, 1, 0, 0, 0, 85, 0, 0, 0, 6000, 6000, 0, 0, 11, 6713, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 'Skeletal Smith - In Combat - Cast \'Disarm\''),
+(@ENTRY+060, 0, 2, 0, 0, 0, 90, 0, 2000, 2000, 10000, 10000, 0, 0, 11, 23931, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 'Skeletal Smith - In Combat - Cast \'Thunderclap\'');
 -- fix: Bony Construct pathing
-DELETE FROM `creature_formations` WHERE `leaderGUID` = 361243;
-DELETE FROM `creature` WHERE `guid` BETWEEN 362060 AND 362065;
+DELETE FROM `creature_formations` WHERE `leaderGUID` = @CGUID+243;
+DELETE FROM `creature` WHERE `guid` BETWEEN @CGUID+1060 AND @CGUID+1065;
 INSERT INTO `creature` (`guid`, `id1`, `id2`, `id3`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`, `wander_distance`, `currentwaypoint`, `curhealth`, `curmana`, `MovementType`, `npcflag`, `unit_flags`, `dynamicflags`, `ScriptName`, `VerifiedBuild`, `CreateObject`, `Comment`) VALUES
-(362060, 351058, 0, 0, 533, 0, 0, 4, 1, 0, 2845.06, -3296.36, 298.124, 5.63452, 3600, 0.0, 0, 65165, 0, 2, 0, 0, 0, '', 0, 0, NULL),
-(362061, 351058, 0, 0, 533, 0, 0, 4, 1, 0, 2839.23, -3337.89, 300.911, 0.349066, 3600, 0.0, 0, 65165, 0, 0, 0, 0, 0, '', 0, 0, NULL),
-(362062, 351058, 0, 0, 533, 0, 0, 4, 1, 0, 2832.53, -3295.22, 298.121, 3.05074, 3600, 5.0, 0, 65165, 0, 1, 0, 0, 0, '', 0, 0, NULL),
-(362063, 351058, 0, 0, 533, 0, 0, 4, 1, 0, 2835.76, -3331.32, 299.364, 4.84961, 3600, 0.0, 0, 65165, 0, 2, 0, 0, 0, '', 0, 0, NULL),
-(362064, 351058, 0, 0, 533, 0, 0, 4, 1, 0, 2831.77, -3307.42, 298.659, 0.087266, 3600, 0.0, 0, 65165, 0, 0, 0, 0, 0, '', 0, 0, NULL),
-(362065, 351058, 0, 0, 533, 0, 0, 4, 1, 0, 2827.68, -3314.67, 300.318, 0.383972, 3600, 0.0, 0, 65165, 0, 0, 0, 0, 0, '', 0, 0, NULL);
-DELETE FROM `waypoint_data` WHERE `id` IN (3620600, 3620630);
+(@CGUID+1060, @ENTRY+058, 0, 0, 533, 0, 0, 4, 1, 0, 2845.06, -3296.36, 298.124, 5.63452, 3600, 0.0, 0, 65165, 0, 2, 0, 0, 0, '', 0, 0, NULL),
+(@CGUID+1061, @ENTRY+058, 0, 0, 533, 0, 0, 4, 1, 0, 2839.23, -3337.89, 300.911, 0.349066, 3600, 0.0, 0, 65165, 0, 0, 0, 0, 0, '', 0, 0, NULL),
+(@CGUID+1062, @ENTRY+058, 0, 0, 533, 0, 0, 4, 1, 0, 2832.53, -3295.22, 298.121, 3.05074, 3600, 5.0, 0, 65165, 0, 1, 0, 0, 0, '', 0, 0, NULL),
+(@CGUID+1063, @ENTRY+058, 0, 0, 533, 0, 0, 4, 1, 0, 2835.76, -3331.32, 299.364, 4.84961, 3600, 0.0, 0, 65165, 0, 2, 0, 0, 0, '', 0, 0, NULL),
+(@CGUID+1064, @ENTRY+058, 0, 0, 533, 0, 0, 4, 1, 0, 2831.77, -3307.42, 298.659, 0.087266, 3600, 0.0, 0, 65165, 0, 0, 0, 0, 0, '', 0, 0, NULL),
+(@CGUID+1065, @ENTRY+058, 0, 0, 533, 0, 0, 4, 1, 0, 2827.68, -3314.67, 300.318, 0.383972, 3600, 0.0, 0, 65165, 0, 0, 0, 0, 0, '', 0, 0, NULL);
+DELETE FROM `waypoint_data` WHERE `id` IN ((@CGUID+1060)*10, (@CGUID+1063)*10);
 INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `position_z`, `orientation`, `delay`, `move_type`, `action`, `action_chance`, `wpguid`) VALUES
-(3620600, 1, 2847.82, -3308.78, 298.147, NULL, 0, 0, 0, 100, 0),
-(3620600, 2, 2838.80, -3321.94, 298.152, NULL, 0, 0, 0, 100, 0),
-(3620600, 3, 2847.82, -3308.78, 298.147, NULL, 0, 0, 0, 100, 0),
-(3620600, 4, 2845.06, -3296.36, 298.124, NULL, 0, 0, 0, 100, 0),
-(3620600, 5, 2832.53, -3295.22, 298.150, NULL, 0, 0, 0, 100, 0),
-(3620600, 6, 2845.06, -3296.36, 298.124, NULL, 0, 0, 0, 100, 0),
-(3620630, 1, 2830.41, -3329.09, 304.837, NULL, 0, 0, 0, 100, 0),
-(3620630, 2, 2835.76, -3331.32, 299.364, NULL, 0, 0, 0, 100, 0),
-(3620630, 3, 2842.91, -3323.56, 298.155, NULL, 0, 0, 0, 100, 0),
-(3620630, 4, 2852.52, -3333.61, 298.146, NULL, 0, 0, 0, 100, 0),
-(3620630, 5, 2854.87, -3350.62, 298.146, NULL, 0, 0, 0, 100, 0),
-(3620630, 6, 2852.52, -3333.61, 298.146, NULL, 0, 0, 0, 100, 0),
-(3620630, 7, 2842.91, -3323.56, 298.155, NULL, 0, 0, 0, 100, 0),
-(3620630, 8, 2835.76, -3331.32, 299.364, NULL, 0, 0, 0, 100, 0);
-DELETE FROM `creature_addon` WHERE (`guid` IN (362060, 362063));
+((@CGUID+1060)*10, 1, 2847.82, -3308.78, 298.147, NULL, 0, 0, 0, 100, 0),
+((@CGUID+1060)*10, 2, 2838.80, -3321.94, 298.152, NULL, 0, 0, 0, 100, 0),
+((@CGUID+1060)*10, 3, 2847.82, -3308.78, 298.147, NULL, 0, 0, 0, 100, 0),
+((@CGUID+1060)*10, 4, 2845.06, -3296.36, 298.124, NULL, 0, 0, 0, 100, 0),
+((@CGUID+1060)*10, 5, 2832.53, -3295.22, 298.150, NULL, 0, 0, 0, 100, 0),
+((@CGUID+1060)*10, 6, 2845.06, -3296.36, 298.124, NULL, 0, 0, 0, 100, 0),
+((@CGUID+1063)*10, 1, 2830.41, -3329.09, 304.837, NULL, 0, 0, 0, 100, 0),
+((@CGUID+1063)*10, 2, 2835.76, -3331.32, 299.364, NULL, 0, 0, 0, 100, 0),
+((@CGUID+1063)*10, 3, 2842.91, -3323.56, 298.155, NULL, 0, 0, 0, 100, 0),
+((@CGUID+1063)*10, 4, 2852.52, -3333.61, 298.146, NULL, 0, 0, 0, 100, 0),
+((@CGUID+1063)*10, 5, 2854.87, -3350.62, 298.146, NULL, 0, 0, 0, 100, 0),
+((@CGUID+1063)*10, 6, 2852.52, -3333.61, 298.146, NULL, 0, 0, 0, 100, 0),
+((@CGUID+1063)*10, 7, 2842.91, -3323.56, 298.155, NULL, 0, 0, 0, 100, 0),
+((@CGUID+1063)*10, 8, 2835.76, -3331.32, 299.364, NULL, 0, 0, 0, 100, 0);
+DELETE FROM `creature_addon` WHERE (`guid` IN ((@CGUID+1060), (@CGUID+1063)));
 INSERT INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES
-(362060, 3620600, 0, 0, 1, 0, 0, ''),
-(362063, 3620630, 0, 0, 1, 0, 0, '');
+(@CGUID+1060, (@CGUID+2060)*10, 0, 0, 1, 0, 0, ''),
+(@CGUID+1063, (@CGUID+2063)*10, 0, 0, 1, 0, 0, '');
 -- Shade of Naxxramas
 -- Shadow Bolt Volley bp0 to 1849
-DELETE FROM `smart_scripts` WHERE (`source_type` = 0 AND `entryorguid` = 351056);
+DELETE FROM `smart_scripts` WHERE (`source_type` = 0 AND `entryorguid` = @ENTRY+056);
 INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES
-(351056, 0, 0, 0, 0, 0, 100, 0, 2800, 5100, 4500, 12000, 0, 0, 218, 28407, 0, 1849, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 'Shade of Naxxramas - In Combat - Custom Cast Shadow Bolt Volley (Naxx40)'),
-(351056, 0, 1, 0, 0, 0, 100, 0, 4100, 8700, 60000, 60000, 0, 0, 11, @SPELL+3, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 'Shade of Naxxramas - In Combat - Cast \'Portal of Shadows (Naxx40)\''),
-(351056, 0, 2, 0, 25, 0, 100, 512, 0, 0, 0, 0, 0, 0, 41, 500, 0, 0, 0, 0, 0, 19, 351092, 0, 0, 0, 0, 0, 0, 0, 'Shade of Naxxramas - On Reset - Despawn In 500 ms (Naxx40)');
+(@ENTRY+056, 0, 0, 0, 0, 0, 100, 0, 2800, 5100, 4500, 12000, 0, 0, 218, 28407, 0, 1849, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 'Shade of Naxxramas - In Combat - Custom Cast Shadow Bolt Volley (Naxx40)'),
+(@ENTRY+056, 0, 1, 0, 0, 0, 100, 0, 4100, 8700, 60000, 60000, 0, 0, 11, @SPELL+3, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 'Shade of Naxxramas - In Combat - Cast \'Portal of Shadows (Naxx40)\''),
+(@ENTRY+056, 0, 2, 0, 25, 0, 100, 512, 0, 0, 0, 0, 0, 0, 41, 500, 0, 0, 0, 0, 0, 19, @ENTRY+092, 0, 0, 0, 0, 0, 0, 0, 'Shade of Naxxramas - On Reset - Despawn In 500 ms (Naxx40)');
 -- Ghost of Naxxramas, summoned by custom Portal of Shadows (90004)
-DELETE FROM `creature_template` WHERE (`entry` = 351092);
+DELETE FROM `creature_template` WHERE (`entry` = @ENTRY+092);
 INSERT INTO `creature_template` (`entry`, `difficulty_entry_1`, `difficulty_entry_2`, `difficulty_entry_3`, `KillCredit1`, `KillCredit2`, `name`, `subname`, `IconName`, `gossip_menu_id`, `minlevel`, `maxlevel`, `exp`, `faction`, `npcflag`, `speed_walk`, `speed_run`, `speed_swim`, `speed_flight`, `detection_range`, `scale`, `rank`, `dmgschool`, `DamageModifier`, `BaseAttackTime`, `RangeAttackTime`, `BaseVariance`, `RangeVariance`, `unit_class`, `unit_flags`, `unit_flags2`, `dynamicflags`, `family`, `trainer_type`, `trainer_spell`, `trainer_class`, `trainer_race`, `type`, `type_flags`, `lootid`, `pickpocketloot`, `skinloot`, `PetSpellDataId`, `VehicleId`, `mingold`, `maxgold`, `AIName`, `MovementType`, `HoverHeight`, `HealthModifier`, `ManaModifier`, `ArmorModifier`, `ExperienceModifier`, `RacialLeader`, `movementId`, `RegenHealth`, `mechanic_immune_mask`, `spell_school_immune_mask`, `flags_extra`, `ScriptName`, `VerifiedBuild`) VALUES
-(351092, 0, 0, 0, 0, 0, 'Ghost of Naxxramas', NULL, NULL, 0, 60, 60, 2, 21, 0, 1.11111, 0.71429, 1, 1, 20, 1, 1, 0, 7.5, 2000, 2000, 1, 1, 1, 33587264, 2048, 0, 0, 0, 0, 0, 0, 7, 8, 0, 0, 0, 0, 0, 0, 0, 'SmartAI', 0, 1, 1, 1, 1, 1, 0, 88, 1, 0, 0, 0, '', 12340);
-UPDATE `creature_template` SET `AIName` = 'SmartAI' WHERE `entry` = 351092;
-DELETE FROM `smart_scripts` WHERE (`source_type` = 0 AND `entryorguid` = 351092);
+(@ENTRY+092, 0, 0, 0, 0, 0, 'Ghost of Naxxramas', NULL, NULL, 0, 60, 60, 2, 21, 0, 1.11111, 0.71429, 1, 1, 20, 1, 1, 0, 7.5, 2000, 2000, 1, 1, 1, 33587264, 2048, 0, 0, 0, 0, 0, 0, 7, 8, 0, 0, 0, 0, 0, 0, 0, 'SmartAI', 0, 1, 1, 1, 1, 1, 0, 88, 1, 0, 0, 0, '', 12340);
+UPDATE `creature_template` SET `AIName` = 'SmartAI' WHERE `entry` = @ENTRY+092;
+DELETE FROM `smart_scripts` WHERE (`source_type` = 0 AND `entryorguid` = @ENTRY+092);
 INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES
-(351092, 0, 0, 0, 54, 0, 100, 512, 0, 0, 0, 0, 0, 0, 38, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 'Ghost of Naxxramas - On spawn - Set in combat with zone (Naxx40)'),
-(351092, 0, 1, 0, 1, 0, 100, 512, 100, 100, 0, 0, 0, 0, 41, 500, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 'Ghost of Naxxramas - On OOC - Despawn if OOC (Naxx40)');
+(@ENTRY+092, 0, 0, 0, 54, 0, 100, 512, 0, 0, 0, 0, 0, 0, 38, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 'Ghost of Naxxramas - On spawn - Set in combat with zone (Naxx40)'),
+(@ENTRY+092, 0, 1, 0, 1, 0, 100, 512, 100, 100, 0, 0, 0, 0, 41, 500, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 'Ghost of Naxxramas - On OOC - Despawn if OOC (Naxx40)');
 -- Skeletal Steed
 -- Add trample, intercept
-DELETE FROM `smart_scripts` WHERE (`source_type` = 0 AND `entryorguid` = 351041);
+DELETE FROM `smart_scripts` WHERE (`source_type` = 0 AND `entryorguid` = @ENTRY+041);
 INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES
-(351041, 0, 0, 0, 9, 0, 100, 0, 2000, 2000, 20000, 25000, 8, 25, 11, 27577, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 'Skeletal Steed - Within 8-25 Range - Cast \'Intercept\' (Naxx 40)'),
-(351041, 0, 1, 0, 0, 0, 90, 0, 2000, 2000, 5000, 5000, 0, 0, 11, 5568, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 'Skeletal Steed - In Combat - Cast Trample (Naxx 40)');
+(@ENTRY+041, 0, 0, 0, 9, 0, 100, 0, 2000, 2000, 20000, 25000, 8, 25, 11, 27577, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 'Skeletal Steed - Within 8-25 Range - Cast \'Intercept\' (Naxx 40)'),
+(@ENTRY+041, 0, 1, 0, 0, 0, 90, 0, 2000, 2000, 5000, 5000, 0, 0, 11, 5568, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 'Skeletal Steed - In Combat - Cast Trample (Naxx 40)');
 
 -- Razuvious
 -- Deathknight Understudy
 -- Set attacking emote, add see invisibility and increase damage aura
-DELETE FROM `creature_template_addon` WHERE (`entry` = 351084);
+DELETE FROM `creature_template_addon` WHERE (`entry` = @ENTRY+084);
 INSERT INTO `creature_template_addon` (`entry`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES
-(351084, 0, 0, 0, 1, 333, 3, '18950 29068');
+(@ENTRY+084, 0, 0, 0, 1, 333, 3, '18950 29068');
 -- Add spells, taunt and bone barrier
-DELETE FROM `creature_template_spell` WHERE (`CreatureID` = 351084);
+DELETE FROM `creature_template_spell` WHERE (`CreatureID` = @ENTRY+084);
 INSERT INTO `creature_template_spell` (`CreatureID`, `Index`, `Spell`, `VerifiedBuild`) VALUES
-(351084, 3, 29060, 12340),
-(351084, 4, 29061, 12340);
+(@ENTRY+084, 3, 29060, 12340),
+(@ENTRY+084, 4, 29061, 12340);
 
 -- Trash
 -- Plague Quarter
-UPDATE `creature_template` SET `AIName` = 'SmartAI' WHERE `entry` = 351065;
-DELETE FROM `smart_scripts` WHERE (`source_type` = 0 AND `entryorguid` = 351065);
+UPDATE `creature_template` SET `AIName` = 'SmartAI' WHERE `entry` = @ENTRY+065;
+DELETE FROM `smart_scripts` WHERE (`source_type` = 0 AND `entryorguid` = @ENTRY+065);
 INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES
-(351065, 0, 0, 0, 0, 0, 100, 0, 3000, 6000, 9000, 12000, 0, 0, 11, 29915, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 'Cast Spell IC (Naxx 40)'),
-(351065, 0, 1, 0, 0, 0, 100, 0, 3000, 3000, 15000, 15000, 0, 0, 11, 13738, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 'Infectious Ghoul - In Combat - Cast \'Rend\' (Naxx40)'),
-(351065, 0, 2, 0, 2, 0, 100, 0, 0, 30, 60000, 60000, 0, 0, 11, 24318, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 'Infectious Ghoul - On 30% HP - CastSelf Frenzy (Naxx 40)'),
-(351065, 0, 3, 0, 2, 0, 100, 1, 0, 30, 60000, 60000, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 'Infectious Ghoul - Between 0-30% Health - Say Line 0 (Naxx40)');
+(@ENTRY+065, 0, 0, 0, 0, 0, 100, 0, 3000, 6000, 9000, 12000, 0, 0, 11, 29915, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 'Cast Spell IC (Naxx 40)'),
+(@ENTRY+065, 0, 1, 0, 0, 0, 100, 0, 3000, 3000, 15000, 15000, 0, 0, 11, 13738, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 'Infectious Ghoul - In Combat - Cast \'Rend\' (Naxx40)'),
+(@ENTRY+065, 0, 2, 0, 2, 0, 100, 0, 0, 30, 60000, 60000, 0, 0, 11, 24318, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 'Infectious Ghoul - On 30% HP - CastSelf Frenzy (Naxx 40)'),
+(@ENTRY+065, 0, 3, 0, 2, 0, 100, 1, 0, 30, 60000, 60000, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 'Infectious Ghoul - Between 0-30% Health - Say Line 0 (Naxx40)');
 
 -- Stoneskin Gargoyle
-DELETE FROM `conditions` WHERE `SourceEntry` = 351059;
+DELETE FROM `conditions` WHERE `SourceEntry` = @ENTRY+059;
 INSERT INTO `conditions`
 (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry`, `SourceId`, `ElseGroup`, `ConditionTypeOrReference`, `ConditionTarget`, `ConditionValue1`, `ConditionValue2`, `ConditionValue3`, `NegativeCondition`, `ErrorType`, `ErrorTextId`, `ScriptName`, `Comment`) VALUES
-(22, 5, 351059, 0, 0, 21, 1, 16, 0, 0, 1, 0, 0, '', 'Stoneskin Gargoyle Not Roaming - Enable Script to set ''UNIT_STAND_STATE_SUBMERGED''(Naxx40)'),
-(22, 6, 351059, 0, 0, 21, 1, 16, 0, 0, 0, 0, 0, '', 'Stoneskin Gargoyle Roaming - Enable Script to remove ''UNIT_STAND_STATE_SUBMERGED'' (Naxx40)');
+(22, 5, @ENTRY+059, 0, 0, 21, 1, 16, 0, 0, 1, 0, 0, '', 'Stoneskin Gargoyle Not Roaming - Enable Script to set ''UNIT_STAND_STATE_SUBMERGED''(Naxx40)'),
+(22, 6, @ENTRY+059, 0, 0, 21, 1, 16, 0, 0, 0, 0, 0, '', 'Stoneskin Gargoyle Roaming - Enable Script to remove ''UNIT_STAND_STATE_SUBMERGED'' (Naxx40)');
 
 -- Noth
 -- Plagued Champion
-UPDATE `creature_template` SET `AIName` = 'SmartAI' WHERE `entry` = 351086;
+UPDATE `creature_template` SET `AIName` = 'SmartAI' WHERE `entry` = @ENTRY+086;
 -- Reduce damage Plague Shock (30138) ~2.5k to ~500
-DELETE FROM `smart_scripts` WHERE (`source_type` = 0 AND `entryorguid` = 351086);
+DELETE FROM `smart_scripts` WHERE (`source_type` = 0 AND `entryorguid` = @ENTRY+086);
 INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES
-(351086, 0, 0, 0, 0, 0, 100, 0, 2000, 5000, 9000, 11000, 0, 0, 11, 32736, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 'Cast Spell IC (Naxx 40)'),
-(351086, 0, 1, 0, 0, 0, 100, 0, 5000, 8000, 13000, 15000, 0, 0, 218, 30138, 0, 554, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 'Plagued Champion - In Combat - Custom Cast Shadow Shock (Naxx 40)');
+(@ENTRY+086, 0, 0, 0, 0, 0, 100, 0, 2000, 5000, 9000, 11000, 0, 0, 11, 32736, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 'Cast Spell IC (Naxx 40)'),
+(@ENTRY+086, 0, 1, 0, 0, 0, 100, 0, 5000, 8000, 13000, 15000, 0, 0, 218, 30138, 0, 554, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 'Plagued Champion - In Combat - Custom Cast Shadow Shock (Naxx 40)');
 
 -- Mutaged Grub
 -- Reduce damage Slime Burst - AoE ~450 to ~200
-DELETE FROM `smart_scripts` WHERE (`source_type` = 0 AND `entryorguid` = 351068);
+DELETE FROM `smart_scripts` WHERE (`source_type` = 0 AND `entryorguid` = @ENTRY+068);
 INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES
-(351068, 0, 0, 0, 0, 0, 100, 0, 2000, 5000, 6000, 8000, 0, 0, 218, 30109, 0, 462, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 'Mutated Grub - In Combat - Custom Cast Slime Burst (Naxx40)');
+(@ENTRY+068, 0, 0, 0, 0, 0, 100, 0, 2000, 5000, 6000, 8000, 0, 0, 218, 30109, 0, 462, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 'Mutated Grub - In Combat - Custom Cast Slime Burst (Naxx40)');
 
 -- Frenzied Bat
 -- Update Frenzied Dive Id
-DELETE FROM `smart_scripts` WHERE (`source_type` = 0 AND `entryorguid` = 351031);
+DELETE FROM `smart_scripts` WHERE (`source_type` = 0 AND `entryorguid` = @ENTRY+031);
 INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES
-(351031, 0, 0, 0, 0, 0, 100, 0, 1000, 1000, 11000, 17000, 0, 0, 11, 30112, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 'Frenzied Bat - In Combat - Cast Frenzied Dive (Naxx 40)');
+(@ENTRY+031, 0, 0, 0, 0, 0, 100, 0, 1000, 1000, 11000, 17000, 0, 0, 11, 30112, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 'Frenzied Bat - In Combat - Cast Frenzied Dive (Naxx 40)');
 
 -- Plagued Bat
 -- Adjust IC timings
-DELETE FROM `smart_scripts` WHERE (`source_type` = 0 AND `entryorguid` = 351032);
+DELETE FROM `smart_scripts` WHERE (`source_type` = 0 AND `entryorguid` = @ENTRY+032);
 INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES
-(351032, 0, 0, 0, 0, 0, 85, 0, 9000, 9000, 40000, 40000, 0, 0, 11, 30113, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 'Plagued Bat - In Combat - Cast \'Putrid Bite\' (Naxx40)');
+(@ENTRY+032, 0, 0, 0, 0, 0, 85, 0, 9000, 9000, 40000, 40000, 0, 0, 11, 30113, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 'Plagued Bat - In Combat - Cast \'Putrid Bite\' (Naxx40)');
 
 -- Plague Beast
 -- trample
-DELETE FROM `smart_scripts` WHERE (`source_type` = 0 AND `entryorguid` = 351030);
+DELETE FROM `smart_scripts` WHERE (`source_type` = 0 AND `entryorguid` = @ENTRY+030);
 INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES
-(351030, 0, 0, 0, 0, 0, 100, 0, 0, 0, 3000, 3000, 0, 0, 11, 5568, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 'Plague Beast - In Combat - Cast \'Trample\' (Naxx40)');
+(@ENTRY+030, 0, 0, 0, 0, 0, 100, 0, 0, 0, 3000, 3000, 0, 0, 11, 5568, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 'Plague Beast - In Combat - Cast \'Trample\' (Naxx40)');
 
 -- Eye Stalk
 -- Reduce damage 2.5k to 750, movement speed reduction -50 to -20 (as unsigned int)
-DELETE FROM `smart_scripts` WHERE (`source_type` = 0 AND `entryorguid` = 351090);
-UPDATE `creature_template` SET `AIName` = '', `ScriptName` = 'boss_heigan_eye_stalk_40' WHERE (`entry` = 351090);
+DELETE FROM `smart_scripts` WHERE (`source_type` = 0 AND `entryorguid` = @ENTRY+090);
+UPDATE `creature_template` SET `AIName` = '', `ScriptName` = 'boss_heigan_eye_stalk_40' WHERE (`entry` = @ENTRY+090);
 
 -- Fungal Spore
 -- OnDeath Apply: Threat -100% (as unsigned int), Melee +50% crit, Casters +60% (up from 50%) crit
-DELETE FROM `smart_scripts` WHERE (`source_type` = 0 AND `entryorguid` = 351066);
+DELETE FROM `smart_scripts` WHERE (`source_type` = 0 AND `entryorguid` = @ENTRY+066);
 INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES
-(351066, 0, 0, 0, 6, 0, 100, 512, 0, 0, 0, 0, 0, 0, 218, 29232, 2, 4294967196, 49, 59, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 'Spore - On Just Died - Custom Cast Fungal Creep (Naxx 40)');
+(@ENTRY+066, 0, 0, 0, 6, 0, 100, 512, 0, 0, 0, 0, 0, 0, 218, 29232, 2, 4294967196, 49, 59, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 'Spore - On Just Died - Custom Cast Fungal Creep (Naxx 40)');
 
 -- Blaumeux
 -- Void Zone damage
--- upstream handles void zone damage incorrectly. Azerothcore (#18807)
+-- TODO: remove
 DELETE FROM `creature_template_spell` WHERE `CreatureID` = 16697;
 UPDATE `creature_template` SET `ScriptName` = '', `AIName` = 'SmartAI' WHERE `entry` = 16697;
 DELETE FROM `smart_scripts` WHERE (`source_type` = 0 AND `entryorguid` = 16697);
@@ -5781,12 +5360,12 @@ INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_
 
 -- Venom Stalker
 -- Rupture, double attack aura; Poison Charge
-DELETE FROM `creature_template_addon` WHERE (`entry` = 351012);
+DELETE FROM `creature_template_addon` WHERE (`entry` = @ENTRY+012);
 INSERT INTO `creature_template_addon` (`entry`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES
-(351012, 0, 0, 0, 0, 0, 0, '18943');
-DELETE FROM `smart_scripts` WHERE (`source_type` = 0 AND `entryorguid` = 351012);
+(@ENTRY+012, 0, 0, 0, 0, 0, 0, '18943');
+DELETE FROM `smart_scripts` WHERE (`source_type` = 0 AND `entryorguid` = @ENTRY+012);
 INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES
-(351012, 0, 0, 0, 0, 0, 100, 0, 5000, 15000, 20000, 40000, 0, 0, 11, 28431, 0, 0, 0, 0, 0, 5, 40, 1, 0, 0, 0, 0, 0, 0, 'Venom Stalker - In Combat - Cast \'Poison Charge\' (Naxx 40)');
+(@ENTRY+012, 0, 0, 0, 0, 0, 100, 0, 5000, 15000, 20000, 40000, 0, 0, 11, 28431, 0, 0, 0, 0, 0, 5, 40, 1, 0, 0, 0, 0, 0, 0, 'Venom Stalker - In Combat - Cast \'Poison Charge\' (Naxx 40)');
 
 -- Carrion Spinner
 -- Poison Spray and Spider Web
@@ -5796,24 +5375,24 @@ INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_
 (15975, 0, 2, 0, 0, 0, 70, 0, 3000, 3000, 10000, 10000, 0, 0, 11, 28434, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 'Carrion Spinner - In Combat - Cast \'Spider Web\' (Naxx 40)');
 
 -- Dread Creeper
-DELETE FROM `smart_scripts` WHERE (`source_type` = 0 AND `entryorguid` = 351010);
+DELETE FROM `smart_scripts` WHERE (`source_type` = 0 AND `entryorguid` = @ENTRY+010);
 INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES
-(351010, 0, 1, 0, 0, 0, 100, 0, 2000, 2000, 8000, 8000, 0, 0, 11, 28440, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 'Dread Creeper - In Combat - Cast \'Veil of Shadow\' (Naxx 40)');
+(@ENTRY+010, 0, 1, 0, 0, 0, 100, 0, 2000, 2000, 8000, 8000, 0, 0, 11, 28440, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 'Dread Creeper - In Combat - Cast \'Veil of Shadow\' (Naxx 40)');
 
 -- Skitterer, poison on attack
-DELETE FROM `creature_template_addon` WHERE (`entry` = 351010);
+DELETE FROM `creature_template_addon` WHERE (`entry` = @ENTRY+010);
 INSERT INTO `creature_template_addon` (`entry`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES
-(351010, 0, 0, 0, 0, 0, 0, '28429');
+(@ENTRY+010, 0, 0, 0, 0, 0, 0, '28429');
 
 -- Crypt Reaver, poison proc
-DELETE FROM `creature_template_addon` WHERE (`entry` = 351014);
+DELETE FROM `creature_template_addon` WHERE (`entry` = @ENTRY+014);
 INSERT INTO `creature_template_addon` (`entry`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES
-(351014, 0, 0, 0, 0, 0, 0, '22413');
-DELETE FROM `smart_scripts` WHERE (`source_type` = 0 AND `entryorguid` = 351014);
+(@ENTRY+014, 0, 0, 0, 0, 0, 0, '22413');
+DELETE FROM `smart_scripts` WHERE (`source_type` = 0 AND `entryorguid` = @ENTRY+014);
 INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES
-(351014, 0, 0, 0, 0, 0, 100, 0, 2000, 5000, 6000, 9000, 0, 0, 11, 40504, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 'Crypt Reaver - In Combat - Cast \'Cleave\' (Naxx 40)'),
-(351014, 0, 1, 0, 2, 0, 100, 0, 0, 50, 120000, 120000, 0, 0, 11, 8269, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 'Crypt Reaver - Between 0-50% Health - Cast \'Frenzy\' (Naxx 40)'),
-(351014, 0, 2, 0, 2, 0, 100, 0, 0, 50, 120000, 120000, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 'Crypt Reaver - Between 0-50% Health - Say Line 0 (Naxx 40)');
+(@ENTRY+014, 0, 0, 0, 0, 0, 100, 0, 2000, 5000, 6000, 9000, 0, 0, 11, 40504, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 'Crypt Reaver - In Combat - Cast \'Cleave\' (Naxx 40)'),
+(@ENTRY+014, 0, 1, 0, 2, 0, 100, 0, 0, 50, 120000, 120000, 0, 0, 11, 8269, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 'Crypt Reaver - Between 0-50% Health - Cast \'Frenzy\' (Naxx 40)'),
+(@ENTRY+014, 0, 2, 0, 2, 0, 100, 0, 0, 50, 120000, 120000, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 'Crypt Reaver - Between 0-50% Health - Say Line 0 (Naxx 40)');
 
 -- Necro Stalker
 UPDATE `creature_template_addon` SET `auras` = '18943' WHERE (`entry` = 16453);
@@ -5823,48 +5402,48 @@ INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_
 (16453, 0, 0, 0, 0, 0, 100, 0, 5000, 15000, 20000, 40000, 0, 0, 11, 28431, 0, 0, 0, 0, 0, 5, 40, 1, 0, 0, 0, 0, 0, 0, 'Necro Stalker - In Combat - Cast \'Poison Charge\' (Naxx 40)');
 
 -- Tomb Horror
-DELETE FROM `smart_scripts` WHERE (`source_type` = 0 AND `entryorguid` = 351015);
+DELETE FROM `smart_scripts` WHERE (`source_type` = 0 AND `entryorguid` = @ENTRY+015);
 INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES
-(351015, 0, 0, 0, 0, 0, 75, 0, 2000, 2000, 4000, 4000, 0, 0, 11, 28614, 0, 0, 0, 0, 0, 5, 45, 0, 0, 0, 0, 0, 0, 0, 'Tomb Horror - In Combat - Cast \'Pointy Spike\' (Naxx 40)'),
-(351015, 0, 2, 0, 0, 0, 75, 0, 5000, 5000, 8000, 8000, 0, 0, 11, 28615, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 'Tomb Horror - In Combat - Cast \'Spike Volley\' (Naxx 40)');
+(@ENTRY+015, 0, 0, 0, 0, 0, 75, 0, 2000, 2000, 4000, 4000, 0, 0, 11, 28614, 0, 0, 0, 0, 0, 5, 45, 0, 0, 0, 0, 0, 0, 0, 'Tomb Horror - In Combat - Cast \'Pointy Spike\' (Naxx 40)'),
+(@ENTRY+015, 0, 2, 0, 0, 0, 75, 0, 5000, 5000, 8000, 8000, 0, 0, 11, 28615, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 'Tomb Horror - In Combat - Cast \'Spike Volley\' (Naxx 40)');
 
 -- Naxxramas Acolyte: Arcane Explosion, Shadow Bolt Volley
-DELETE FROM `smart_scripts` WHERE (`source_type` = 0 AND `entryorguid` = 351017);
+DELETE FROM `smart_scripts` WHERE (`source_type` = 0 AND `entryorguid` = @ENTRY+017);
 INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES
-(351017, 0, 0, 0, 0, 0, 100, 0, 2000, 2000, 5000, 5000, 0, 0, 11, 28450, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 'Naxxramas Acolyte - In Combat - Cast \'Arcane Explosion\' (Naxx 40)'),
-(351017, 0, 1, 0, 0, 0, 100, 0, 4000, 4000, 6000, 6000, 0, 0, 11, 28448, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 'Naxxramas Acolyte - In Combat - Cast \'Shadow Bolt Volley\' (Naxx 40)');
+(@ENTRY+017, 0, 0, 0, 0, 0, 100, 0, 2000, 2000, 5000, 5000, 0, 0, 11, 28450, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 'Naxxramas Acolyte - In Combat - Cast \'Arcane Explosion\' (Naxx 40)'),
+(@ENTRY+017, 0, 1, 0, 0, 0, 100, 0, 4000, 4000, 6000, 6000, 0, 0, 11, 28448, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 'Naxxramas Acolyte - In Combat - Cast \'Shadow Bolt Volley\' (Naxx 40)');
 -- Naxxramas Cultist: Shadow Burst
-DELETE FROM `smart_scripts` WHERE (`source_type` = 0 AND `entryorguid` = 351016);
+DELETE FROM `smart_scripts` WHERE (`source_type` = 0 AND `entryorguid` = @ENTRY+016);
 INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES
-(351016, 0, 0, 0, 0, 0, 75, 0, 3000, 3000, 5000, 5000, 0, 0, 11, 28447, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 'Naxxramas Cultist - In Combat - Cast \'Shadow Burst\' (Naxx 40)');
+(@ENTRY+016, 0, 0, 0, 0, 0, 75, 0, 3000, 3000, 5000, 5000, 0, 0, 11, 28447, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 'Naxxramas Cultist - In Combat - Cast \'Shadow Burst\' (Naxx 40)');
 
 -- Kel'Thuzad
 -- Soldier of the Frozen Wastes: trigger dark blast on attack
-DELETE FROM `creature_template_addon` WHERE (`entry` = 351073);
+DELETE FROM `creature_template_addon` WHERE (`entry` = @ENTRY+073);
 INSERT INTO `creature_template_addon` (`entry`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES
-(351073, 0, 0, 0, 1, 0, 0, '28458');
+(@ENTRY+073, 0, 0, 0, 1, 0, 0, '28458');
 -- Soul Weaver
 -- Wail of Souls
-DELETE FROM `creature_template_spell` WHERE (`CreatureID` = 351075);
+DELETE FROM `creature_template_spell` WHERE (`CreatureID` = @ENTRY+075);
 INSERT INTO `creature_template_spell` (`CreatureID`, `Index`, `Spell`, `VerifiedBuild`) VALUES
-(351075, 0, 28459, 12340);
-DELETE FROM `creature_template_addon` WHERE (`entry` = 351075);
+(@ENTRY+075, 0, 28459, 12340);
+DELETE FROM `creature_template_addon` WHERE (`entry` = @ENTRY+075);
 INSERT INTO `creature_template_addon` (`entry`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES
-(351075, 0, 0, 0, 1, 0, 0, '28460');
+(@ENTRY+075, 0, 0, 0, 1, 0, 0, '28460');
 
 -- Double Attack Aura that gives 25% chance to double attack
 -- Maexxna
-DELETE FROM `creature_template_addon` WHERE (`entry` = 351006);
+DELETE FROM `creature_template_addon` WHERE (`entry` = @ENTRY+006);
 INSERT INTO `creature_template_addon` (`entry`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES
-(351006, 0, 0, 0, 0, 0, 0, '18943');
+(@ENTRY+006, 0, 0, 0, 0, 0, 0, '18943');
 -- Gluth
-DELETE FROM `creature_template_addon` WHERE (`entry` = 351004);
+DELETE FROM `creature_template_addon` WHERE (`entry` = @ENTRY+004);
 INSERT INTO `creature_template_addon` (`entry`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES
-(351004, 0, 0, 0, 0, 0, 0, '18943');
+(@ENTRY+004, 0, 0, 0, 0, 0, 0, '18943');
 -- Anub'Rekhan, not sure. Present in CMangos, not in VMangos
--- DELETE FROM `creature_template_addon` WHERE (`entry` = 351009);
+-- DELETE FROM `creature_template_addon` WHERE (`entry` = @ENTRY+009);
 -- INSERT INTO `creature_template_addon` (`entry`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES
--- (351009, 0, 0, 0, 0, 0, 0, '18943');
+-- (@ENTRY+009, 0, 0, 0, 0, 0, 0, '18943');
 
 -- Necro Knight Guardian
 -- Restore wielding of sword
@@ -5887,29 +5466,29 @@ UPDATE `creature_template` SET `minlevel` = 63, `maxlevel` = 63, `DamageModifier
 
 -- Heigan maggots
 -- Mechanic Disoriented: Scatter Shot
-UPDATE `creature_template` SET `mechanic_immune_mask` = (`mechanic_immune_mask` | 2) WHERE `entry` IN (351033, 351034);
+UPDATE `creature_template` SET `mechanic_immune_mask` = (`mechanic_immune_mask` | 2) WHERE `entry` IN (@ENTRY+033, 351034);
 -- Mechanic Snare: Earthbind, Piercing Howl
-UPDATE `creature_template` SET `mechanic_immune_mask` = (`mechanic_immune_mask` | 1024) WHERE `entry` IN (351033, 351034);
+UPDATE `creature_template` SET `mechanic_immune_mask` = (`mechanic_immune_mask` | 1024) WHERE `entry` IN (@ENTRY+033, 351034);
 -- Disease aura 30080
-DELETE FROM `creature_template_addon` WHERE (`entry` = 351033);
+DELETE FROM `creature_template_addon` WHERE (`entry` = @ENTRY+033);
 INSERT INTO `creature_template_addon` (`entry`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES
-(351033, 0, 0, 0, 0, 0, 0, '30080');
+(@ENTRY+033, 0, 0, 0, 0, 0, 0, '30080');
 -- Eye stalk HP should be 800hp ish
-UPDATE `creature_template` SET `HealthModifier` = 0.15 WHERE (`entry` = 351090);
+UPDATE `creature_template` SET `HealthModifier` = 0.15 WHERE (`entry` = @ENTRY+090);
 -- Trigger forced despawn if near the platform
-UPDATE `creature_template` SET `AIName` = 'SmartAI' WHERE `entry` IN (351033, 351034);
-DELETE FROM `smart_scripts` WHERE (`entryorguid` IN (351033, 351034)) AND (`source_type` = 0);
+UPDATE `creature_template` SET `AIName` = 'SmartAI' WHERE `entry` IN (@ENTRY+033, 351034);
+DELETE FROM `smart_scripts` WHERE (`entryorguid` IN (@ENTRY+033, 351034)) AND (`source_type` = 0);
 INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES
-(351033, 0, 0, 0, 76, 0, 100, 0, 0, 181202, 54, 1500, 0, 0, 41, 200, 10, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 'Diseased Maggot - On Distance 54y To GameObject - Despawn In 200 ms'),
-(351034, 0, 0, 0, 76, 0, 100, 0, 0, 181202, 54, 1500, 0, 0, 41, 200, 10, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 'Rotten Maggot - On Distance 54y To GameObject - Despawn In 200 ms');
+(@ENTRY+033, 0, 0, 0, 76, 0, 100, 0, 0, 181202, 54, 1500, 0, 0, 41, 200, 10, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 'Diseased Maggot - On Distance 54y To GameObject - Despawn In 200 ms'),
+(@ENTRY+034, 0, 0, 0, 76, 0, 100, 0, 0, 181202, 54, 1500, 0, 0, 41, 200, 10, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 'Rotten Maggot - On Distance 54y To GameObject - Despawn In 200 ms');
 
 -- Naxx40 Strath Entrance teleport trigger
-DELETE FROM `creature_template` WHERE `entry` = 351097;
+DELETE FROM `creature_template` WHERE `entry` = @ENTRY+097;
 INSERT INTO `creature_template` (`entry`, `difficulty_entry_1`, `difficulty_entry_2`, `difficulty_entry_3`, `KillCredit1`, `KillCredit2`, `name`, `subname`, `IconName`, `gossip_menu_id`, `minlevel`, `maxlevel`, `exp`, `faction`, `npcflag`, `speed_walk`, `speed_run`, `speed_swim`, `speed_flight`, `detection_range`, `scale`, `rank`, `dmgschool`, `DamageModifier`, `BaseAttackTime`, `RangeAttackTime`, `BaseVariance`, `RangeVariance`, `unit_class`, `unit_flags`, `unit_flags2`, `dynamicflags`, `family`, `trainer_type`, `trainer_spell`, `trainer_class`, `trainer_race`, `type`, `type_flags`, `lootid`, `pickpocketloot`, `skinloot`, `PetSpellDataId`, `VehicleId`, `mingold`, `maxgold`, `AIName`, `MovementType`, `HoverHeight`, `HealthModifier`, `ManaModifier`, `ArmorModifier`, `ExperienceModifier`, `RacialLeader`, `movementId`, `RegenHealth`, `mechanic_immune_mask`, `spell_school_immune_mask`, `flags_extra`, `ScriptName`, `VerifiedBuild`) VALUES
-(351097, 0, 0, 0, 0, 0, 'Naxx40 Strath Entrance Trigger', '', NULL, 0, 70, 70, 1, 35, 0, 1, 1.14286, 1, 1, 20, 1, 0, 0, 1, 2000, 2000, 1, 1, 1, 33554432, 2048, 0, 0, 0, 0, 0, 0, 10, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 0, 'npc_naxx40_area_trigger', 0);
-DELETE FROM `creature` WHERE `guid` = 352042;
+(@ENTRY+097, 0, 0, 0, 0, 0, 'Naxx40 Strath Entrance Trigger', '', NULL, 0, 70, 70, 1, 35, 0, 1, 1.14286, 1, 1, 20, 1, 0, 0, 1, 2000, 2000, 1, 1, 1, 33554432, 2048, 0, 0, 0, 0, 0, 0, 10, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 0, 'npc_naxx40_area_trigger', 0);
+DELETE FROM `creature` WHERE `id1` = @ENTRY+097;
 INSERT INTO `creature` (`guid`, `id1`, `id2`, `id3`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`, `wander_distance`, `currentwaypoint`, `curhealth`, `curmana`, `MovementType`, `npcflag`, `unit_flags`, `dynamicflags`, `ScriptName`, `VerifiedBuild`) VALUES
-(352042, 351097, 0, 0, 329, 0, 0, 1, 1, 0, 3929.06, -3372.12, 119.653, 4.71395, 300, 0, 0, 6986, 0, 0, 0, 0, 0, '', 0);
+(@CGUID+1066, @ENTRY+097, 0, 0, 329, 0, 0, 1, 1, 0, 3929.06, -3372.12, 119.653, 4.71395, 300, 0, 0, 6986, 0, 0, 0, 0, 0, '', 0);
 
 -- Scaling
 SET @DAMAGE_MULTIPLIER:= 0.69;
