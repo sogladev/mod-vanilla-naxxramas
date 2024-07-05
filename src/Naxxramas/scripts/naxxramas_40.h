@@ -20,26 +20,28 @@
 
 enum NX40Spells
 {
-    SPELL_SUMMON_CORPSE_SCRABS_5    = 90001, // Changed from 29105 to Level 60 Mob ID for summon
-    SPELL_SUMMON_CORPSE_SCRABS_10   = 90002, // Changed from 29105 to Level 60 Mob ID for summon
-    SPELL_BOMBARD_SLIME                     = 90003 // update summon entry
+    SPELL_SUMMON_CORPSE_SCRABS_5       = 90001, // Changed from 29105 to Level 60 Mob ID for summon
+    SPELL_SUMMON_CORPSE_SCRABS_10      = 90002, // Changed from 29105 to Level 60 Mob ID for summon
+    SPELL_BOMBARD_SLIME                = 90003, // update summon entry
+    SPELL_SUMMON_SPORE                 = 90006,
+    SPELL_WEB_WRAP_SUMMON_40           = 90007  // custom summon entry: 16486 -> 351075
 };
 
 enum NX40Data
 {
-    DATA_HEIGAN_EXIT_GATE_OLD_40    = 4130,
-    DATA_HEIGAN_EXIT_GATE_40        = 4131,
-    DATA_HEIGAN_ERUPTION_TUNNEL_40  = 4132
+    DATA_HEIGAN_EXIT_GATE_OLD_40       = 4130,
+    DATA_HEIGAN_EXIT_GATE_40           = 4131,
+    DATA_HEIGAN_ERUPTION_TUNNEL_40     = 4132
 };
 
 enum NX40GOs
 {
-    GO_HEIGAN_ENTRY_GATE_40         = 181202,
-    GO_HEIGAN_EXIT_GATE_40          = 181203,
-    GO_HEIGAN_EXIT_GATE_OLD_40      = 181496,
-    GO_HORSEMEN_CHEST_40            = 361000,
+    GO_HEIGAN_ENTRY_GATE_40            = 181202,
+    GO_HEIGAN_EXIT_GATE_40             = 181203,
+    GO_HEIGAN_EXIT_GATE_OLD_40         = 181496,
+    GO_HORSEMEN_CHEST_40               = 361000,
     // Gate to enter Naxx 40 from Strath
-    GO_STRATH_GATE_40             = 176424
+    GO_STRATH_GATE_40                  = 176424
 };
 
 enum NX40NPCs

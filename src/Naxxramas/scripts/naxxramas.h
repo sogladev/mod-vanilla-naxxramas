@@ -104,7 +104,6 @@ enum NXGOs
 
     GO_HORSEMEN_CHEST_10            = 181366,
     GO_HORSEMEN_CHEST_25            = 193426,
-    GO_HORSEMEN_CHEST_40            = 361000,
 
     GO_SAPPHIRON_BIRTH              = 181356,
     GO_KELTHUZAD_FLOOR              = 181444,

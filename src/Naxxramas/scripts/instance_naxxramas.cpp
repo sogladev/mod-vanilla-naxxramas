@@ -722,7 +722,7 @@ public:
                 case DATA_HEIGAN_ERUPTION:
                     HeiganEruptSections(data);
                     return;
-                case DATA_HEIGAN_ERUPTION_TUNNEL:
+                case DATA_HEIGAN_ERUPTION_TUNNEL_40:
                     HeiganEruptSectionsTunnel();
                     return;
                 case DATA_HAD_THADDIUS_GREET:
@@ -1191,9 +1191,9 @@ public:
                 // GameObjects
                 case DATA_HEIGAN_ENTER_GATE:
                     return _heiganGateGUID;
-                case DATA_HEIGAN_EXIT_GATE_OLD:
+                case DATA_HEIGAN_EXIT_GATE_OLD_40:
                     return _heiganGateExitOldGUID;
-                case DATA_HEIGAN_EXIT_GATE:
+                case DATA_HEIGAN_EXIT_GATE_40:
                     return _heiganGateExitGUID;
                 case DATA_LOATHEB_GATE:
                     return _loathebGateGUID;
