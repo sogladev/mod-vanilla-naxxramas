@@ -62,12 +62,12 @@ enum NX40NPCs
 
     // Kel'Thuzad
     NPC_KELTHUZAD_40                   = 351019,
-    NPC_LICH_KING_40                   = 16980,
+    // NPC_LICH_KING_40                   = 16980,
 
     // Frogger
-    NPC_LIVING_POISON_40               = 16027,
-    NPC_NAXXRAMAS_TRIGGER_40           = 16082,
-    NPC_MR_BIGGLESWORTH_40             = 16998,
+    // NPC_LIVING_POISON_40               = 16027,
+    // NPC_NAXXRAMAS_TRIGGER_40           = 16082,
+    // NPC_MR_BIGGLESWORTH_40             = 16998,
 
     // Patchwerk
     NPC_PATCHWERK_40                   = 351028,
