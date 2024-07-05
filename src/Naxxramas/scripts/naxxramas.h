@@ -20,6 +20,9 @@
 
 #include "CreatureAIImpl.h"
 #include "SpellScript.h"
+#include "naxxramas_40.h"
+
+#define DataHeader "NAX"
 
 #define NaxxramasScriptName "instance_naxxramas"
 
@@ -75,9 +78,6 @@ enum NXData
     DATA_KELTHUZAD_PORTAL_2         = 127,
     DATA_KELTHUZAD_PORTAL_3         = 128,
     DATA_KELTHUZAD_PORTAL_4         = 129,
-    DATA_HEIGAN_EXIT_GATE_OLD       = 130,
-    DATA_HEIGAN_EXIT_GATE           = 131,
-    DATA_HEIGAN_ERUPTION_TUNNEL     = 130
 };
 
 enum NXGOs
@@ -130,9 +130,6 @@ enum NXGOs
     GO_PLAG_EYE_RAMP_BOSS           = 181231,
     GO_MILI_EYE_RAMP_BOSS           = 181230,
     GO_CONS_EYE_RAMP_BOSS           = 181232,
-
-    // Gate to enter Naxx 40 from Strath
-    NAXX_STRATH_GATE                = 176424
 };
 
 enum NXNPCs
@@ -170,48 +167,6 @@ enum NXNPCs
     NPC_SLUDGE_BELCHER              = 16029,
 };
 
-enum NX40NPCs
-{
-    // Thaddius
-    NPC_THADDIUS_40                    = 351000,
-    NPC_STALAGG_40                     = 351001,
-    NPC_FEUGEN_40                      = 351002,
-
-    // Four horseman
-    NPC_HIGHLORD_MOGRAINE_40             = 351037,
-    NPC_SIR_ZELIEK_40                    = 351038,
-    NPC_LADY_BLAUMEUX_40                 = 351040,
-    NPC_THANE_KORTHAZZ_40                = 351039,
-
-    // Sapphiron
-    NPC_SAPPHIRON_40                   = 351018,
-
-    // Kel'Thuzad
-    NPC_KELTHUZAD_40                   = 351019,
-    NPC_LICH_KING_40                   = 16980,
-
-    // Frogger
-    NPC_LIVING_POISON_40               = 16027,
-    NPC_NAXXRAMAS_TRIGGER_40           = 16082,
-    NPC_MR_BIGGLESWORTH_40             = 16998,
-
-    // Patchwerk
-    NPC_PATCHWERK_40                   = 351028,
-    NPC_PATCHWORK_GOLEM_40             = 351021,
-    NPC_BILE_RETCHER_40                = 351022,
-    NPC_MAD_SCIENTIST_40               = 351023,
-    NPC_LIVING_MONSTROSITY_40          = 351024,
-    NPC_SURGICAL_ASSIST_40             = 351025,
-    NPC_SLUDGE_BELCHER_40              = 351029,
-
-    // Heigan
-    NPC_ROTTING_MAGGOT_40              = 351034,
-    NPC_DISEASED_MAGGOT_40             = 351033,
-    NPC_EYE_STALK_40                   = 351090,
-
-    NPC_ARCHMAGE_TARSIS                = 16381,
-};
-
 enum NXMisc
 {
     SPELL_ERUPTION                  = 29371,
@@ -240,24 +195,6 @@ enum NXEvents
     EVENT_THADDIUS_SCREAMS          = 0,
     EVENT_KELTHUZAD_WING_TAUNT      = 1,
     EVENT_FROSTWYRM_WATERFALL_DOOR  = 2
-};
-
-enum NXMaps
-{
-    MAP_NAXX = 533,
-};
-
-enum NXGraveyards
-{
-    NAXX40_GRAVEYARD = 909
-};
-
-enum NXAttunementQuests
-{
-    NAXX40_ATTUNEMENT_1  = 9121,
-    NAXX40_ATTUNEMENT_2  = 9122,
-    NAXX40_ATTUNEMENT_3  = 9123,
-    NAXX40_ENTRANCE_FLAG = 9378
 };
 
 template <class AI, class T>
