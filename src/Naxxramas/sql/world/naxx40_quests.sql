@@ -11,7 +11,7 @@ DELETE FROM `disables` WHERE `sourceType` = 1 AND `entry` IN (
 9235, 9238, 9239, 9378);
 
 REPLACE INTO `creature_queststarter` (`id`, `quest`) VALUES
-(16115, 9033),
+(16115, 9033), -- already exists
 (16112, 9034),
 (16112, 9036),
 (16112, 9037),
@@ -22,7 +22,7 @@ REPLACE INTO `creature_queststarter` (`id`, `quest`) VALUES
 (16112, 9042),
 (16115, 9043),
 (16115, 9044),
-(16115, 9045),
+(16115, 9045), -- already exists
 (16115, 9046),
 (16115, 9047),
 (16115, 9048),
@@ -87,22 +87,22 @@ REPLACE INTO `creature_queststarter` (`id`, `quest`) VALUES
 (16112, 9229),
 (16112, 9230),
 (16376, 9232),
-(16376, 9234),
-(16376, 9235),
-(16376, 9236),
-(16376, 9237),
-(16376, 9238),
-(16376, 9239),
-(16376, 9240),
-(16376, 9241),
-(16376, 9242),
-(16376, 9243),
-(16376, 9244),
-(16376, 9245),
-(16376, 9246);
+(16376, 9234), -- already exists
+(16376, 9235), -- already exists
+(16376, 9236), -- already exists
+(16376, 9237), -- already exists
+(16376, 9238), -- already exists
+(16376, 9239), -- already exists
+(16376, 9240), -- already exists
+(16376, 9241), -- already exists
+(16376, 9242), -- already exists
+(16376, 9243), -- already exists
+(16376, 9244), -- already exists
+(16376, 9245), -- already exists
+(16376, 9246); -- already exists
 
 REPLACE INTO `creature_questender` (`id`, `quest`) VALUES
-(16115, 9033),
+(16115, 9033), -- already exists
 (16112, 9034),
 (16112, 9036),
 (16112, 9037),
@@ -113,7 +113,7 @@ REPLACE INTO `creature_questender` (`id`, `quest`) VALUES
 (16112, 9042),
 (16115, 9043),
 (16115, 9044),
-(16115, 9045),
+(16115, 9045), -- already exists
 (16115, 9046),
 (16115, 9047),
 (16115, 9048),
@@ -178,21 +178,21 @@ REPLACE INTO `creature_questender` (`id`, `quest`) VALUES
 (16113, 9120),
 (16112, 9229),
 (16112, 9230),
-(16376, 9232),
+(16376, 9232), -- already exists
 (16376, 9233),
-(16376, 9234),
-(16376, 9235),
-(16376, 9236),
-(16376, 9237),
-(16376, 9238),
-(16376, 9239),
-(16376, 9240),
-(16376, 9241),
-(16376, 9242),
-(16376, 9243),
-(16376, 9244),
-(16376, 9245),
-(16376, 9246);
+(16376, 9234), -- already exists
+(16376, 9235), -- already exists
+(16376, 9236), -- already exists
+(16376, 9237), -- already exists
+(16376, 9238), -- already exists
+(16376, 9239), -- already exists
+(16376, 9240), -- already exists
+(16376, 9241), -- already exists
+(16376, 9242), -- already exists
+(16376, 9243), -- already exists
+(16376, 9244), -- already exists
+(16376, 9245), -- already exists
+(16376, 9246); -- already exists
 
 update quest_template_addon set PrevQuestId = 9121 where ID = 9033; -- echoes of war requires 9121
 
