@@ -41,7 +41,7 @@ INSERT INTO `dungeon_access_template` (`id`, `map_id`, `difficulty`, `min_level`
 -- Naxx40 Dungeon DBC entries (helps Autobalance work correctly)
 DELETE FROM `lfgdungeons_dbc` WHERE `ID` = 1001;
 INSERT INTO `lfgdungeons_dbc` VALUES
-(1001,"Naxxramas (Vanilla)","","","","","","","","","","","","","","","",16712190,60,83,60,60,83,533,2,0,2,-1,"",2,0,9,"","","","","","","","","","","","","","","","",16712188);
+(1001,'Naxxramas (Vanilla)','','','','','','','','','','','','','','','',16712190,60,83,60,60,83,533,2,0,2,-1,'',2,0,9,'','','','','','','','','','','','','','','','',16712188);
 
 DELETE FROM `dungeonencounter_dbc` WHERE `ID` BETWEEN 1001 AND 1015;
 INSERT INTO `dungeonencounter_dbc` (`ID`, `MapID`, `Difficulty`, `OrderIndex`, `Bit`, `Name_Lang_enUS`, `Name_Lang_enGB`, `Name_Lang_koKR`, `Name_Lang_frFR`, `Name_Lang_deDE`, `Name_Lang_enCN`, `Name_Lang_zhCN`, `Name_Lang_enTW`, `Name_Lang_zhTW`, `Name_Lang_esES`, `Name_Lang_esMX`, `Name_Lang_ruRU`, `Name_Lang_ptPT`, `Name_Lang_ptBR`, `Name_Lang_itIT`, `Name_Lang_Unk`, `Name_Lang_Mask`, `SpellIconID`) VALUES
