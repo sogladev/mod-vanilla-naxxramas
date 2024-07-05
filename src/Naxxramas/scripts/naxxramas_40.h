@@ -18,6 +18,13 @@
 #ifndef DEF_NAXXRAMAS_40_H
 #define DEF_NAXXRAMAS_40_H
 
+enum NX40Spells
+{
+    SPELL_SUMMON_CORPSE_SCRABS_5    = 90001, // Changed from 29105 to Level 60 Mob ID for summon
+    SPELL_SUMMON_CORPSE_SCRABS_10   = 90002, // Changed from 29105 to Level 60 Mob ID for summon
+    SPELL_BOMBARD_SLIME                     = 90003 // update summon entry
+};
+
 enum NX40Data
 {
     DATA_HEIGAN_EXIT_GATE_OLD_40    = 4130,
