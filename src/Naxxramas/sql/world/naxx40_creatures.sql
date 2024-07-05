@@ -1,6 +1,9 @@
 -- Custom GUIDs
 -- `creature_template` [351000,351089] 351090 351091 351092
 -- `creature` [361000,362043] [362043,362059]
+
+SET @SPELL:=90001; -- used by smartAI below
+
 DELETE FROM `creature_template` WHERE `entry` BETWEEN 351000 AND 351089;
 REPLACE INTO `creature_template` (`entry`, `name`, `subname`, `minlevel`, `maxlevel`, `faction`, `speed_walk`, `speed_run`, `detection_range`,`scale`,`rank`,`dmgschool`,`DamageModifier`,`BaseAttackTime`,`RangeAttackTime`,`BaseVariance`,`RangeVariance`,`unit_class`,`unit_flags`,`unit_flags2`,`family`,`type`,`type_flags`,`lootid`,`skinloot`,`PetSpellDataId`,`mingold`,`maxgold`,`AIName`,`MovementType`,`HoverHeight`,`HealthModifier`,`ManaModifier`,`ArmorModifier`,`ExperienceModifier`,`movementId`,`RegenHealth`,`mechanic_immune_mask`,`spell_school_immune_mask`,`flags_extra`,`ScriptName`) VALUES
 (351000, "Thaddius", "", 63, 63, 21, 1.0, 1.42857, 20.0, 1.0, 3, 0, 50.0, 2000, 3700, 1.0, 1.0, 1, 0, 2048, 0, 6, 76, 351000, 0, 0, 1513636, 1850000, '', 0, 1.0, 2000.0, 2.0, 1.5, 1.0, 0, 1, 2093694843, 0, 3221225473, 'boss_thaddius_40'),
@@ -5509,7 +5512,7 @@ INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_
 DELETE FROM `smart_scripts` WHERE (`source_type` = 0 AND `entryorguid` = 351024);
 INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES
 (351024, 0, 0, 0, 0, 0, 100, 0, 7100, 12500, 18100, 20900, 0, 0, 218, 28293, 0, 599, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 'Living Monstrosity - In combat - Cast Chain Lightning (Naxx 40)'),
-(351024, 0, 1, 0, 0, 0, 100, 0, 6400, 10000, 16900, 18500, 0, 0, 11, 90005, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 'Living Monstrosity - In combat - Cast Lightning Totem (Naxx 40)');
+(351024, 0, 1, 0, 0, 0, 100, 0, 6400, 10000, 16900, 18500, 0, 0, 11, @SPELL+4, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 'Living Monstrosity - In combat - Cast Lightning Totem (Naxx 40)');
 
 -- Trash military quarter
 -- Military Quarter Trash
@@ -5591,7 +5594,7 @@ INSERT INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `e
 DELETE FROM `smart_scripts` WHERE (`source_type` = 0 AND `entryorguid` = 351056);
 INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES
 (351056, 0, 0, 0, 0, 0, 100, 0, 2800, 5100, 4500, 12000, 0, 0, 218, 28407, 0, 1849, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 'Shade of Naxxramas - In Combat - Custom Cast Shadow Bolt Volley (Naxx40)'),
-(351056, 0, 1, 0, 0, 0, 100, 0, 4100, 8700, 60000, 60000, 0, 0, 11, 90004, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 'Shade of Naxxramas - In Combat - Cast \'Portal of Shadows (Naxx40)\''),
+(351056, 0, 1, 0, 0, 0, 100, 0, 4100, 8700, 60000, 60000, 0, 0, 11, @SPELL+3, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 'Shade of Naxxramas - In Combat - Cast \'Portal of Shadows (Naxx40)\''),
 (351056, 0, 2, 0, 25, 0, 100, 512, 0, 0, 0, 0, 0, 0, 41, 500, 0, 0, 0, 0, 0, 19, 351092, 0, 0, 0, 0, 0, 0, 0, 'Shade of Naxxramas - On Reset - Despawn In 500 ms (Naxx40)');
 -- Ghost of Naxxramas, summoned by custom Portal of Shadows (90004)
 DELETE FROM `creature_template` WHERE (`entry` = 351092);
