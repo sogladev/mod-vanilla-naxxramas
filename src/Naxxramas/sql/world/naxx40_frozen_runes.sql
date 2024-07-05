@@ -1,9 +1,9 @@
 --
 -- Custom GUIDs
 -- `GUID` [5330300,5330508]
-SET @GUID:=5330300
+SET @GUID:=5330300;
 -- `ENTRY` [47850,47870]
-SET @ENTRY:=47850 -- pool_template
+SET @ENTRY:=47850; -- pool_template
 
 -- Only spawn Frozen Rune in Naxx40
 UPDATE `gameobject` SET `spawnMask` = 4 WHERE `id` = 181287;
