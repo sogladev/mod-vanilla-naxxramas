@@ -52,9 +52,6 @@ VanillaNaxxramas.ReapplyUpdates = 0
 VanillaNaxxramas.ScourgeEvent  = 0  # (NOT IMPLEMENTED)
 VanillaNaxxramas.Naxxramas     = 1
 
-VanillaNaxxramas.Naxxramas.RequireNaxxStrathEntrance = 1
-
-#
 #
 #    VanillaNaxxramas.Naxxramas.RequireNaxxStrathEntrance
 #        Description: Requires Players to first enter through Stratholme entrance
@@ -63,3 +60,14 @@ VanillaNaxxramas.Naxxramas.RequireNaxxStrathEntrance = 1
 #                   0 - Disabled
 #
 #
+
+VanillaNaxxramas.Naxxramas.RequireNaxxStrathEntrance = 1
+
+#
+#    VanillaNaxxramas.Naxxramas.RequireAttunement
+#        Description: Requires Players to complete the attunement quests from Light's Hope Chapel
+#        Default:   1 - Enabled
+#                   0 - Disabled (NOT IMPLEMENTED)
+#
+
+VanillaNaxxramas.Naxxramas.RequireAttunement = 1 # (NOT IMPLEMENTED)
