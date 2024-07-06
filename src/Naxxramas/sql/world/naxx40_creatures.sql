@@ -4334,7 +4334,7 @@ INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_
 (351026, 0, 0, 0, 60, 0, 100, 0, 2000, 2000, 2000, 2000, 0, 11, 28322, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0.0, 0.0, 0.0, 0.0, "Cast Spell IC (Naxx 40)"),
 (351027, 0, 0, 0, 0, 0, 100, 0, 5100, 10400, 18800, 21300, 0, 11, 28405, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0.0, 0.0, 0.0, 0.0, "Stitched Giant - In combat - Cast target Knockback (Naxx 40)"),
 (351027, 0, 1, 0, 2, 0, 100, 1, 0, 29, 0, 0, 0, 11, 54356, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0.0, 0.0, 0.0, 0.0, "Stitched Giant - At 30% HP - Cast self Unstoppable Enrage (Naxx 40)"),
-5351029, 0, 0, 0, 0, 0, 100, 0, 1900, 3000, 6000, 7300, 0, 11, 27891, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0.0, 0.0, 0.0, 0.0, "Sludge Belcher - In combat - Cast Acidic Sludge (Naxx 40)"),
+(351029, 0, 0, 0, 0, 0, 100, 0, 1900, 3000, 6000, 7300, 0, 11, 27891, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0.0, 0.0, 0.0, 0.0, "Sludge Belcher - In combat - Cast Acidic Sludge (Naxx 40)"),
 (351029, 0, 2, 0, 25, 0, 100, 0, 0, 0, 0, 0, 0, 11, 28362, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0.0, 0.0, 0.0, 0.0, "Sludge Belcher - On reset - Cast Disease Cloud (Naxx 40)"),
 (351030, 0, 0, 0, 2, 0, 100, 0, 0, 50, 25000, 30000, 0, 11, 54780, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0.0, 0.0, 0.0, 0.0, "Plague Beast - Between 0-50% HP - Cast Plague Splash (Naxx 40)"),
 (351031, 0, 0, 0, 0, 0, 100, 0, 1000, 1000, 11000, 17000, 0, 11, 54781, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0.0, 0.0, 0.0, 0.0, "Frenzied Bat - In Combat - Cast Frenzied Dive (Naxx 40)"),
@@ -4598,8 +4598,14 @@ INSERT INTO `creature_text` (`CreatureID`, `GroupID`, `ID`, `Text`, `Type`, `Lan
 (351037, 1, 1, "Conserve your anger. Harness your rage. You will all have outlets for your frustrations soon enough.", 14, 0, 100, 0, 0, 8843, 13059, 3, 'mograine SAY_MOG_TAUNT2 (Naxx 40)'),
 (351037, 4, 0, "I... am... released... perhaps it's not too late to- No! I need... more... time...", 14, 0, 100, 0, 0, 8838, 13054, 0, 'mograine SAY_MOG_DEATH (Naxx 40)');
 
+-- restore: UPDATE `creature_equip_template` SET `ItemID1` = 13623 WHERE (`CreatureID` = 16861);
+UPDATE `creature_equip_template` SET `ItemID1` = 22738 WHERE (`CreatureID` = 16861);
 DELETE FROM `creature_equip_template` WHERE `CreatureID` BETWEEN 351000 and 351089;
 INSERT INTO `creature_equip_template` (`CreatureID`, `ID`, `ItemID1`, `ItemID2`, `ItemID3`) VALUES
+-- (16157, 1, 2558, 0, 0), -- already exists
+-- (16158, 1, 1903, 5532, 0), -- already exists
+-- (16451, 1, 2181, 0, 0), -- already exists
+-- (16452, 1, 5305, 0, 0), -- already exists
 (351005, 1, 13061, 0, 0),
 (351007, 1, 23743, 0, 0),
 (351036, 1, 23328, 0, 0),
@@ -4615,8 +4621,6 @@ INSERT INTO `creature_equip_template` (`CreatureID`, `ID`, `ItemID1`, `ItemID2`,
 (351052, 1, 2181, 0, 0),
 (351053, 1, 3367, 0, 0),
 (351054, 1, 12801, 0, 0),
-(16157, 1, 2558, 0, 0),
-(16158, 1, 1903, 5532, 0),
 (351055, 1, 23328, 0, 0),
 (351057, 1, 24418, 0, 0),
 (351060, 1, 10756, 0, 0),
@@ -4624,11 +4628,8 @@ INSERT INTO `creature_equip_template` (`CreatureID`, `ID`, `ItemID1`, `ItemID2`,
 (351062, 1, 12959, 0, 0),
 (351063, 1, 13222, 13222, 0),
 (351070, 1, 10617, 0, 0),
-(16451, 1, 2181, 0, 0),
-(16452, 1, 5305, 0, 0),
 (351080, 1, 5495, 0, 0),
 (351084, 1, 2180, 23356, 0),
-(16861, 1, 22738, 0, 0),
 (351085, 1, 5305, 0, 0),
 (351086, 1, 4991, 0, 0),
 (351087, 1, 12285, 0, 0);
