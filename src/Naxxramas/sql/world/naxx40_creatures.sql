@@ -5408,6 +5408,19 @@ DELETE FROM `creature` WHERE `guid` = 352042;
 INSERT INTO `creature` (`guid`, `id1`, `id2`, `id3`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`, `wander_distance`, `currentwaypoint`, `curhealth`, `curmana`, `MovementType`, `npcflag`, `unit_flags`, `dynamicflags`, `ScriptName`, `VerifiedBuild`) VALUES
 (352042, 351097, 0, 0, 329, 0, 0, 1, 1, 0, 3929.06, -3372.12, 119.653, 4.71395, 300, 0, 0, 6986, 0, 0, 0, 0, 0, '', 0);
 
+-- Razuvious RP
+-- Razuvious
+DELETE FROM `creature_text` WHERE `CreatureID` = 351036 AND `GroupID` IN (4, 5);
+INSERT INTO `creature_text` (`CreatureID`, `GroupID`, `ID`, `Text`, `Type`, `Language`, `Probability`, `Emote`, `Duration`, `Sound`, `BroadcastTextId`, `TextRange`, `comment`) VALUES
+(351036, 4, 0, 'Pathetic...', 12, 0, 100, 5, 0, 0, 27865, 0, 'Razuvious SAY_PATHETIC'),
+(351036, 5, 0, 'Start doing something before I replace that target dummy with you and begin a warm up session of my own!', 12, 0, 100, 5, 0, 0, 13136, 0, 'Razuvious SAY_TARGET_DUMMY');
+-- Death Knight Understudy
+DELETE FROM `creature_text` WHERE `CreatureID` = 29941;
+INSERT INTO `creature_text` (`CreatureID`, `GroupID`, `ID`, `Text`, `Type`, `Language`, `Probability`, `Emote`, `Duration`, `Sound`, `BroadcastTextId`, `TextRange`, `comment`) VALUES
+(29941, 0, 0, 'Sir, student requests that you beat him for his lack of understanding!', 12, 0, 100, 1, 0, 0, 13140, 0, 'Death Knight Understudy SAY_BEAT_ME'),
+(29941, 0, 1, 'I am unworthy, master!', 12, 0, 100, 1, 0, 0, 13138, 0, 'Death Knight Understudy SAY_UNWORTHY'),
+(29941, 0, 2, 'Student is worthless, master! Student apologizes for his deficiency!', 12, 0, 100, 1, 0, 0, 13137, 0, 'Death Knight Understudy SAY_WORTHLESS');
+
 -- Gothik Visuals
 -- re-do spawn locations for triggers
 DELETE FROM `creature` WHERE `id1`=351047 AND (`guid` BETWEEN @CGUID+0 AND @CGUID+14);
