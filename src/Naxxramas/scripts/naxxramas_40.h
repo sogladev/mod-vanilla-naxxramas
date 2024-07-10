@@ -31,7 +31,8 @@ enum NX40Data
 {
     DATA_HEIGAN_EXIT_GATE_OLD_40       = 4130,
     DATA_HEIGAN_EXIT_GATE_40           = 4131,
-    DATA_HEIGAN_ERUPTION_TUNNEL_40     = 4132
+    DATA_HEIGAN_ERUPTION_TUNNEL_40     = 4132,
+    DATA_RAZUVIOUS_40                  = 4133
 };
 
 enum NX40GOs
@@ -50,6 +51,12 @@ enum NX40NPCs
     NPC_THADDIUS_40                    = 351000,
     NPC_STALAGG_40                     = 351001,
     NPC_FEUGEN_40                      = 351002,
+
+    // Razuvious
+    NPC_RAZUVIOUS_40                   = 351036,
+
+    // Gothik
+    NPC_GOTHIK_40                      = 351035,
 
     // Four horseman
     NPC_HIGHLORD_MOGRAINE_40           = 351037,
