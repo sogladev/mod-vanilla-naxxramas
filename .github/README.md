@@ -64,7 +64,6 @@ GNU Affero General Public License v3.0
 
 [LICENSE](./../LICENSE)
 
-re made
 
 ## How to create your own module
 
