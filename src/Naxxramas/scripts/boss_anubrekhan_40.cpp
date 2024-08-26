@@ -188,7 +188,7 @@ public:
 
         void MoveInLineOfSight(Unit* who) override
         {
-            if (!sayGreet && who->GetTypeId() == TYPEID_PLAYER)
+            if (!sayGreet && who->IsPlayer())
             {
                 Talk(SAY_GREET);
                 sayGreet = true;
