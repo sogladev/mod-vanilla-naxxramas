@@ -37,3 +37,11 @@ After compiling Extractors can be found in `env/dist/bin`
 Tools to help extract files:
 * (linux) helper by me https://gist.github.com/jellemeeus/f56c44fb1b9f342d685056c4e864c199
 * (windows) helper by acore, found in `/apps/extractor`
+
+## Skip attunement
+config option
+```
+VanillaNaxxramas.Naxxramas.RequireAttunement = 0
+```
+recommended database changes:
+`naxx40_skip_attunement.sql` Removes attunement requirement for Echoes of War (kill quest) which is a requirement for T3 quests and some other quests
