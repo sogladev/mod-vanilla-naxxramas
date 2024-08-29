@@ -37,8 +37,8 @@ VanillaNaxxramas.LoadDatabase = 1
 #
 #    VanillaNaxxramas.ReapplyUpdates
 #        Description: Always reapply every SQL file on start up. Warning: impacts start up times.
-#        Default:     1 - Enabled (Recommended for development)
-#                     0 - Disabled
+#        Default:     0 - Disabled
+#                     1 - Enabled (Recommended for development)
 #
 
 VanillaNaxxramas.ReapplyUpdates = 0
@@ -47,9 +47,10 @@ VanillaNaxxramas.ReapplyUpdates = 0
 #    VanillaNaxxramas.X
 #        Description: Defines if the phase should be loaded being 0 not loaded, 1 loaded.
 #        Default:     0 - Not loaded.
+#    VanillaNaxxramas.ScourgeEvent (NOT IMPLEMENTED)
 #
 
-VanillaNaxxramas.ScourgeEvent  = 0  # (NOT IMPLEMENTED)
+VanillaNaxxramas.ScourgeEvent  = 0
 VanillaNaxxramas.Naxxramas     = 1
 
 #
@@ -59,7 +60,6 @@ VanillaNaxxramas.Naxxramas     = 1
 #        Default:   1 - Enabled
 #                   0 - Disabled
 #
-#
 
 VanillaNaxxramas.Naxxramas.RequireNaxxStrathEntrance = 1
 
@@ -67,7 +67,7 @@ VanillaNaxxramas.Naxxramas.RequireNaxxStrathEntrance = 1
 #    VanillaNaxxramas.Naxxramas.RequireAttunement
 #        Description: Requires Players to complete the attunement quests from Light's Hope Chapel
 #        Default:   1 - Enabled
-#                   0 - Disabled (NOT IMPLEMENTED)
+#                   0 - Disabled
 #
 
-VanillaNaxxramas.Naxxramas.RequireAttunement = 1 # (NOT IMPLEMENTED)
+VanillaNaxxramas.Naxxramas.RequireAttunement = 1
