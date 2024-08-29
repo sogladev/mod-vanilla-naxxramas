@@ -1,8 +1,8 @@
+#include "Player.h"
 #include "ScriptMgr.h"
 #include "ScriptedCreature.h"
 #include "SpellAuraEffects.h"
 #include "SpellScript.h"
-#include "Player.h"
 #include "naxxramas.h"
 #include "VanillaNaxxramas.h"
 
@@ -49,8 +49,7 @@ public:
                 {
                     if (!sVanillaNaxxramas->requireAttunement || isAttuned(player))
                     {
-                        GameObject* door = me->FindNearestGameObject(GO_STRATH_GATE_40, 100.0f);
-                        if (door)
+                        if (GameObject* door = me->FindNearestGameObject(GO_STRATH_GATE_40, 100.0f))
                         {
                             door->SetGoState(GO_STATE_ACTIVE);
                         }
