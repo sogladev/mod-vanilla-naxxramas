@@ -47,9 +47,10 @@ VanillaNaxxramas.ReapplyUpdates = 0
 #    VanillaNaxxramas.X
 #        Description: Defines if the phase should be loaded being 0 not loaded, 1 loaded.
 #        Default:     0 - Not loaded.
+#    VanillaNaxxramas.ScourgeEvent (NOT IMPLEMENTED)
 #
 
-VanillaNaxxramas.ScourgeEvent  = 0  # (NOT IMPLEMENTED)
+VanillaNaxxramas.ScourgeEvent  = 0
 VanillaNaxxramas.Naxxramas     = 1
 
 #
