@@ -67,7 +67,7 @@ VanillaNaxxramas.Naxxramas.RequireNaxxStrathEntrance = 1
 #    VanillaNaxxramas.Naxxramas.RequireAttunement
 #        Description: Requires Players to complete the attunement quests from Light's Hope Chapel
 #        Default:   1 - Enabled
-#                   0 - Disabled (NOT IMPLEMENTED)
+#                   0 - Disabled
 #
 
-VanillaNaxxramas.Naxxramas.RequireAttunement = 1 # (NOT IMPLEMENTED)
+VanillaNaxxramas.Naxxramas.RequireAttunement = 1
