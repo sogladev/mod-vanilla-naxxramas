@@ -32,7 +32,7 @@ https://github.com/sogladev/mod-vanilla-naxxramas/assets/46423958/2b56a239-001a-
 
 Some are due to being limited by 335a client. Some of these could be fixed by client-side patch
 
-- [ ] `account`  with `expansion=2` (WOTLK) is required as the level 60 version of Naxxramas uses the 10man heroic difficiulty of map 533 which is a WOTLK map. See https://github.com/sogladev/mod-vanilla-naxxramas/issues/17
+- [ ] When using `expansion=0`, players cannot enter the vanilla version of Naxxramas. See https://github.com/sogladev/mod-vanilla-naxxramas/issues/17
 - [ ] Icons are different for some spells e.g. Mark of Mograine, Loatheb's Deathbloom
 - [ ] Mechanics: Sapphiron's frost aura should tick every 1s instead of 2s, Blaumeux' Void Zone range should be 3yd instead of 2yd
 - [ ] Plaguewood Entrance was replaced with a Cauldron
