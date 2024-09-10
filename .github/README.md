@@ -47,11 +47,16 @@ Other issues are due to potential upstream bugs
 * Thaddius not moving
 * OOC RP of Heigans Eye Stalk
 
-![See Wiki for a list of work to be done](https://github.com/sogladev/mod-vanilla-naxxramas/wiki/05-Work-To-Be-Done)
+![See Wiki for a list of Work To Be Done](https://github.com/sogladev/mod-vanilla-naxxramas/wiki/05-Work-To-Be-Done)
 
 ## Breaking
 
 The same instance is used for both the vanilla, 10 and 25 man difficulties. This means that same instance/boss/spell script(s) are used. Changes to Azerothcore's Naxxramas may cause breakage. So far only the Naxxramas instance script and Sapphiron are shared.
+
+## Module compatibility
+
+[See Wiki for Module Compatibility](https://github.com/sogladev/mod-vanilla-naxxramas/wiki/06-Module-Compatibility#scaling-modules
+) 
 
 ## Acknowledgements
 - [cmangos](https://github.com/cmangos), [vmangos](https://github.com/vmangos) for vanilla game data
