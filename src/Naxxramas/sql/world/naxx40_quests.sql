@@ -353,3 +353,38 @@ UPDATE `quest_template` SET `RequiredFactionId1` = 0, `RequiredFactionValue1` = 
 -- Update Argent Dawn reputation requirements of frost resistance quests from Craftsman Wilhelm.
 -- Rep requirements are part of quest requirement. The only requirement to pickup is Omarion's book hand in
 UPDATE `quest_template_addon` SET `RequiredMinRepFaction` = 0, `RequiredMinRepValue` = 0 WHERE `ID` IN (9237, 9239, 9240, 9238, 9235, 9236, 9234, 9244, 9246, 9245, 9241, 9242, 9243);
+-- Update frost resistance recipes to teach spells
+UPDATE `item_template` SET `spellid_1` = 483, `spelltrigger_1` = 0, `spellcharges_1` = -1, `spellppmRate_1` = -1, `spelltrigger_2` = 6,
+`description` = 'Teaches you how to sew Glacial Vest.', `spellid_2` = 28207 WHERE (`entry` = 22686);
+UPDATE `item_template` SET `spellid_1` = 483, `spelltrigger_1` = 0, `spellcharges_1` = -1, `spellppmRate_1` = -1, `spelltrigger_2` = 6,
+`description` = 'Teaches you how to sew a Glacial Wrists.', `spellid_2` = 28209 WHERE (`entry` = 22687);
+UPDATE `item_template` SET `spellid_1` = 483, `spelltrigger_1` = 0, `spellcharges_1` = -1, `spellppmRate_1` = -1, `spelltrigger_2` = 6,
+`description` = 'Teaches you how to sew Glacial Gloves.', `spellid_2` = 28205 WHERE (`entry` = 22684);
+UPDATE `item_template` SET `spellid_1` = 483, `spelltrigger_1` = 0, `spellcharges_1` = -1, `spellppmRate_1` = -1, `spelltrigger_2` = 6,
+`description` = 'Teaches you how to craft a Polar Tunic.', `spellid_2` = 28219 WHERE (`entry` = 22692);
+UPDATE `item_template` SET `spellid_1` = 483, `spelltrigger_1` = 0, `spellcharges_1` = -1, `spellppmRate_1` = -1, `spelltrigger_2` = 6,
+`description` = 'Teaches you how to craft Polar Bracers.', `spellid_2` = 28221 WHERE (`entry` = 22695);
+UPDATE `item_template` SET `spellid_1` = 483, `spelltrigger_1` = 0, `spellcharges_1` = -1, `spellppmRate_1` = -1, `spelltrigger_2` = 6,
+`description` = 'Teaches you how to craft Polar Gloves.', `spellid_2` = 28220 WHERE (`entry` = 22694);
+UPDATE `item_template` SET `spellid_1` = 483, `spelltrigger_1` = 0, `spellcharges_1` = -1, `spellppmRate_1` = -1, `spelltrigger_2` = 6,
+`description` = 'Teaches you how to craft an Icy Scale Breastplate.', `spellid_2` = 28222 WHERE (`entry` = 22696);
+UPDATE `item_template` SET `spellid_1` = 483, `spelltrigger_1` = 0, `spellcharges_1` = -1, `spellppmRate_1` = -1, `spelltrigger_2` = 6,
+`description` = 'Teaches you how to craft Icy Scale Bracers.', `spellid_2` = 28224 WHERE (`entry` =  22698);
+UPDATE `item_template` SET `spellid_1` = 483, `spelltrigger_1` = 0, `spellcharges_1` = -1, `spellppmRate_1` = -1, `spelltrigger_2` = 6,
+`description` = 'Teaches you how to craft Icy Scale Gauntlets.', `spellid_2` = 28223 WHERE (`entry` = 22697);
+UPDATE `item_template` SET `spellid_1` = 483, `spelltrigger_1` = 0, `spellcharges_1` = -1, `spellppmRate_1` = -1, `spelltrigger_2` = 6,
+`description` = 'Teaches you how to craft an Icy Scale Breastplate.', `spellid_2` = 28222 WHERE (`entry` = 22696);
+UPDATE `item_template` SET `spellid_1` = 483, `spelltrigger_1` = 0, `spellcharges_1` = -1, `spellppmRate_1` = -1, `spelltrigger_2` = 6,
+`description` = 'Teaches you how to craft Icy Scale Gauntlets.', `spellid_2` = 28223 WHERE (`entry` = 22697);
+UPDATE `item_template` SET `spellid_1` = 483, `spelltrigger_1` = 0, `spellcharges_1` = -1, `spellppmRate_1` = -1, `spelltrigger_2` = 6,
+`description` = 'Teaches you how to craft Icy Scale Bracers.', `spellid_2` = 28224 WHERE (`entry` = 22698);
+UPDATE `item_template` SET `spellid_1` = 483, `spelltrigger_1` = 0, `spellcharges_1` = -1, `spellppmRate_1` = -1, `spelltrigger_2` = 6,
+`description` = 'Teaches you how to make an Icebane Breastplate.', `spellid_2` = 28242 WHERE (`entry` = 22703);
+UPDATE `item_template` SET `spellid_1` = 483, `spelltrigger_1` = 0, `spellcharges_1` = -1, `spellppmRate_1` = -1, `spelltrigger_2` = 6,
+`description` = 'Teaches you how to make Icebane Bracers.', `spellid_2` = 28244 WHERE (`entry` = 22705);
+UPDATE `item_template` SET `spellid_1` = 483, `spelltrigger_1` = 0, `spellcharges_1` = -1, `spellppmRate_1` = -1, `spelltrigger_2` = 6,
+`description` = 'Teaches you how to make Icebane Gauntlets.', `spellid_2` = 28243 WHERE (`entry` = 22704);
+UPDATE `item_template` SET `spellid_1` = 483, `spelltrigger_1` = 0, `spellcharges_1` = -1, `spellppmRate_1` = -1, `spelltrigger_2` = 6,
+`description` = 'Teaches you how to sew a Glacial Cloak.', `spellid_2` = 28208 WHERE (`entry` = 22685);
+-- remove deDE "NPC Equip xxxxx" locale data
+DELETE FROM `item_template_locale` WHERE `ID` IN (22686, 22687, 22684, 22692, 22695, 22694, 22696, 22698, 22697, 22696, 22697, 22698, 22703, 22705, 22704, 22685);
