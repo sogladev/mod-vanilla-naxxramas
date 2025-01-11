@@ -16,7 +16,7 @@ If you encounter any issues or have suggestions, please post them as Github issu
 * Restores no longer accessible NPCs, quests and items related to the original Naxxramas
 * Restore flying Naxxramas in Plaguewood
 * Enter from either Stratholme instance, through a teleporter located in Plaguewood near the original entrance or the original entrance with an optional patch
-* Power level adjustments (WIP) to vanilla values
+* Power level adjustments to vanilla values
 
 ![See Wiki for a summary of changes with pictures](https://github.com/sogladev/mod-vanilla-naxxramas/wiki/02-Summary-of-changes-with-pictures)
 
@@ -32,10 +32,10 @@ https://github.com/sogladev/mod-vanilla-naxxramas/assets/46423958/2b56a239-001a-
 
 Some are due to being limited by 335a client. Some of these could be fixed by client-side patch
 
-- [ ] When using `expansion=0`, players cannot enter the vanilla version of Naxxramas. See https://github.com/sogladev/mod-vanilla-naxxramas/issues/17
-- [ ] Icons are different for some spells e.g. Mark of Mograine, Loatheb's Deathbloom
+- [ ] Setting `Expansion = 2` in your `worldserver.conf` is required. Similarly, players must have an account with expansion set to 2. For details see https://github.com/sogladev/mod-vanilla-naxxramas/issues/17
+- [ ] Plaguewood Entrance was replaced with a Cauldron. The original entrance can be reintroduced with optional/PlaguewoodHub
+ - [ ] Icons are different for some spells e.g. Mark of Mograine, Loatheb's Deathbloom
 - [ ] Mechanics: Sapphiron's frost aura should tick every 1s instead of 2s, Blaumeux' Void Zone range should be 3yd instead of 2yd
-- [ ] Plaguewood Entrance was replaced with a Cauldron
 - [ ] Some models like Deathknight's use wrath death knight starter gear instead of the original armor set
 
 Not all vanilla mechanics are yet implemented yet due to scripts being ported from Azerothcore's WOTLK Naxx
@@ -56,7 +56,7 @@ The same instance is used for both the vanilla, 10 and 25 man difficulties. This
 ## Module compatibility
 
 [See Wiki for Module Compatibility](https://github.com/sogladev/mod-vanilla-naxxramas/wiki/06-Module-Compatibility#scaling-modules
-) 
+)
 
 ## Acknowledgements
 - [cmangos](https://github.com/cmangos), [vmangos](https://github.com/vmangos) for vanilla game data
