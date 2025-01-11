@@ -17,11 +17,9 @@ VanillaNaxxramas.Naxxramas.RequireNaxxStrathEntrance = 1
 #
 #    VanillaNaxxramas.Naxxramas.RequireAttunement
 #        Description: Requires Players to complete the attunement quests from Light's Hope Chapel
-#                     Note that disabling this requirement does not remove the quest requirement
-#                     for Echoes Of War (kill quest) which is a requirement for other quests.
-#                     See database query in optional/SkipAttunement
+#                     Note that disabling this requirement requires optional/SkipAttunement DB changes to work as expected
 #        Default:   1 - Enabled
-#                   0 - Disabled (Requires optional/SkipAttunement DB changes to work as expected)
+#                   0 - Disabled (Requires optional/SkipAttunement DB changes)
 #
 
 VanillaNaxxramas.Naxxramas.RequireAttunement = 1

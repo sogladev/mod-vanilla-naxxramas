@@ -32,9 +32,9 @@ https://github.com/sogladev/mod-vanilla-naxxramas/assets/46423958/2b56a239-001a-
 
 Some are due to being limited by 335a client. Some of these could be fixed by client-side patch
 
-- [ ] Setting `Expansion = 2` in your `worldserver.conf` is required. Similarly, players must have an account with expansion set to 2. For details see https://github.com/sogladev/mod-vanilla-naxxramas/issues/17
+- [ ] Requires `Expansion = 2` in your `worldserver.conf`. Similarly, players must have an account with expansion set to 2. For details see https://github.com/sogladev/mod-vanilla-naxxramas/issues/17
 - [ ] Plaguewood Entrance was replaced with a Cauldron. The original entrance can be reintroduced with optional/PlaguewoodHub
- - [ ] Icons are different for some spells e.g. Mark of Mograine, Loatheb's Deathbloom
+- [ ] Icons are different for some spells e.g. Mark of Mograine, Loatheb's Deathbloom
 - [ ] Mechanics: Sapphiron's frost aura should tick every 1s instead of 2s, Blaumeux' Void Zone range should be 3yd instead of 2yd
 - [ ] Some models like Deathknight's use wrath death knight starter gear instead of the original armor set
 
@@ -55,8 +55,7 @@ The same instance is used for both the vanilla, 10 and 25 man difficulties. This
 
 ## Module compatibility
 
-[See Wiki for Module Compatibility](https://github.com/sogladev/mod-vanilla-naxxramas/wiki/06-Module-Compatibility#scaling-modules
-)
+[See Wiki for Module Compatibility](https://github.com/sogladev/mod-vanilla-naxxramas/wiki/06-Module-Compatibility#scaling-modules)
 
 ## Acknowledgements
 - [cmangos](https://github.com/cmangos), [vmangos](https://github.com/vmangos) for vanilla game data
