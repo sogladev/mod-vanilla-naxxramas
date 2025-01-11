@@ -15,8 +15,10 @@ If you encounter any issues or have suggestions, please post them as Github issu
 * New Naxxramas difficulty 10man heroic which hosts level 60 version of Naxxramas
 * Restores no longer accessible NPCs, quests and items related to the original Naxxramas
 * Restore flying Naxxramas in Plaguewood
-* Enter from either Stratholme instance, through a teleporter located in Plaguewood near the original entrance or the original entrance with an optional patch
-* Power level adjustments to vanilla values
+* Add the original beta Naxxramas entrance in the back of Stratholme
+* Restore Naxxramas attunement and a shortcut in EPL usable after entering  once through the Stratholme entrance
+* Add a shortcut to Naxxramas via a teleporter gameobject in EPL located in the closest Ziggurath to the Cauldron placed at the original Naxx teleporter location. An optional patch to restore the original entrance in EPL is added in `/optional`
+* Power level adjustments to vanilla values. [Feedback wanted](https://github.com/sogladev/mod-vanilla-naxxramas/discussions/58)
 
 ![See Wiki for a summary of changes with pictures](https://github.com/sogladev/mod-vanilla-naxxramas/wiki/02-Summary-of-changes-with-pictures)
 

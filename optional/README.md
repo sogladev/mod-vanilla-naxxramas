@@ -1,7 +1,8 @@
 # Optional files
 * `PlaguewoodHub` contains a map edit to restore the original Plaguewood teleporter hub
 * `SkipAttunement` contains DB changes that are needed when disabling attunement requirement `Naxxramas.RequireAttunement=0`
-* `DamageHealthArmorModifierScaling` contains a single query to apply additonal scaling to all Naxx40 creatures
+* `DamageHealthArmorModifierScaling` contains a query to apply additonal scaling to all Naxx40 creatures
+* `RemoveDisables` contains a query to remove disables. This may be required for compatibility with [mod-progression-system](https://github.com/azerothcore/mod-progression-system)
 
 ## PlaguewoodHub
 this folder contains:
