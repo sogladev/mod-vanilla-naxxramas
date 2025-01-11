@@ -1,7 +1,6 @@
--- Warning: .ReapplyUpdates = 0 must be disabled (=0) in the .conf
---          or this will have no effect
--- Warning: Scaling may have already been applied in the naxx40_creatures.sql
--- Warning: Only run this once after applying naxx40*sql scripts
+--
+-- Warning: Scaling has already been applied in the naxx40_creatures.sql
+-- Warning: Only run this once
 SET @DAMAGE_MULTIPLIER:= 0.80;
 SET @HEALTH_MULTIPLIER:= 1.00;
 SET @ARMOR_MULTIPLIER:=  1.00;

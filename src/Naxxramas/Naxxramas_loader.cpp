@@ -27,8 +27,6 @@ void AddSC_custom_gameobjects_40();
 
 void AddNaxxramas_Scripts()
 {
-    if (!(sConfigMgr->GetOption<bool>("VanillaNaxxramas.Naxxramas", false)))
-        return;
     AddSC_npc_omarion_40();
     AddSC_instance_naxxramas_combined();
     AddSC_boss_anubrekhan_40();

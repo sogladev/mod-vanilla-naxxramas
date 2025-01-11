@@ -5,55 +5,6 @@
 [worldserver]
 
 #
-#    VanillaNaxxramas.Enable
-#        Description: Enable Vanilla Naxxramas Module
-#                     Please note that like all AzerothCore modules, database changes cannot be undone through config settings.
-#                     This means that world changes like restoring Vanilla quests and NPC stats will remain in place even if disabled.
-#                     Disabling the module will disable functionality like access restrictions, level caps, damage adjustments, etc.
-#        Default:     1 - Enabled
-#                     0 - Disabled
-#
-
-VanillaNaxxramas.Enable = 1
-
-#
-#    VanillaNaxxramas.LoadScripts
-#        Description: Enable loading scripts
-#        Default:     1 - Enabled
-#                     0 - Disabled
-#
-
-VanillaNaxxramas.LoadScripts = 1
-
-#
-#    VanillaNaxxramas.LoadDatabase
-#        Description: Enable loading SQL files
-#        Default:     1 - Enabled
-#                     0 - Disabled
-#
-
-VanillaNaxxramas.LoadDatabase = 1
-
-#
-#    VanillaNaxxramas.ReapplyUpdates
-#        Description: Always reapply every SQL file on start up. Warning: impacts start up times.
-#        Default:     0 - Disabled
-#                     1 - Enabled (Recommended for development)
-#
-
-VanillaNaxxramas.ReapplyUpdates = 0
-
-#
-#    VanillaNaxxramas.X
-#        Description: Defines if the phase should be loaded being 0 not loaded, 1 loaded.
-#        Default:     0 - Not loaded.
-#    VanillaNaxxramas.ScourgeEvent (NOT IMPLEMENTED)
-#
-
-VanillaNaxxramas.ScourgeEvent  = 0
-VanillaNaxxramas.Naxxramas     = 1
-
-#
 #    VanillaNaxxramas.Naxxramas.RequireNaxxStrathEntrance
 #        Description: Requires Players to first enter through Stratholme entrance
 #                     before being able to use teleporter like MC, BWL shortcuts
@@ -66,8 +17,9 @@ VanillaNaxxramas.Naxxramas.RequireNaxxStrathEntrance = 1
 #
 #    VanillaNaxxramas.Naxxramas.RequireAttunement
 #        Description: Requires Players to complete the attunement quests from Light's Hope Chapel
+#                     Note that disabling this requirement requires optional/SkipAttunement DB changes to work as expected
 #        Default:   1 - Enabled
-#                   0 - Disabled
+#                   0 - Disabled (Requires optional/SkipAttunement DB changes)
 #
 
 VanillaNaxxramas.Naxxramas.RequireAttunement = 1
