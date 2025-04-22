@@ -614,7 +614,7 @@ class spell_thaddius_pos_neg_charge : public SpellScript
         if (!target)
             return;
 
-        if (target->HasAura(GetTriggeringSpell()->Id) || target->GetTypeId() != TYPEID_PLAYER)
+        if (target->HasAura(GetTriggeringSpell()->Id) || !target->IsPlayer())
         {
             SetHitDamage(0);
         }

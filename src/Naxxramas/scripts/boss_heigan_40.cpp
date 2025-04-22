@@ -219,7 +219,7 @@ public:
         {
             // hackfix: kill everyone in the tunnel
             Map::PlayerList const& PlayerList = me->GetMap()->GetPlayers();
-            for (const auto& itr : PlayerList)
+            for (auto const& itr : PlayerList)
                 if (Player* player = itr.GetSource())
                     if (player->IsAlive() && !player->IsGameMaster())
                         if (player->GetPositionY() <= -3735.0f)
