@@ -2,10 +2,10 @@
  * Copyright (C) 2016+ AzerothCore <www.azerothcore.org>, released under GNU AGPL v3 license: https://github.com/azerothcore/azerothcore-wotlk/blob/master/LICENSE-AGPL3
  */
 
-#include "VanillaNaxxramas.h"
+// #include "VanillaNaxxramas.h"
 
 void AddSC_npc_omarion_40();
-void AddSC_instance_naxxramas_combined();
+void AddSC_instance_naxxramas();
 void AddSC_boss_anubrekhan_40();
 void AddSC_boss_faerlina_40();
 void AddSC_boss_four_horsemen_40();
@@ -24,11 +24,12 @@ void AddSC_boss_thaddius_40();
 void AddSC_custom_spells_40();
 void AddSC_custom_creatures_40();
 void AddSC_custom_gameobjects_40();
+void AddSC_custom_scripts_40();
 
 void AddNaxxramas_Scripts()
 {
     AddSC_npc_omarion_40();
-    AddSC_instance_naxxramas_combined();
+    AddSC_instance_naxxramas();
     AddSC_boss_anubrekhan_40();
     AddSC_boss_faerlina_40();
     AddSC_boss_four_horsemen_40();
@@ -47,4 +48,5 @@ void AddNaxxramas_Scripts()
     AddSC_custom_spells_40();
     AddSC_custom_creatures_40();
     AddSC_custom_gameobjects_40();
+    AddSC_custom_scripts_40();
 }
