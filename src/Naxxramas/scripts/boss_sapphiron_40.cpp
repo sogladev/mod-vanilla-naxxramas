@@ -273,14 +273,7 @@ public:
                     events.Repeat(10s);
                     return;
                 case EVENT_TAIL_SWEEP:
-                    if (isNaxx40Sapp(me->GetEntry()))
-                    {
-                        me->CastSpell(me, SPELL_TAIL_SWEEP, false);
-                    }
-                    else
-                    {
-                        me->CastSpell(me, RAID_MODE(SPELL_TAIL_SWEEP_10, SPELL_TAIL_SWEEP_25), false);
-                    }
+                    me->CastSpell(me, RAID_MODE(SPELL_TAIL_SWEEP_10, SPELL_TAIL_SWEEP_25, SPELL_TAIL_SWEEP, SPELL_TAIL_SWEEP_25), false);
                     events.Repeat(10s);
                     return;
                 case EVENT_LIFE_DRAIN:
@@ -313,14 +306,7 @@ public:
                         {
                             cr->GetMotionMaster()->MoveRandom(40);
                         }
-                        if (isNaxx40Sapp(me->GetEntry()))
-                        {
-                            events.Repeat(6500ms);
-                        }
-                        else
-                        {
-                            events.RepeatEvent(RAID_MODE(8000, 6500));
-                        }
+                        events.RepeatEvent(RAID_MODE(8000, 6500, 6500, 6500));
                         return;
                     }
                 case EVENT_FLIGHT_START:
@@ -344,10 +330,7 @@ public:
                     me->SetDisableGravity(true);
                     currentTarget.Clear();
                     events.ScheduleEvent(EVENT_FLIGHT_ICEBOLT, 3s);
-                    if (isNaxx40Sapp(me->GetEntry()))
-                        iceboltCount = 3;
-                    else
-                        iceboltCount = RAID_MODE(2, 3);
+                    iceboltCount = RAID_MODE(2, 3, 3, 3);
                     return;
                 case EVENT_FLIGHT_ICEBOLT:
                     {

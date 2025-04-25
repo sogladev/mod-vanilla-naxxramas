@@ -146,7 +146,7 @@ public:
 
             ScheduleTimedEvent(70s, 2min, [&] {
                 Talk(EMOTE_LOCUST);
-                DoCastSelf(RAID_MODE(SPELL_LOCUST_SWARM_10, SPELL_LOCUST_SWARM_25));
+                DoCastSelf(RAID_MODE(SPELL_LOCUST_SWARM_10, SPELL_LOCUST_SWARM_25, SPELL_LOCUST_SWARM_10, SPELL_LOCUST_SWARM_25));
 
                 me->m_Events.AddEventAtOffset([&]
                 {

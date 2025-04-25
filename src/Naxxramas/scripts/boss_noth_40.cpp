@@ -219,7 +219,7 @@ public:
                     break;
                 case EVENT_SUMMON_PLAGUED_WARRIOR_REAL:
                     me->CastSpell(me, SPELL_SUMMON_PLAGUED_WARRIORS, true);
-                    SummonHelper(NPC_PLAGUED_WARRIOR, RAID_MODE(2, 3));
+                    SummonHelper(NPC_PLAGUED_WARRIOR, RAID_MODE(2, 3, 3, 3));
                     break;
                 case EVENT_MOVE_TO_BALCONY:
                     Talk(EMOTE_TELEPORT_BALCONY);
@@ -228,7 +228,7 @@ public:
                     break;
                 case EVENT_BLINK:
                     DoResetThreatList();
-                    me->CastSpell(me, RAID_MODE(SPELL_CRIPPLE_10, SPELL_CRIPPLE_25), false);
+                    me->CastSpell(me, RAID_MODE(SPELL_CRIPPLE_10, SPELL_CRIPPLE_25, SPELL_CRIPPLE_10, SPELL_CRIPPLE_25), false);
                     me->CastSpell(me, SPELL_BLINK, true);
                     Talk(EMOTE_BLINK);
                     events.Repeat(30s);
@@ -244,14 +244,14 @@ public:
                     switch (timesInBalcony)
                     {
                          case 0:
-                             SummonHelper(NPC_PLAGUED_CHAMPION, RAID_MODE(2, 4));
+                             SummonHelper(NPC_PLAGUED_CHAMPION, RAID_MODE(2, 4, 4, 4));
                              break;
                          case 1:
-                             SummonHelper(NPC_PLAGUED_CHAMPION, RAID_MODE(1, 2));
-                             SummonHelper(NPC_PLAGUED_GUARDIAN, RAID_MODE(1, 2));
+                             SummonHelper(NPC_PLAGUED_CHAMPION, RAID_MODE(1, 2, 2, 2));
+                             SummonHelper(NPC_PLAGUED_GUARDIAN, RAID_MODE(1, 2, 2, 2));
                              break;
                          default:
-                             SummonHelper(NPC_PLAGUED_GUARDIAN, RAID_MODE(2, 4));
+                             SummonHelper(NPC_PLAGUED_GUARDIAN, RAID_MODE(2, 4, 4, 4));
                              break;
                     }
                     break;

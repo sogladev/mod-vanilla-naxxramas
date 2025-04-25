@@ -143,7 +143,7 @@ public:
 
         void SpellHit(Unit* caster, SpellInfo const* spell) override
         {
-            if (spell->Id == RAID_MODE(SPELL_WIDOWS_EMBRACE, SPELL_MINION_WIDOWS_EMBRACE))
+            if (spell->Id == RAID_MODE(SPELL_WIDOWS_EMBRACE, SPELL_MINION_WIDOWS_EMBRACE, SPELL_WIDOWS_EMBRACE, SPELL_MINION_WIDOWS_EMBRACE))
             {
                 Talk(EMOTE_WIDOWS_EMBRACE);
                 scheduler.RescheduleGroup(GROUP_FRENZY, 1min);

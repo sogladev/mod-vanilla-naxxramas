@@ -169,7 +169,7 @@ public:
         void DoCastWebWrap()
         {
             std::list<Unit*> candidates;
-            SelectTargetList(candidates, RAID_MODE(1, 2), SelectTargetMethod::Random, 0, WebTargetSelector(me));
+            SelectTargetList(candidates, RAID_MODE(1, 2, 2, 2), SelectTargetMethod::Random, 0, WebTargetSelector(me));
 
             std::vector<uint32> positions {0, 1, 2, 3, 4, 5, 6};
             Acore::Containers::RandomShuffle(positions);
@@ -177,7 +177,7 @@ public:
             if (candidates.empty())
                 return;
 
-            for (int i = 0; i < RAID_MODE(1, 2) ; i++)
+            for (int i = 0; i < RAID_MODE(1, 2, 2, 2); i++)
             {
                 if (candidates.empty())
                     break;
@@ -231,15 +231,15 @@ public:
             {
                 case EVENT_WEB_SPRAY:
                     Talk(EMOTE_WEB_SPRAY);
-                    me->CastSpell(me, RAID_MODE(SPELL_WEB_SPRAY_10, SPELL_WEB_SPRAY_25), true);
+                    me->CastSpell(me, RAID_MODE(SPELL_WEB_SPRAY_10, SPELL_WEB_SPRAY_25, SPELL_WEB_SPRAY_10, SPELL_WEB_SPRAY_25), true);
                     events.Repeat(40s);
                     break;
                 case EVENT_POISON_SHOCK:
-                    me->CastSpell(me->GetVictim(), RAID_MODE(SPELL_POISON_SHOCK_10, SPELL_POISON_SHOCK_25), false);
+                    me->CastSpell(me->GetVictim(), RAID_MODE(SPELL_POISON_SHOCK_10, SPELL_POISON_SHOCK_25, SPELL_POISON_SHOCK_10, SPELL_POISON_SHOCK_25), false);
                     events.Repeat(10s);
                     break;
                 case EVENT_NECROTIC_POISON:
-                    me->CastSpell(me->GetVictim(), RAID_MODE(SPELL_NECROTIC_POISON_10, SPELL_NECROTIC_POISON_25), false);
+                    me->CastSpell(me->GetVictim(), RAID_MODE(SPELL_NECROTIC_POISON_10, SPELL_NECROTIC_POISON_25, SPELL_NECROTIC_POISON_10, SPELL_NECROTIC_POISON_25), false);
                     events.Repeat(30s);
                     break;
                 case EVENT_SUMMON_SPIDERLINGS:
@@ -253,7 +253,7 @@ public:
                 case EVENT_HEALTH_CHECK:
                     if (me->GetHealthPct() < 30)
                     {
-                        me->CastSpell(me, RAID_MODE(SPELL_FRENZY_10, SPELL_FRENZY_25), true);
+                        me->CastSpell(me, RAID_MODE(SPELL_FRENZY_10, SPELL_FRENZY_25, SPELL_FRENZY_10, SPELL_FRENZY_25), true);
                         break;
                     }
                     events.Repeat(1s);

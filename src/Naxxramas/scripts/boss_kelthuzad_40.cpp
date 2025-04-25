@@ -367,11 +367,11 @@ public:
                     me->CastSpell(me, SPELL_BERSERK, true);
                     break;
                 case EVENT_FROST_BOLT_SINGLE:
-                    me->CastSpell(me->GetVictim(), RAID_MODE(SPELL_FROST_BOLT_SINGLE_10, SPELL_FROST_BOLT_SINGLE_25), false);
+                    me->CastSpell(me->GetVictim(), RAID_MODE(SPELL_FROST_BOLT_SINGLE_10, SPELL_FROST_BOLT_SINGLE_25, SPELL_FROST_BOLT_SINGLE_10, SPELL_FROST_BOLT_SINGLE_25), false);
                     events.Repeat(2s, 10s);
                     break;
                 case EVENT_FROST_BOLT_MULTI:
-                    me->CastSpell(me, RAID_MODE(SPELL_FROST_BOLT_MULTI_10, SPELL_FROST_BOLT_MULTI_25), false);
+                    me->CastSpell(me, RAID_MODE(SPELL_FROST_BOLT_MULTI_10, SPELL_FROST_BOLT_MULTI_25, SPELL_FROST_BOLT_MULTI_10, SPELL_FROST_BOLT_MULTI_25), false);
                     events.Repeat(15s, 30s);
                     break;
                 case EVENT_SHADOW_FISSURE:
@@ -382,7 +382,7 @@ public:
                     events.Repeat(25s);
                     break;
                 case EVENT_FROST_BLAST:
-                    if (Unit* target = SelectTarget(SelectTargetMethod::Random, RAID_MODE(1, 0), 0, true))
+                    if (Unit* target = SelectTarget(SelectTargetMethod::Random, RAID_MODE(1, 0, 0, 0), 0, true))
                     {
                         me->CastSpell(target, SPELL_FROST_BLAST, false);
                     }
@@ -450,7 +450,7 @@ public:
                     if (Creature* cr = instance->GetCreature(DATA_LICH_KING_BOSS))
                         cr->AI()->Talk(SAY_ANSWER_REQUEST);
 
-                    for (uint8 i = 0 ; i < RAID_MODE(2, 4); ++i)
+                    for (uint8 i = 0 ; i < RAID_MODE(2, 4, 4, 4); ++i)
                         events.ScheduleEvent(EVENT_SUMMON_GUARDIAN_OF_ICECROWN, 10000 + (i * 5000));
 
                     break;
