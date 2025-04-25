@@ -5463,6 +5463,14 @@ INSERT INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry
 -- Disable lvl80 npc_naxxramas_trigger in naxx40
 UPDATE `creature` SET `spawnMask` = `spawnMask` & ~4  WHERE `id1` = 16082 and `guid` = 1971313;
 
+-- Razuvious' Hopeless debuff on DKs
+DELETE FROM `conditions` WHERE `SourceTypeOrReferenceId` = 13 AND `SourceGroup` = 1 AND `SourceEntry` = 29125 AND `ElseGroup` = 1;
+INSERT INTO `conditions`
+(`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry`, `SourceId`, `ElseGroup`, `ConditionTypeOrReference`, `ConditionTarget`, `ConditionValue1`, `ConditionValue2`, `ConditionValue3`, `NegativeCondition`, `ErrorType`, `ErrorTextId`, `ScriptName`, `Comment`)
+VALUES
+(13, 1, 29125, 0, 1, 31, 0, 3, 351084, 0, 0, 0, 0, '', 'target must be Death Knight Understudy and Alive - Naxx40'),
+(13, 1, 29125, 0, 1, 36, 0, 0, 0, 0, 0, 0, 0, '', 'target must be Death Knight Understudy and Alive - Naxx40');
+
 -- Scaling
 SET @DAMAGE_MULTIPLIER:= 0.69;
 SET @HEALTH_MULTIPLIER:= 1.00;
