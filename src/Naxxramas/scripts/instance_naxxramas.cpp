@@ -284,6 +284,10 @@ public:
             case NPC_SIR_ZELIEK:
             case NPC_LADY_BLAUMEUX:
             case NPC_THANE_KORTHAZZ:
+            case NPC_HIGHLORD_MOGRAINE_40:
+            case NPC_SIR_ZELIEK_40:
+            case NPC_LADY_BLAUMEUX_40:
+            case NPC_THANE_KORTHAZZ_40:
                 if (++_horsemanLoaded == HorsemanCount)
                     SetBossState(BOSS_HORSEMAN, GetBossState(BOSS_HORSEMAN));
                 break;
