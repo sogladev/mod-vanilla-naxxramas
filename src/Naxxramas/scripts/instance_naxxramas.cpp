@@ -119,6 +119,25 @@ static ObjectData const creatureData[]
     { 0,                   0                         }
 };
 
+// overwrite the default ObjectData if Naxx40
+static ObjectData const creatureDataNX40[]
+{
+    { NPC_PATCHWERK_40,       DATA_PATCHWERK_BOSS       },
+    { NPC_STALAGG_40,         DATA_STALAGG_BOSS         },
+    { NPC_FEUGEN_40,          DATA_FEUGEN_BOSS          },
+    { NPC_THADDIUS_40,        DATA_THADDIUS_BOSS        },
+    { NPC_RAZUVIOUS_40,       DATA_RAZUVIOUS_BOSS       },
+    { NPC_GOTHIK_40,          DATA_GOTHIK_BOSS          },
+    { NPC_HIGHLORD_MOGRAINE_40, DATA_BARON_RIVENDARE_BOSS },
+    { NPC_SIR_ZELIEK_40,      DATA_SIR_ZELIEK_BOSS      },
+    { NPC_LADY_BLAUMEUX_40,   DATA_LADY_BLAUMEUX_BOSS   },
+    { NPC_THANE_KORTHAZZ_40,  DATA_THANE_KORTHAZZ_BOSS  },
+    { NPC_SAPPHIRON,       DATA_SAPPHIRON_BOSS       },
+    { NPC_KELTHUZAD_40,       DATA_KELTHUZAD_BOSS       },
+    // { NPC_LICH_KING,       DATA_LICH_KING_BOSS       },
+    { 0,                   0                         }
+};
+
 static ObjectData const gameObjectData[]
 {
     { GO_GOTHIK_INNER_GATE,  DATA_GOTHIK_INNER_GATE  },
@@ -146,6 +165,10 @@ public:
         SetPersistentDataCount(PERSISTENT_DATA_COUNT);
         LoadDoorData(doorData);
         LoadObjectData(creatureData, gameObjectData);
+
+        // NX40 specific data
+        if (instance->GetDifficulty() == RAID_DIFFICULTY_10MAN_HEROIC)
+            LoadObjectData(creatureDataNX40, gameObjectData);
 
         // GameObjects
         for (auto& i : _heiganEruption)
@@ -244,10 +267,16 @@ public:
             case NPC_MAD_SCIENTIST:
             case NPC_PATCHWORK_GOLEM:
             case NPC_SURGICAL_ASSIST:
+            case NPC_LIVING_MONSTROSITY_40:
+            case NPC_MAD_SCIENTIST_40:
+            case NPC_PATCHWORK_GOLEM_40:
+            case NPC_SURGICAL_ASSIST_40:
                 _patchwerkRoomTrash.push_back(creature->GetGUID());
                 return;
             case NPC_BILE_RETCHER:
             case NPC_SLUDGE_BELCHER:
+            case NPC_BILE_RETCHER_40:
+            case NPC_SLUDGE_BELCHER_40:
                 if (creature->GetPositionY() > -3258.0f) // we want only those inside the room, not before
                     _patchwerkRoomTrash.push_back(creature->GetGUID());
                 return;
