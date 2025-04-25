@@ -75,6 +75,7 @@ static DoorData const doorData[]
     { GO_HEIGAN_ENTRY_GATE,      BOSS_NOTH,       DOOR_TYPE_PASSAGE },
     { GO_HEIGAN_ENTRY_GATE,      BOSS_HEIGAN,     DOOR_TYPE_ROOM    },
     { GO_HEIGAN_EXIT_GATE,       BOSS_HEIGAN,     DOOR_TYPE_PASSAGE },
+    { GO_HEIGAN_EXIT_GATE_40,    BOSS_HEIGAN,     DOOR_TYPE_PASSAGE },
     { GO_LOATHEB_GATE,           BOSS_HEIGAN,     DOOR_TYPE_PASSAGE },
     { GO_LOATHEB_GATE,           BOSS_LOATHEB,    DOOR_TYPE_ROOM    },
     { GO_PLAGUE_EYE_PORTAL,      BOSS_LOATHEB,    DOOR_TYPE_PASSAGE },
@@ -122,20 +123,20 @@ static ObjectData const creatureData[]
 // overwrite the default ObjectData if Naxx40
 static ObjectData const creatureDataNX40[]
 {
-    { NPC_PATCHWERK_40,       DATA_PATCHWERK_BOSS       },
-    { NPC_STALAGG_40,         DATA_STALAGG_BOSS         },
-    { NPC_FEUGEN_40,          DATA_FEUGEN_BOSS          },
-    { NPC_THADDIUS_40,        DATA_THADDIUS_BOSS        },
-    { NPC_RAZUVIOUS_40,       DATA_RAZUVIOUS_BOSS       },
-    { NPC_GOTHIK_40,          DATA_GOTHIK_BOSS          },
+    { NPC_PATCHWERK_40,         DATA_PATCHWERK_BOSS       },
+    { NPC_STALAGG_40,           DATA_STALAGG_BOSS         },
+    { NPC_FEUGEN_40,            DATA_FEUGEN_BOSS          },
+    { NPC_THADDIUS_40,          DATA_THADDIUS_BOSS        },
+    { NPC_RAZUVIOUS_40,         DATA_RAZUVIOUS_BOSS       },
+    { NPC_GOTHIK_40,            DATA_GOTHIK_BOSS          },
     { NPC_HIGHLORD_MOGRAINE_40, DATA_BARON_RIVENDARE_BOSS },
-    { NPC_SIR_ZELIEK_40,      DATA_SIR_ZELIEK_BOSS      },
-    { NPC_LADY_BLAUMEUX_40,   DATA_LADY_BLAUMEUX_BOSS   },
-    { NPC_THANE_KORTHAZZ_40,  DATA_THANE_KORTHAZZ_BOSS  },
-    { NPC_SAPPHIRON,       DATA_SAPPHIRON_BOSS       },
-    { NPC_KELTHUZAD_40,       DATA_KELTHUZAD_BOSS       },
-    // { NPC_LICH_KING,       DATA_LICH_KING_BOSS       },
-    { 0,                   0                         }
+    { NPC_SIR_ZELIEK_40,        DATA_SIR_ZELIEK_BOSS      },
+    { NPC_LADY_BLAUMEUX_40,     DATA_LADY_BLAUMEUX_BOSS   },
+    { NPC_THANE_KORTHAZZ_40,    DATA_THANE_KORTHAZZ_BOSS  },
+    { NPC_SAPPHIRON,            DATA_SAPPHIRON_BOSS       },
+    { NPC_KELTHUZAD_40,         DATA_KELTHUZAD_BOSS       },
+    // { NPC_LICH_KING,            DATA_LICH_KING_BOSS       },
+    { 0,                        0                         }
 };
 
 static ObjectData const gameObjectData[]
@@ -176,6 +177,7 @@ public:
 
         // NPCs
         _patchwerkRoomTrash.clear();
+        _heiganBackRoomTrash.clear();
 
         // Controls
         _events.Reset();
@@ -263,6 +265,11 @@ public:
     {
         switch (creature->GetEntry())
         {
+            case NPC_ROTTING_MAGGOT_40:
+            case NPC_DISEASED_MAGGOT_40:
+            case NPC_EYE_STALK_40:
+                _heiganBackRoomTrash.push_back(creature->GetGUID());
+                return;
             case NPC_LIVING_MONSTROSITY:
             case NPC_MAD_SCIENTIST:
             case NPC_PATCHWORK_GOLEM:
@@ -494,6 +501,10 @@ public:
                 if (state == NOT_STARTED)
                     _heiganAchievement = true;
 
+                if (state == DONE)
+                    for (auto const& guid : _heiganBackRoomTrash)
+                        if (Creature* creature = instance->GetCreature(guid))
+                            creature->DespawnOrUnsummon();
                 break;
             }
             case BOSS_LOATHEB:
@@ -714,6 +725,7 @@ private:
 
     // NPCs
     GuidList _patchwerkRoomTrash;
+    GuidList _heiganBackRoomTrash;
 
     // Achievements
     uint8 _abominationsKilled;

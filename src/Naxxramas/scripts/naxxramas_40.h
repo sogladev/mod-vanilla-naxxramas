@@ -44,16 +44,13 @@ enum NX40SpellValues
 enum NX40Data
 {
     DATA_HEIGAN_EXIT_GATE_OLD_40       = 4130,
-    DATA_HEIGAN_EXIT_GATE_40           = 4131,
     DATA_HEIGAN_ERUPTION_TUNNEL_40     = 4132,
     DATA_RAZUVIOUS_40                  = 4133
 };
 
 enum NX40GOs
 {
-    GO_HEIGAN_ENTRY_GATE_40            = 181202,
-    GO_HEIGAN_EXIT_GATE_40             = 181203,
-    GO_HEIGAN_EXIT_GATE_OLD_40         = 181496,
+    GO_HEIGAN_EXIT_GATE_40             = 181496,
     GO_HORSEMEN_CHEST_40               = 361000,
     // Gate to enter Naxx 40 from Strath
     GO_STRATH_GATE_40                  = 176424

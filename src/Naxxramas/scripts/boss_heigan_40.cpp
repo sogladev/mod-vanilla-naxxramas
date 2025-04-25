@@ -122,16 +122,6 @@ public:
             portedPlayersThisPhase.clear();
             KillPlayersInTheTunnel();
             moveRight = true;
-            if (instance)
-            {
-                // if (GameObject* go = me->GetMap()->GetGameObject(instance->GetGuidData(DATA_HEIGAN_ENTER_GATE)))
-                // {
-                //     go->SetGoState(GO_STATE_ACTIVE);
-                // }
-                // Close tunnel door
-                if (GameObject* go = me->GetMap()->GetGameObject(instance->GetGuidData(DATA_HEIGAN_EXIT_GATE_40)))
-                    go->SetGoState(GO_STATE_READY);
-            }
         }
 
         void KilledUnit(Unit* who) override
@@ -154,19 +144,6 @@ public:
             BossAI::JustEngagedWith(who);
             me->SetInCombatWithZone();
             Talk(SAY_AGGRO);
-            if (instance)
-            {
-                // if (GameObject* go = me->GetMap()->GetGameObject(pInstance->GetGuidData(DATA_HEIGAN_ENTER_GATE)))
-                // {
-                //     go->SetGoState(GO_STATE_READY);
-                // }
-                // Open tunnel door
-                if (GameObject* go = me->GetMap()->GetGameObject(instance->GetGuidData(DATA_HEIGAN_EXIT_GATE_40)))
-                    go->SetGoState(GO_STATE_ACTIVE);
-                // Close loatheb door
-                if (GameObject* go = me->GetMap()->GetGameObject(instance->GetGuidData(DATA_HEIGAN_EXIT_GATE_OLD_40)))
-                    go->SetGoState(GO_STATE_READY);
-            }
             StartFightPhase(PHASE_SLOW_DANCE);
         }
 
