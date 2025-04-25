@@ -5460,6 +5460,9 @@ INSERT INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry
 (13,1,27936,0,2,31,0,3,351047,@CGUID+2,0,0,0,'','To Anchor 2 - Target Anchor Spectral South - Naxx40'),
 (13,1,27936,0,3,31,0,3,351047,@CGUID+3,0,0,0,'','To Anchor 2 - Target Anchor Spectral North - Naxx40');
 
+-- Disable lvl80 npc_naxxramas_trigger in naxx40
+UPDATE `creature` SET `spawnMask` = `spawnMask` & ~4  WHERE `id1` = 16082 and `guid` = 1971313;
+
 -- Scaling
 SET @DAMAGE_MULTIPLIER:= 0.69;
 SET @HEALTH_MULTIPLIER:= 1.00;
