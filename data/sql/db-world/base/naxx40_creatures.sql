@@ -46,7 +46,7 @@ INSERT INTO `creature_template` (`entry`, `name`, `subname`, `minlevel`, `maxlev
 (351039, "Thane Korth'azz", "", 63, 63, 21, 1.0, 1.71429, 20.0, 1.0, 3, 0, 25.0, 2500, 3200, 1.0, 1.0, 1, 64, 2048, 0, 6, 76, 0, 0, 0, 49555, 64718, '', 0, 1.0, 180.0, 2.0, 1.3, 1.0, 164, 1, 2093694843, 0, 1073741825, 'boss_four_horsemen_40'),
 (351040, "Lady Blaumeux", "", 63, 63, 21, 1.0, 1.71429, 20.0, 1.0, 3, 0, 35.0, 2500, 2200, 1.0, 1.0, 1, 64, 2048, 0, 6, 76, 0, 0, 0, 0, 0, '', 0, 1.0, 150.0, 2.0, 1.3, 1.0, 164, 1, 2093694843, 0, 1073741825, 'boss_four_horsemen_40'),
 (351041, "Skeletal Steed", "", 61, 61, 21, 1.0, 1.71429, 20.0, 1.0, 1, 0, 22.6, 2000, 1265, 1.0, 1.0, 1, 64, 2048, 0, 6, 72, 351041, 0, 0, 0, 0, 'SmartAI', 0, 1.0, 14.0, 1.0, 1.15, 1.0, 164, 1, 1019945555, 0, 0, ''),
-(351042, "Naxxramas Trigger", "", 60, 60, 114, 1.0, 1.14286, 18.0, 1.0, 0, 0, 4.2, 2000, 2000, 1.0, 1.0, 1, 33555200, 2048, 0, 10, 0, 0, 0, 0, 0, 0, '', 0, 1.0, 1.35, 1.0, 2.8, 1.0, 0, 1, 0, 0, 128, 'boss_naxxramas_misc'),
+(351042, "Naxxramas Trigger", "", 60, 60, 114, 1.0, 1.14286, 18.0, 1.0, 0, 0, 4.2, 2000, 2000, 1.0, 1.0, 1, 33555200, 2048, 0, 10, 0, 0, 0, 0, 0, 0, '', 0, 1.0, 1.35, 1.0, 2.8, 1.0, 0, 1, 0, 0, 128, 'npc_naxxramas_trigger'),
 (351043, "Unrelenting Trainee", "", 60, 60, 21, 1.0, 1.42857, 18.0, 1.0, 0, 0, 7.05, 1800, 2000, 1.0, 1.0, 1, 32768, 2048, 0, 7, 72, 0, 0, 0, 0, 0, '', 0, 1.0, 1.5, 1.0, 0.9, 1.0, 144, 1, 1006764032, 0, 65536, 'npc_boss_gothik_minion_40'),
 (351044, "Unrelenting Deathknight", "", 61, 61, 21, 1.0, 1.42857, 20.0, 1.0, 1, 0, 24.0, 2000, 2000, 1.0, 1.0, 1, 32832, 2048, 0, 6, 72, 0, 0, 0, 0, 0, '', 0, 1.0, 6.5, 1.0, 1.15, 1.0, 144, 1, 1006764050, 0, 65536, 'npc_boss_gothik_minion_40'),
 (351045, "Unrelenting Rider", "", 62, 62, 21, 1.0, 1.71429, 20.0, 1.0, 1, 0, 22.05, 2000, 2000, 1.0, 1.0, 2, 32832, 2048, 0, 6, 2120, 0, 0, 0, 0, 0, '', 0, 1.0, 10.0, 5.0, 1.25, 1.0, 164, 1, 1023033343, 0, 65536, 'npc_boss_gothik_minion_40'),
@@ -5459,6 +5459,17 @@ INSERT INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry
 (13,1,27929,0,3,31,0,3,351047,@CGUID+3,0,0,0,'','To Anchor 2 - Target Anchor Spectral North - Naxx40'),
 (13,1,27936,0,2,31,0,3,351047,@CGUID+2,0,0,0,'','To Anchor 2 - Target Anchor Spectral South - Naxx40'),
 (13,1,27936,0,3,31,0,3,351047,@CGUID+3,0,0,0,'','To Anchor 2 - Target Anchor Spectral North - Naxx40');
+
+-- Disable lvl80 npc_naxxramas_trigger in naxx40
+UPDATE `creature` SET `spawnMask` = `spawnMask` & ~4  WHERE `id1` = 16082 and `guid` = 1971313;
+
+-- Razuvious' Hopeless debuff on DKs
+DELETE FROM `conditions` WHERE `SourceTypeOrReferenceId` = 13 AND `SourceGroup` = 1 AND `SourceEntry` = 29125 AND `ElseGroup` = 1;
+INSERT INTO `conditions`
+(`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry`, `SourceId`, `ElseGroup`, `ConditionTypeOrReference`, `ConditionTarget`, `ConditionValue1`, `ConditionValue2`, `ConditionValue3`, `NegativeCondition`, `ErrorType`, `ErrorTextId`, `ScriptName`, `Comment`)
+VALUES
+(13, 1, 29125, 0, 1, 31, 0, 3, 351084, 0, 0, 0, 0, '', 'target must be Death Knight Understudy and Alive - Naxx40'),
+(13, 1, 29125, 0, 1, 36, 0, 0, 0, 0, 0, 0, 0, '', 'target must be Death Knight Understudy and Alive - Naxx40');
 
 -- Scaling
 SET @DAMAGE_MULTIPLIER:= 0.69;
