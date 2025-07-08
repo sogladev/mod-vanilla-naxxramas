@@ -129,7 +129,7 @@ public:
                 case EVENT_SUMMON_SPORE:
                 {
                     me->CastSpell(me, SPELL_SUMMON_SPORE, true);
-                    events.Repeat(35s);
+                    events.Repeat(13s);
                     break;
                 }
                 case EVENT_NECROTIC_AURA:
