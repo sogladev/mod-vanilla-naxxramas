@@ -22,20 +22,24 @@
 enum Spells
 {
     SPELL_NECROTIC_AURA                         = 55593,
-    // SPELL_SUMMON_SPORE                          = 29234,
-    SPELL_DEATHBLOOM_10                         = 29865,
-    SPELL_DEATHBLOOM_25                         = 55053,
-    SPELL_INEVITABLE_DOOM_10                    = 29204,
-    SPELL_INEVITABLE_DOOM_25                    = 55052,
-    SPELL_BERSERK                               = 26662
+    // SPELL_SUMMON_SPORE                       = 29234,
+    // SPELL_DEATHBLOOM_10                      = 29865, // does 200 dmg every second for 6 seconds with 1200 extra damage at the end. should do 196 dmg every 6 seconds. no extra damage at the end.
+    SPELL_POISON_SHOCK                          = 22595, // does 180-220 aoe poison damage. if Loatheb recasts this every 6 seconds it's a possible fix for poison aura.
+    // SPELL_DEATHBLOOM_25                      = 55053,
+    SPELL_INEVITABLE_DOOM                       = 29204,
+    //SPELL_INEVITABLE_DOOM_25                  = 55052,
+    // SPELL_BERSERK                            = 26662, // he doesn't cast berserk in Naxx40
+    SPELL_REMOVE_CURSE                          = 30281  // He periodically removes all curses on himself
 };
 
 enum Events
 {
     EVENT_NECROTIC_AURA                         = 1,
-    EVENT_DEATHBLOOM                            = 2,
+    // EVENT_DEATHBLOOM                         = 2,
+    EVENT_POISON_SHOCK                          = 2,
     EVENT_INEVITABLE_DOOM                       = 3,
-    EVENT_BERSERK                               = 4,
+    // EVENT_BERSERK                            = 4,
+    EVENT_REMOVE_CURSE                          = 4,
     EVENT_SUMMON_SPORE                          = 5,
     EVENT_NECROTIC_AURA_FADING                  = 6,
     EVENT_NECROTIC_AURA_REMOVED                 = 7
@@ -123,16 +127,21 @@ public:
             switch (events.ExecuteEvent())
             {
                 case EVENT_SUMMON_SPORE:
+                {
                     me->CastSpell(me, SPELL_SUMMON_SPORE, true);
                     events.Repeat(35s);
                     break;
+                }
                 case EVENT_NECROTIC_AURA:
+                {
                     me->CastSpell(me, SPELL_NECROTIC_AURA, true);
                     Talk(SAY_NECROTIC_AURA_APPLIED);
                     events.ScheduleEvent(EVENT_NECROTIC_AURA_FADING, 14s);
                     events.ScheduleEvent(EVENT_NECROTIC_AURA_REMOVED, 17s);
                     events.Repeat(20s);
                     break;
+                }
+                /*
                 case EVENT_DEATHBLOOM:
                 {
                     int32 bp0 = 33; // TODO: Amplitude should be 6k, but is 1k. 200 dmg after 6 seconds
@@ -140,23 +149,55 @@ public:
                     events.Repeat(30s);
                     break;
                 }
+                */
+    			case EVENT_POISON_SHOCK:
+				{
+	                if (me->CastSpell(me, SPELL_POISON_SHOCK, true) == SPELL_CAST_OK)
+                    {
+                        events.RepeatEvent(6000);
+					}
+					else
+					{
+						events.RepeatEvent(100);	
+					}
+                    break;			
+				}
                 case EVENT_INEVITABLE_DOOM:
                 {
                     int32 bp0 = 2549;
-                    me->CastCustomSpell(me, SPELL_INEVITABLE_DOOM_10, &bp0, 0, 0, false);
-                    doomCounter++;
-                    events.Repeat(doomCounter < 6 ? 30s : 15s);
+                    
+					if (me->CastCustomSpell(me, SPELL_INEVITABLE_DOOM, &bp0, 0, 0, false) == SPELL_CAST_OK)
+                    {
+						doomCounter++;
+                        events.RepeatEvent(doomCounter < 6 ? 30000 : 15000);
+					}
+					else
+					{
+						events.RepeatEvent(100);	
+					}
                     break;
                 }
+                /*
                 case EVENT_BERSERK:
                     me->CastSpell(me, SPELL_BERSERK, true);
                     break;
+                */
+                case EVENT_REMOVE_CURSE:
+                {
+                    me->CastSpell(me, SPELL_REMOVE_CURSE, true);
+                    events.RepeatEvent(30000);
+                    break;
+                }
                 case EVENT_NECROTIC_AURA_FADING:
+                {
                     Talk(SAY_NECROTIC_AURA_FADING);
                     break;
+                }
                 case EVENT_NECROTIC_AURA_REMOVED:
+                {
                     Talk(SAY_NECROTIC_AURA_REMOVED);
                     break;
+                }
             }
             DoMeleeAttackIfReady();
         }
