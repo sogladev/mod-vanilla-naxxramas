@@ -51,6 +51,19 @@ INSERT INTO `spell_script_names` (`spell_id`, `ScriptName`) VALUES (28450, 'spel
 DELETE FROM `spell_script_names` WHERE `spell_id` = 28153;
 INSERT INTO `spell_script_names` (`spell_id`, `ScriptName`) VALUES (28153, 'spell_disease_cloud_damage_40');
 
+-- Sapphiron
+-- 28522 Icebolt: Reduce damage ~7125 to ~2625
+DELETE FROM `spell_script_names` WHERE `spell_id` = 28522;
+INSERT INTO `spell_script_names` (`spell_id`, `ScriptName`) VALUES (28522, 'spell_sapphiron_icebolt_40');
+
+-- 28531 Frost Aura 1200->600
+DELETE FROM `spell_script_names` WHERE `spell_id` = 28531;
+INSERT INTO `spell_script_names` (`spell_id`, `ScriptName`) VALUES (28531, 'spell_sapphiron_frost_aura_40');
+
+-- 60960 War Stomp: Reduce damage
+DELETE FROM `spell_script_names` WHERE `spell_id` = 60960;
+INSERT INTO `spell_script_names` (`spell_id`, `ScriptName`) VALUES (60960, 'spell_patchwork_golem_war_stomp_40');
+
 -- Anub'Arak
 -- Locust Swarm: Reduce damage ~1500 to ~1000, increase radius 25yd to 30yd
 DELETE FROM `spell_script_names` WHERE `spell_id` = 28785;
@@ -60,6 +73,10 @@ INSERT INTO `spell_script_names` (`spell_id`, `ScriptName`) VALUES (28785, 'spel
 -- Dark Blast: Reduce damage ~3.5k to ~2k
 DELETE FROM `spell_script_names` WHERE `spell_id` = 28457;
 INSERT INTO `spell_script_names` (`spell_id`, `ScriptName`) VALUES (28457, 'spell_kelthuzad_dark_blast_40');
+
+-- Frostbolt: Reduce damage ~4.5k to ~2550
+DELETE FROM `spell_script_names` WHERE `spell_id` = 28479;
+INSERT INTO `spell_script_names` (`spell_id`, `ScriptName`) VALUES (28479, 'spell_kelthuzad_frostbolt_40');
 
 -- Thaddius
 -- Feugen - Static Field: Change to mana drain
