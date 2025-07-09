@@ -114,7 +114,7 @@ public:
 
         void InitializeAI() override
         {
-            if (pInstance->GetBossState(BOSS_SAPPHIRON) != DONE)
+            if (instance->GetBossState(BOSS_SAPPHIRON) != DONE)
             {
                 me->SummonGameObject(GO_SAPPHIRON_BIRTH, me->GetPositionX(), me->GetPositionY(), me->GetPositionZ(), 0, 0, 0, 0, 0, 0);
                 me->SetVisible(false);
