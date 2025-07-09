@@ -148,29 +148,23 @@ public:
                     break;
                 }
                 */
-    			case EVENT_POISON_SHOCK:
-	                if (me->CastSpell(me, SPELL_POISON_SHOCK, true) == SPELL_CAST_OK)
-                    {
+                case EVENT_POISON_SHOCK:
+                    if (me->CastSpell(me, SPELL_POISON_SHOCK, true) == SPELL_CAST_OK)
                         events.RepeatEvent(6000);
-					}
-					else
-					{
-						events.RepeatEvent(100);	
-					}
-                    break;			
+                    else
+                        events.RepeatEvent(100);
+                    break;
                 case EVENT_INEVITABLE_DOOM:
                 {
                     int32 bp0 = 2549;
 
                     if (me->CastCustomSpell(me, SPELL_INEVITABLE_DOOM, &bp0, 0, 0, false) == SPELL_CAST_OK)
                     {
-						doomCounter++;
+                        doomCounter++;
                         events.RepeatEvent(doomCounter < 6 ? 30s : 15s);
-					}
-					else
-					{
-						events.RepeatEvent(100);	
-					}
+                    }
+                    else
+                        events.RepeatEvent(100);
                     break;
                 }
                 /*
