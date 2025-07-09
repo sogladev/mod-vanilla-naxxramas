@@ -161,7 +161,7 @@ public:
                     if (me->CastCustomSpell(me, SPELL_INEVITABLE_DOOM, &bp0, 0, 0, false) == SPELL_CAST_OK)
                     {
                         doomCounter++;
-                        events.RepeatEvent(doomCounter < 6 ? 30s : 15s);
+                        events.Repeat(doomCounter < 6 ? 30s : 15s);
                     }
                     else
                         events.RepeatEvent(100);
@@ -174,7 +174,7 @@ public:
                 */
                 case EVENT_REMOVE_CURSE:
                     me->CastSpell(me, SPELL_REMOVE_CURSE, true);
-                    events.RepeatEvent(30s);
+                    events.Repeat(30s);
                     break;
                 case EVENT_NECROTIC_AURA_FADING:
                     Talk(SAY_NECROTIC_AURA_FADING);
