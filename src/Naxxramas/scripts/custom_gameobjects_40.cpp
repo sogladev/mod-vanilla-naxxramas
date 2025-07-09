@@ -37,14 +37,18 @@ public:
 
     bool OnGossipHello(Player* player, GameObject* /*go*/) override
     {
-        if ((!sVanillaNaxxramas->requireNaxxStrath || player->GetQuestStatus(NAXX40_ENTRANCE_FLAG) == QUEST_STATUS_REWARDED)
-            && (!sVanillaNaxxramas->requireAttunement || isAttuned(player)))
+        if ((!sVanillaNaxxramas->requireNaxxStrath || player->GetQuestStatus(NAXX40_ENTRANCE_FLAG) == QUEST_STATUS_REWARDED) && player->GetLevel() <= 70)
         {
             player->SetRaidDifficulty(RAID_DIFFICULTY_10MAN_HEROIC);
-            player->TeleportTo(533, 3005.51f, -3434.64f, 304.195f, 6.2831f);
+			
+			if (isAttuned(player) || !sVanillaNaxxramas->requireAttunement )
+			{
+                player->TeleportTo(533, 3005.51f, -3434.64f, 304.195f, 6.2831f);
+			}
         }
         return true;
     }
+
 };
 
 void AddSC_custom_gameobjects_40()
