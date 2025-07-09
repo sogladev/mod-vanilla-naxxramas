@@ -129,20 +129,16 @@ public:
             switch (events.ExecuteEvent())
             {
                 case EVENT_SUMMON_SPORE:
-                {
                     me->CastSpell(me, SPELL_SUMMON_SPORE, true);
                     events.Repeat(13s);
                     break;
-                }
                 case EVENT_NECROTIC_AURA:
-                {
                     me->CastSpell(me, SPELL_NECROTIC_AURA, true);
                     Talk(SAY_NECROTIC_AURA_APPLIED);
                     events.ScheduleEvent(EVENT_NECROTIC_AURA_FADING, 14s);
                     events.ScheduleEvent(EVENT_NECROTIC_AURA_REMOVED, 17s);
                     events.Repeat(20s);
                     break;
-                }
                 /*
                 case EVENT_DEATHBLOOM:
                 {
@@ -153,7 +149,6 @@ public:
                 }
                 */
     			case EVENT_POISON_SHOCK:
-				{
 	                if (me->CastSpell(me, SPELL_POISON_SHOCK, true) == SPELL_CAST_OK)
                     {
                         events.RepeatEvent(6000);
@@ -163,7 +158,6 @@ public:
 						events.RepeatEvent(100);	
 					}
                     break;			
-				}
                 case EVENT_INEVITABLE_DOOM:
                 {
                     int32 bp0 = 2549;
@@ -185,21 +179,15 @@ public:
                     break;
                 */
                 case EVENT_REMOVE_CURSE:
-                {
                     me->CastSpell(me, SPELL_REMOVE_CURSE, true);
                     events.RepeatEvent(30s);
                     break;
-                }
                 case EVENT_NECROTIC_AURA_FADING:
-                {
                     Talk(SAY_NECROTIC_AURA_FADING);
                     break;
-                }
                 case EVENT_NECROTIC_AURA_REMOVED:
-                {
                     Talk(SAY_NECROTIC_AURA_REMOVED);
                     break;
-                }
             }
             DoMeleeAttackIfReady();
         }
