@@ -271,25 +271,13 @@ class spell_sapphiron_frost_aura_40 : public AuraScript
         {
             return;
         }
-        GetAura()->GetEffect(aurEff->GetEffIndex())->SetPeriodicTimer(1000); // 1 second tick
         int32 bp0 = 600;
         caster->CastCustomSpell(caster, SPELL_FROST_AURA, &bp0, nullptr, nullptr, false, nullptr, nullptr, GetCasterGUID());
-    }
-
-    void HandlePeriodicTimer(AuraEffect* aurEff)
-    {
-        Unit* caster = GetCaster();
-        if (!caster || (caster->GetMap()->GetDifficulty() != RAID_DIFFICULTY_10MAN_HEROIC))
-        {
-            return;
-        }
-        GetAura()->GetEffect(aurEff->GetEffIndex())->SetPeriodicTimer(1000); // 1 second tick
     }
 
     void Register() override
     {
         OnEffectApply += AuraEffectApplyFn(spell_sapphiron_frost_aura_40::OnApply, EFFECT_0, SPELL_AURA_PERIODIC_DAMAGE, AURA_EFFECT_HANDLE_REAL);
-        OnEffectUpdatePeriodic += AuraEffectUpdatePeriodicFn(spell_sapphiron_frost_aura_40::HandlePeriodicTimer, EFFECT_0, SPELL_AURA_PERIODIC_DAMAGE);
     }
 };
 
