@@ -41,7 +41,7 @@ public:
         {
             player->SetRaidDifficulty(RAID_DIFFICULTY_10MAN_HEROIC);
 
-			if (isAttuned(player) || !sVanillaNaxxramas->requireAttunement)
+            if (isAttuned(player) || !sVanillaNaxxramas->requireAttunement)
                 player->TeleportTo(533, 3005.51f, -3434.64f, 304.195f, 6.2831f);
         }
         return true;
