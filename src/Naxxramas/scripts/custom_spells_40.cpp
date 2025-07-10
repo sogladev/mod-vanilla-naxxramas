@@ -273,6 +273,8 @@ class spell_sapphiron_frost_aura_40 : public AuraScript
         }
         int32 bp0 = 600;
         caster->CastCustomSpell(caster, SPELL_FROST_AURA, &bp0, nullptr, nullptr, false, nullptr, nullptr, GetCasterGUID());
+        if (urand(0, 99) == 0) // 1% chance to receive extra Frost Aura tick
+            caster->CastCustomSpell(caster, SPELL_FROST_AURA, &bp0, nullptr, nullptr, false, nullptr, nullptr, GetCasterGUID());
     }
 
     void Register() override
