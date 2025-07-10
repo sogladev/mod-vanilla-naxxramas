@@ -46,7 +46,6 @@ public:
         }
         return true;
     }
-
 };
 
 void AddSC_custom_gameobjects_40()
