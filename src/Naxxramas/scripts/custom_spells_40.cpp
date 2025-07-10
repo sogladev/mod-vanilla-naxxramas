@@ -1,4 +1,3 @@
-
 #include "ScriptMgr.h"
 #include "ScriptedCreature.h"
 #include "SpellAuraEffects.h"
@@ -228,7 +227,7 @@ class spell_kelthuzad_frostbolt_40 : public SpellScript
     }
 };
 
-// 28522 - Icebolt  
+// 28522 - Icebolt
 class spell_sapphiron_icebolt_40 : public SpellScript
 {
     PrepareSpellScript(spell_sapphiron_icebolt_40);
@@ -296,7 +295,7 @@ class spell_patchwork_golem_war_stomp_40 : public SpellScript
         {
             return;
         }
-        SetHitDamage(urand(936,1064)); 
+        SetHitDamage(urand(936,1064));
     }
 
     void Register() override
