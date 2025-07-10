@@ -272,7 +272,7 @@ class spell_sapphiron_frost_aura_40 : public AuraScript
             return;
         }
         GetAura()->GetEffect(aurEff->GetEffIndex())->SetPeriodicTimer(1000); // 1 second tick
-        int32 bp0 = 599;
+        int32 bp0 = 600;
         caster->CastCustomSpell(caster, SPELL_FROST_AURA, &bp0, nullptr, nullptr, false, nullptr, nullptr, GetCasterGUID());
     }
 
