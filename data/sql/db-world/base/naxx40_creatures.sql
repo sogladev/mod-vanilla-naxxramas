@@ -4552,6 +4552,8 @@ INSERT INTO `creature_text` (`CreatureID`, `GroupID`, `ID`, `Text`, `Type`, `Lan
 (351036, 2, 3, "You disappoint me, students!", 14, 0, 20.0, 0, 0, 8858, 13077, 3, "Razuvious SAY_TAUNTED #4 (Naxx 40)"),
 (351036, 2, 4, "You should have stayed home.", 14, 0, 20.0, 0, 0, 8862, 13081, 3, "Razuvious SAY_TAUNTED #5 (Naxx 40)"),
 (351036, 3, 0, "An honorable... death.", 14, 0, 100.0, 0, 0, 8860, 13079, 3, "Razuvious SAY_DEATH (Naxx 40)"),
+(351036, 4, 0, 'Pathetic...', 12, 0, 100, 5, 0, 0, 27865, 0, 'Razuvious SAY_PATHETIC (Naxx 40)'),
+(351036, 5, 0, 'Start doing something before I replace that target dummy with you and begin a warm up session of my own!', 12, 0, 100, 5, 0, 0, 13136, 0, 'Razuvious SAY_TARGET_DUMMY (Naxx 40)'),
 (351038, 0, 0, "Flee, before it's too late!", 14, 0, 100.0, 0, 0, 8913, 13097, 0, "zeliek SAY_ZELI_AGGRO (Naxx 40)"),
 (351038, 1, 0, "Invaders, cease this foolish venture at once! Turn away while you still can!", 14, 0, 100.0, 0, 0, 8917, 0, 0, "zeliek SAY_ZELI_TAUNT1 (Naxx 40)"),
 (351038, 1, 1, "Perhaps they will come to their senses, and run away as fast as they can!", 14, 0, 100.0, 0, 0, 8918, 0, 0, "zeliek SAY_ZELI_TAUNT2 (Naxx 40)"),
@@ -4588,6 +4590,10 @@ INSERT INTO `creature_text` (`CreatureID`, `GroupID`, `ID`, `Text`, `Type`, `Lan
 (351082, 0, 0, "%s goes into a frenzy!", 16, 0, 100.0, 0, 0, 0, 1191, 3, "Crypt Guard EMOTE_FRENZY (Naxx 40)"),
 (351082, 1, 0, "A Crypt Guard joins the fight!", 41, 0, 100.0, 0, 0, 0, 29887, 3, "Crypt Guard EMOTE_SPAWN (Naxx 40)"),
 (351082, 2, 0, "Corpse Scarabs appear from a Crypt Guard's corpse!", 41, 0, 100.0, 0, 0, 0, 32796, 3, "Crypt Guard EMOTE_SCARAB (Naxx 40)"),
+(351084, 0, 0, 'Sir, student requests that you beat him for his lack of understanding!', 12, 0, 100, 1, 0, 0, 13140, 0, 'Death Knight Understudy SAY_BEAT_ME (Naxx 40)'),
+(351084, 0, 1, 'I am unworthy, master!', 12, 0, 100, 1, 0, 0, 13138, 0, 'Death Knight Understudy SAY_UNWORTHY (Naxx 40)' ),
+(351084, 0, 2, 'Student is worthless, master! Student apologizes for his deficiency!', 12, 0, 100, 1, 0, 0, 13137, 0, 'Death Knight Understudy SAY_WORTHLESS (Naxx 40)'),
+(351084, 0, 3, 'Student will work harder, master!', 12, 0, 100, 1, 0, 0, 13139, 0, 'Death Knight Understudy SAY_WORK_HARDER (Naxx 40)'),
 (351037, 0, 0, "You seek death?", 14, 0, 100, 0, 0, 8835, 13051, 0, 'mograine SAY_MOG_AGGRO_1 (Naxx 40)'),
 (351037, 0, 1, "None shall pass!", 14, 0, 100, 0, 0, 8836, 13052, 0, 'mograine SAY_MOG_AGGRO_2 (Naxx 40)'),
 (351037, 0, 2, "Be still!", 14, 0, 100, 0, 0, 8837, 13052, 0, 'mograine SAY_MOG_AGGRO_3 (Naxx 40)'),
@@ -5407,19 +5413,6 @@ INSERT INTO `creature_template` (`entry`, `difficulty_entry_1`, `difficulty_entr
 DELETE FROM `creature` WHERE `guid` = 352042;
 INSERT INTO `creature` (`guid`, `id1`, `id2`, `id3`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`, `wander_distance`, `currentwaypoint`, `curhealth`, `curmana`, `MovementType`, `npcflag`, `unit_flags`, `dynamicflags`, `ScriptName`, `VerifiedBuild`) VALUES
 (352042, 351097, 0, 0, 329, 0, 0, 1, 1, 0, 3929.06, -3372.12, 119.653, 4.71395, 300, 0, 0, 6986, 0, 0, 0, 0, 0, '', 0);
-
--- Razuvious RP
--- Razuvious
-DELETE FROM `creature_text` WHERE `CreatureID` = 351036 AND `GroupID` IN (4, 5);
-INSERT INTO `creature_text` (`CreatureID`, `GroupID`, `ID`, `Text`, `Type`, `Language`, `Probability`, `Emote`, `Duration`, `Sound`, `BroadcastTextId`, `TextRange`, `comment`) VALUES
-(351036, 4, 0, 'Pathetic...', 12, 0, 100, 5, 0, 0, 27865, 0, 'Razuvious SAY_PATHETIC'),
-(351036, 5, 0, 'Start doing something before I replace that target dummy with you and begin a warm up session of my own!', 12, 0, 100, 5, 0, 0, 13136, 0, 'Razuvious SAY_TARGET_DUMMY');
--- Death Knight Understudy
-DELETE FROM `creature_text` WHERE `CreatureID` = 29941;
-INSERT INTO `creature_text` (`CreatureID`, `GroupID`, `ID`, `Text`, `Type`, `Language`, `Probability`, `Emote`, `Duration`, `Sound`, `BroadcastTextId`, `TextRange`, `comment`) VALUES
-(29941, 0, 0, 'Sir, student requests that you beat him for his lack of understanding!', 12, 0, 100, 1, 0, 0, 13140, 0, 'Death Knight Understudy SAY_BEAT_ME'),
-(29941, 0, 1, 'I am unworthy, master!', 12, 0, 100, 1, 0, 0, 13138, 0, 'Death Knight Understudy SAY_UNWORTHY'),
-(29941, 0, 2, 'Student is worthless, master! Student apologizes for his deficiency!', 12, 0, 100, 1, 0, 0, 13137, 0, 'Death Knight Understudy SAY_WORTHLESS');
 
 -- Gothik Visuals
 -- re-do spawn locations for triggers
