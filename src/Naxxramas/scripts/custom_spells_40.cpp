@@ -348,7 +348,6 @@ class spell_noth_curse_of_the_plaguebringer_aura_40 : public AuraScript
     }
 };
 
-//
 class spell_razuvious_disrupting_shout_40 : public SpellScript
 {
     PrepareSpellScript(spell_razuvious_disrupting_shout_40);
@@ -384,6 +383,7 @@ class spell_razuvious_disrupting_shout_40 : public SpellScript
     }
 };
 
+// 28450 Unholy Staff
 class spell_unholy_staff_arcane_explosion_40 : public SpellScript
 {
     PrepareSpellScript(spell_unholy_staff_arcane_explosion_40);
@@ -414,6 +414,7 @@ class spell_unholy_staff_arcane_explosion_40 : public SpellScript
     }
 };
 
+// 28153 Disease cloud, Sewage Slime
 class spell_disease_cloud_damage_40 : public SpellScript
 {
     PrepareSpellScript(spell_disease_cloud_damage_40);
@@ -434,6 +435,7 @@ class spell_disease_cloud_damage_40 : public SpellScript
     }
 };
 
+// 28135 Static Field
 class spell_feugen_static_field_40 : public SpellScript
 {
     PrepareSpellScript(spell_feugen_static_field_40);
