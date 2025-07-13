@@ -143,14 +143,18 @@ public:
 
         void SpellHit(Unit* caster, SpellInfo const* spell) override
         {
-            if (spell->Id == RAID_MODE(SPELL_WIDOWS_EMBRACE, SPELL_MINION_WIDOWS_EMBRACE, SPELL_WIDOWS_EMBRACE, SPELL_MINION_WIDOWS_EMBRACE))
+            if (spell->Id == SPELL_WIDOWS_EMBRACE)
             {
-                Talk(EMOTE_WIDOWS_EMBRACE);
-                scheduler.RescheduleGroup(GROUP_FRENZY, 1min);
-                me->RemoveAurasDueToSpell(SPELL_FRENZY);
-                instance->SetData(DATA_FRENZY_REMOVED, 0);
-                if (Is25ManRaid())
-                    caster->KillSelf();
+                Talk(EMOTE_WIDOWS_EMBRACE); // %s is affected by Widow's Embrace!
+                if (me->HasAura(SPELL_FRENZY))
+                {
+                    scheduler.RescheduleGroup(GROUP_FRENZY, 1min); // You must sacrifice the worshiper AFTER she enrages if you want to stop her for the full 60 seconds.
+                    me->RemoveAurasDueToSpell(SPELL_FRENZY);
+                    instance->SetData(DATA_FRENZY_REMOVED, 0); // achievement
+                }
+                else
+                    scheduler.RescheduleGroup(GROUP_FRENZY, 30s); //  If you sacrifice the Worshiper before the enrage, it will merely delay the enrage for 30 seconds.
+                caster->KillSelf();
             }
         }
 
