@@ -4934,6 +4934,10 @@ INSERT INTO `creature_template_resistance` (`Resistance`, `CreatureID`, `School`
 (5,    16157,   2), (5,    16157,   3), (5,    16157,   4), (5,    16157,   5), (5,    16157,   6),
 (5,    351015,  2), (5,    351015,  3), (5,    351015,  4), (5,    351015,  5), (5,    351015,  6);
 
+-- Naxxramas Worshipper
+DELETE FROM `creature_template_spell` WHERE `CreatureID` = 351081;
+INSERT INTO `creature_template_spell` (`CreatureID`, `Index`, `Spell`, `VerifiedBuild`) VALUES (351081, 3, 28732, 12340);
+
 -- Doom Touched Warrior
 UPDATE `creature_template` SET `speed_walk` = 1.0, `speed_run` = 1.42857, `DamageModifier` = 17.1, `ArmorModifier` = 1.15, `RangeAttackTime` = 1265 WHERE `entry`=16157;
 
