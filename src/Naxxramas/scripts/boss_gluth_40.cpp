@@ -268,7 +268,7 @@ public:
                         events.Repeat(20s);
                     else
                         events.Repeat(100ms);
-                    break;    
+                    break;
             }
             DoMeleeAttackIfReady();
         }
