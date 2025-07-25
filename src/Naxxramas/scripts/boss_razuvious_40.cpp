@@ -35,7 +35,7 @@ enum Spells
 {
     SPELL_UNBALANCING_STRIKE        = 26613,
     // SPELL_DISRUPTING_SHOUT       = 29107, // 55543
-	SPELL_MANA_BURN                 = 26046, // Alternative for Disrupting shout.
+    SPELL_MANA_BURN                 = 26046, // Alternative for Disrupting shout.
     SPELL_JAGGED_KNIFE              = 55550,
     SPELL_HOPELESS                  = 29125,
     SPELL_TAUNT                     = 29060
