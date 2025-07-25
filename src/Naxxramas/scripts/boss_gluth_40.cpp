@@ -193,7 +193,7 @@ public:
                     if (me->CastCustomSpell(me, SPELL_ENRAGE_10, &bp1, &bp2, 0, true) == SPELL_CAST_OK)
                         events.Repeat(10s);
                     else
-                        events.Repeat(100ms);    
+                        events.Repeat(100ms);
                     break;
                 }
                 case EVENT_MORTAL_WOUND:
