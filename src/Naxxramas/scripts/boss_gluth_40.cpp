@@ -254,8 +254,8 @@ public:
                         me->CastCustomSpell(SPELL_CHOW_SEARCHER, SPELLVALUE_RADIUS_MOD, 20000, me, true);
                         Talk(EMOTE_DEVOURS_ALL);
 
-					    Unit* unitTarget = me->GetVictim();
-					    int32 damage = int32(unitTarget->GetHealth());
+                        Unit* unitTarget = me->GetVictim();
+                        int32 damage = int32(unitTarget->GetHealth());
                         Unit::DealDamage(me, unitTarget, damage);
 
                         uint32 hp = uint32(me->GetMaxHealth() * 0.05f);
