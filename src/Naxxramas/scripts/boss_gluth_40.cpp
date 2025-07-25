@@ -44,7 +44,7 @@ enum Events
     EVENT_BERSERK                       = 4,
     EVENT_SUMMON_ZOMBIE                 = 5,
     EVENT_CAN_EAT_ZOMBIE                = 6,
-	EVENT_TERRIFYING_ROAR               = 7
+    EVENT_TERRIFYING_ROAR               = 7
 };
 
 enum Misc
