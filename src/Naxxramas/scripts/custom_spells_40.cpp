@@ -334,7 +334,7 @@ class spell_razuvious_disrupting_shout_40 : public SpellScript
 {
     PrepareSpellScript(spell_razuvious_disrupting_shout_40);
 
-    void CalculateDamage(SpellEffIndex effIndex)
+    void CalculateDamage(SpellEffIndex /*effIndex*/)
     {
         Unit* caster = GetCaster();
         if (!caster || (caster->GetMap()->GetDifficulty() != RAID_DIFFICULTY_10MAN_HEROIC))
