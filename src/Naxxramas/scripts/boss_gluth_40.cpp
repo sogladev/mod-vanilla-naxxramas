@@ -256,7 +256,7 @@ public:
 
 					    Unit* unitTarget = me->GetVictim();
 					    int32 damage = int32(unitTarget->GetHealth());
-						Unit::DealDamage(me, unitTarget, damage);
+                        Unit::DealDamage(me, unitTarget, damage);
 
                         uint32 hp = uint32(me->GetMaxHealth() * 0.05f);
                         me->SetHealth(me->GetHealth() + hp);
