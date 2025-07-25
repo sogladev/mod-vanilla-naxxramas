@@ -115,7 +115,7 @@ public:
                 }
             }, 7s, 15s);
 
-            ScheduleTimedEvent(8s, 18s, [&] {              
+            ScheduleTimedEvent(8s, 18s, [&] {
                 if (Unit* target = SelectTarget(SelectTargetMethod::Random, 0))
                 {
                     int32 bp0 = RAIN_OF_FIRE_BP0;
