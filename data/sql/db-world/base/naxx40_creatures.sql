@@ -5181,7 +5181,7 @@ INSERT INTO `creature_text` (`CreatureID`, `GroupID`, `ID`, `Text`, `Type`, `Lan
 
 -- Gothik Visuals
 -- re-do spawn locations for triggers
-SET @CGUID := 362100;
+SET @CGUID := @GUID + 1100;
 DELETE FROM `creature` WHERE `id1`= @CENTRY+47 AND `guid` BETWEEN @CGUID AND @CGUID+14;
 INSERT INTO `creature` (`guid`, `id1`, `id2`, `id3`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`, 
 `wander_distance`, `currentwaypoint`, `curhealth`, `curmana`, `MovementType`, `npcflag`, `unit_flags`, `dynamicflags`, `ScriptName`, `VerifiedBuild`, `CreateObject`, `Comment`) VALUES
