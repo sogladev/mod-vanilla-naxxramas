@@ -697,7 +697,7 @@ public:
             case EVENT_KELTHUZAD_LICH_KING_TALK1:
             {
                 if (GetBossState(BOSS_KELTHUZAD) == DONE)
-					break;
+                    break;
 
                 CreatureTalk(DATA_KELTHUZAD_BOSS, SAY_SAPP_DIALOG1);
                 return _events.ScheduleEvent(EVENT_KELTHUZAD_LICH_KING_TALK2, 10s);
