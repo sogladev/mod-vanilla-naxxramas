@@ -667,7 +667,12 @@ public:
                 _horsemanAchievement = false;
                 break;
             case EVENT_KELTHUZAD_WING_TAUNT:
+            {
+                if (GetBossState(BOSS_KELTHUZAD) == DONE)
+                    break;
+
                 return CreatureTalk(DATA_KELTHUZAD_BOSS, _currentWingTaunt++);
+            }
             case EVENT_HORSEMEN_INTRO1:
                 CreatureTalk(DATA_THANE_KORTHAZZ_BOSS, SAY_HORSEMEN_DIALOG1);
                 return _events.ScheduleEvent(EVENT_HORSEMEN_INTRO2, 4500ms);
