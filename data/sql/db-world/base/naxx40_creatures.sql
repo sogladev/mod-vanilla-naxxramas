@@ -1,3 +1,4 @@
+-- IMPORTANT: If you change @CENTRY here, also update it in all related SQL files (naxx40_creatures.sql and naxx40_spells.sql)
 SET @CENTRY    := 351000;  -- creature entry
 SET @GUID      := 361000;  -- creature guid
 SET @WPID      := 3610000; -- way point id
