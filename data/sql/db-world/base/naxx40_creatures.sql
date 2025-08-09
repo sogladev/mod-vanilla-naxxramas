@@ -145,7 +145,7 @@ INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_
 (@CENTRY+11, 0, 0, 0, 9, 0, 100, 0, 5000, 8000, 14000, 18000, 0, 15, 11, 30043, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0,       'Carrion Spinner - Within 0-15 Range - Cast Poison Spray (Naxx 40)'),
 (@CENTRY+11, 0, 1, 0, 0, 0, 100, 0, 9000, 16000, 18000, 21000, 0, 0, 11, 28434, 0, 0, 0, 0, 0, 5, 40, 0, 0, 0, 0, 0, 0, 0,      'Carrion Spinner - Within 0-40 Range - Cast Spider Web (Naxx 40)'),
 (@CENTRY+12, 0, 0, 0, 0, 0, 100, 0, 5000, 15000, 20000, 40000, 0, 0, 11, 28431, 0, 0, 0, 0, 0, 5, 40, 1, 0, 0, 0, 0, 0, 0,      'Venom Stalker - In Combat - Cast Poison Charge (Naxx 40)'),
-(@CENTRY+14, 0, 0, 0, 9, 0, 100, 0, 2000, 5000, 6000, 9000, 0, 5, 11, 19632, 0, 0, 0, 0, 0, 5, 5, 0, 0, 0, 0, 0, 0, 0,          'Crypt Reaver - Within 0-5 Range - Cast Cleave (Naxx 40)'),
+(@CENTRY+14, 0, 0, 0, 9, 0, 100, 0, 2000, 5000, 6000, 9000, 0, 5, 11, 19632, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0,          'Crypt Reaver - Within 0-5 Range - Cast Cleave (Naxx 40)'),
 (@CENTRY+14, 0, 1, 0, 2, 0, 100, 0, 0, 50, 120000, 120000, 0, 0, 11, 8269, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0,            'Crypt Reaver - Between 0-50% Health - Cast Frenzy (Naxx 40)'),
 (@CENTRY+14, 0, 2, 0, 2, 0, 100, 0, 0, 50, 120000, 120000, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0,                'Crypt Reaver - Between 0-50% Health - Say Line 0 (Naxx 40)'),
 (@CENTRY+15, 0, 0, 0, 0, 0, 75, 0, 2000, 2000, 4000, 4000, 0, 0, 11, 28614, 0, 0, 0, 0, 0, 5, 45, 0, 0, 0, 0, 0, 0, 0,          'Tomb Horror - Within 0-45 Range - Cast Pointy Spike (Naxx 40)'),
