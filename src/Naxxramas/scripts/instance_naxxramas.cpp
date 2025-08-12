@@ -667,7 +667,12 @@ public:
                 _horsemanAchievement = false;
                 break;
             case EVENT_KELTHUZAD_WING_TAUNT:
+            {
+                if (GetBossState(BOSS_KELTHUZAD) == DONE)
+                    break;
+
                 return CreatureTalk(DATA_KELTHUZAD_BOSS, _currentWingTaunt++);
+            }
             case EVENT_HORSEMEN_INTRO1:
                 CreatureTalk(DATA_THANE_KORTHAZZ_BOSS, SAY_HORSEMEN_DIALOG1);
                 return _events.ScheduleEvent(EVENT_HORSEMEN_INTRO2, 4500ms);
@@ -695,8 +700,13 @@ public:
                 SetGoState(DATA_SAPPHIRON_GATE, GO_STATE_ACTIVE);
                 return _events.ScheduleEvent(EVENT_KELTHUZAD_LICH_KING_TALK1, 5s);
             case EVENT_KELTHUZAD_LICH_KING_TALK1:
+            {
+                if (GetBossState(BOSS_KELTHUZAD) == DONE)
+                    break;
+
                 CreatureTalk(DATA_KELTHUZAD_BOSS, SAY_SAPP_DIALOG1);
                 return _events.ScheduleEvent(EVENT_KELTHUZAD_LICH_KING_TALK2, 10s);
+            }
             case EVENT_KELTHUZAD_LICH_KING_TALK2:
                 CreatureTalk(DATA_LICH_KING_BOSS, SAY_SAPP_DIALOG2_LICH);
                 return _events.ScheduleEvent(EVENT_KELTHUZAD_LICH_KING_TALK3, 14s);
