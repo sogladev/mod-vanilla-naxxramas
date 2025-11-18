@@ -253,7 +253,7 @@ public:
                         }
                     }
                     reviveTimer = 0;
-                    events.ScheduleEvent(EVENT_THADDIUS_INIT, 750);
+                    events.ScheduleEvent(EVENT_THADDIUS_INIT, 750ms);
                 }
                 return;
             }
@@ -404,19 +404,19 @@ public:
             }
             if (me->GetEntry() == NPC_STALAGG_40)
             {
-                events.ScheduleEvent(EVENT_MINION_POWER_SURGE, 10000);
+                events.ScheduleEvent(EVENT_MINION_POWER_SURGE, 10s);
                 Talk(SAY_STAL_AGGRO);
             }
             else
             {
-                events.ScheduleEvent(EVENT_MINION_STATIC_FIELD, 5000);
+                events.ScheduleEvent(EVENT_MINION_STATIC_FIELD, 5s);
                 Talk(SAY_FEUG_AGGRO);
             }
-            events.ScheduleEvent(EVENT_MINION_CHECK_DISTANCE, 5000);
+            events.ScheduleEvent(EVENT_MINION_CHECK_DISTANCE, 5s);
 
             if (me->GetEntry() == NPC_STALAGG_40) // This event needs synchronisation, called for stalagg only
             {
-                events.ScheduleEvent(EVENT_MINION_MAGNETIC_PULL, 20000);
+                events.ScheduleEvent(EVENT_MINION_MAGNETIC_PULL, 20s);
             }
 
             if (Creature* cr = me->GetInstanceScript()->GetCreature(DATA_THADDIUS_BOSS))
@@ -704,16 +704,20 @@ class at_thaddius_entrance : public AreaTriggerScript
 public:
     at_thaddius_entrance() : AreaTriggerScript("at_thaddius_entrance") { }
 
+    bool _thaddiusIntro = false;
+
     bool OnTrigger(Player* player, AreaTrigger const* /*areaTrigger*/) override
     {
         InstanceScript* instance = player->GetInstanceScript();
-        if (!instance || instance->GetData(DATA_THADDIUS_INTRO) || instance->GetBossState(BOSS_THADDIUS) == DONE)
+        if (!instance || _thaddiusIntro == true || instance->GetBossState(BOSS_THADDIUS) == DONE)
             return true;
 
         if (Creature* thaddius = instance->GetCreature(DATA_THADDIUS_BOSS))
+        {
             thaddius->AI()->Talk(SAY_GREET);
+            _thaddiusIntro = true;
+        }
 
-        instance->SetData(DATA_THADDIUS_INTRO, 1);
         return true;
     }
 };

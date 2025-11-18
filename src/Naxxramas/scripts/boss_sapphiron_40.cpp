@@ -94,7 +94,7 @@ private:
         return (entry == NPC_SAPPHIRON_40);
     }
 public:
-    boss_sapphiron_40() : CreatureScript("boss_sapphiron") { }
+    boss_sapphiron_40() : CreatureScript("boss_sapphiron_40") { }
 
     CreatureAI* GetAI(Creature* pCreature) const override
     {
@@ -175,10 +175,7 @@ public:
         {
             BossAI::JustEngagedWith(who);
             EnterCombatSelfFunction();
-            if (isNaxx40Sapp(me->GetEntry()))
-                me->CastSpell(me, SPELL_FROST_AURA, true);
-            else
-                me->CastSpell(me, RAID_MODE(SPELL_FROST_AURA_10, SPELL_FROST_AURA_25), true);
+            me->CastSpell(me, SPELL_FROST_AURA, true);
             events.ScheduleEvent(EVENT_BERSERK, 15min);
             events.ScheduleEvent(EVENT_CLEAVE, 5s);
             events.ScheduleEvent(EVENT_TAIL_SWEEP, 10s);
@@ -309,7 +306,7 @@ public:
                         {
                             cr->GetMotionMaster()->MoveRandom(40);
                         }
-                        events.RepeatEvent(RAID_MODE(8000, 6500, 6500, 6500));
+                        events.Repeat(RAID_MODE(8000ms, 6500ms, 6500ms, 6500ms));
                         return;
                     }
                 case EVENT_FLIGHT_START:
@@ -378,7 +375,7 @@ public:
                             blockList.push_back((*itr)->GetGUID());
                             currentTarget = (*itr)->GetGUID();
                             --iceboltCount;
-                            events.ScheduleEvent(EVENT_FLIGHT_ICEBOLT, (me->GetExactDist(*itr) / 13.0f)*IN_MILLISECONDS);
+                            events.ScheduleEvent(EVENT_FLIGHT_ICEBOLT, Seconds(uint32(me->GetExactDist(*itr) / 13.0f)));
                         }
                         else
                         {
