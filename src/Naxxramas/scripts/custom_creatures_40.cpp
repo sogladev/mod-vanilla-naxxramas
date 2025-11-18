@@ -1,10 +1,9 @@
-#include "Player.h"
 #include "ScriptMgr.h"
 #include "ScriptedCreature.h"
 #include "SpellAuraEffects.h"
 #include "SpellScript.h"
+#include "Player.h"
 #include "naxxramas.h"
-#include "VanillaNaxxramas.h"
 
 class npc_naxx40_area_trigger : public CreatureScript
 {
@@ -36,20 +35,22 @@ public:
             {
                 if (Player* player = who->ToPlayer())
                 {
-                    if (!sVanillaNaxxramas->requireAttunement || isAttuned(player))
+                    if (isAttuned(player))
                     {
                         player->SetRaidDifficulty(RAID_DIFFICULTY_10MAN_HEROIC);
                         player->TeleportTo(533, 3005.51f, -3434.64f, 304.195f, 6.2831f);
                     }
                 }
+
             }
             else if (who && me->GetDistance2d(who) < 20.0f)
             {
                 if (Player* player = who->ToPlayer())
                 {
-                    if (!sVanillaNaxxramas->requireAttunement || isAttuned(player))
+                    if (isAttuned(player))
                     {
-                        if (GameObject* door = me->FindNearestGameObject(GO_STRATH_GATE_40, 100.0f))
+                        GameObject* door = me->FindNearestGameObject(GO_STRATH_GATE_40, 100.0f);
+                        if (door)
                         {
                             door->SetGoState(GO_STATE_ACTIVE);
                         }
