@@ -7,24 +7,12 @@
 
 class npc_naxx40_area_trigger : public CreatureScript
 {
-private:
-    static bool isAttuned(Player* player)
-    {
-        if (player->GetQuestStatus(NAXX40_ATTUNEMENT_1) == QUEST_STATUS_REWARDED)
-            return true;
-        if (player->GetQuestStatus(NAXX40_ATTUNEMENT_2) == QUEST_STATUS_REWARDED)
-            return true;
-        if (player->GetQuestStatus(NAXX40_ATTUNEMENT_3) == QUEST_STATUS_REWARDED)
-            return true;
-        return false;
-    }
-
 public:
     npc_naxx40_area_trigger() : CreatureScript("npc_naxx40_area_trigger") {}
 
     struct npc_naxx40_area_triggerAI: public ScriptedAI
     {
-        npc_naxx40_area_triggerAI(Creature* creature) : ScriptedAI(creature)
+        explicit npc_naxx40_area_triggerAI(Creature* creature) : ScriptedAI(creature)
         {
             me->SetDisplayId(11686); // Invisible
         }
@@ -35,7 +23,7 @@ public:
             {
                 if (Player* player = who->ToPlayer())
                 {
-                    if (isAttuned(player))
+                    if (IsAttuned(player))
                     {
                         player->SetRaidDifficulty(RAID_DIFFICULTY_10MAN_HEROIC);
                         player->TeleportTo(533, 3005.51f, -3434.64f, 304.195f, 6.2831f);
@@ -46,16 +34,9 @@ public:
             else if (who && me->GetDistance2d(who) < 20.0f)
             {
                 if (Player* player = who->ToPlayer())
-                {
-                    if (isAttuned(player))
-                    {
-                        GameObject* door = me->FindNearestGameObject(GO_STRATH_GATE_40, 100.0f);
-                        if (door)
-                        {
+                    if (IsAttuned(player))
+                        if (GameObject* door = me->FindNearestGameObject(GO_STRATH_GATE_40, 100.0f))
                             door->SetGoState(GO_STATE_ACTIVE);
-                        }
-                    }
-                }
             }
         }
     };

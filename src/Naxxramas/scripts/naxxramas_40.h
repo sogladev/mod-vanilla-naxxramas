@@ -18,6 +18,8 @@
 #ifndef DEF_NAXXRAMAS_40_H
 #define DEF_NAXXRAMAS_40_H
 
+class Player;
+
 enum NX40Spells
 {
     // Anub'Rekhan
@@ -159,5 +161,7 @@ enum NX40AttunementQuests
     NAXX40_ATTUNEMENT_3  = 9123,
     NAXX40_ENTRANCE_FLAG = 9378
 };
+
+bool IsAttuned(Player* player);
 
 #endif

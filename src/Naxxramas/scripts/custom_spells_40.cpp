@@ -335,7 +335,7 @@ class spell_razuvious_disrupting_shout_40 : public SpellScript
 {
     PrepareSpellScript(spell_razuvious_disrupting_shout_40);
 
-    void CalculateDamage(SpellEffIndex effIndex)
+    void CalculateDamage(SpellEffIndex /*effIndex*/)
     {
         Unit* caster = GetCaster();
         if (!caster || (caster->GetMap()->GetDifficulty() != RAID_DIFFICULTY_10MAN_HEROIC))
@@ -433,7 +433,7 @@ class spell_loatheb_corrupted_mind_40 : public SpellScript
 {
     PrepareSpellScript(spell_loatheb_corrupted_mind_40);
 
-    void HandleEffect(SpellEffIndex effIndex)
+    void HandleEffect(SpellEffIndex /*effIndex*/)
     {
         if (Unit* caster = GetCaster())
         {
@@ -525,7 +525,6 @@ class isAllowedToCastSpell : public SpellScript
         OnCheckCast += SpellCheckCastFn(isAllowedToCastSpell::CheckCorruptedMind);
     }
 };
-
 
 void AddSC_custom_spells_40()
 {
