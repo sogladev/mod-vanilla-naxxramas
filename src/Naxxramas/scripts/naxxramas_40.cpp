@@ -14,9 +14,5 @@ bool IsAttuned(Player const& player)
 
 bool CanEnterNaxx40(Player const& player)
 {
-    if (IsAttuned(player))
-        return true;
-    else if (!sVanillaNaxxramas->requireAttunement)
-        return true;
-    return false;
+    return IsAttuned(player) || !sVanillaNaxxramas->requireAttunement;
 }
