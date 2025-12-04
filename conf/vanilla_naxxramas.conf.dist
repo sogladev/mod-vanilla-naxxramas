@@ -6,20 +6,23 @@
 
 #
 #    VanillaNaxxramas.Naxxramas.RequireNaxxStrathEntrance
-#        Description: Requires Players to first enter through Stratholme entrance
-#                     before being able to use teleporter like MC, BWL shortcuts
-#        Default:   1 - Enabled
-#                   0 - Disabled
+#        Description: If enabled, this will require players to first enter Naxx 40 through the original beta entrance in the back of Stratholme,
+#                     before being able to use the teleportation crystal in EPL. This is consistent behavior with other Vanilla raids (MC, BWL).
+#                     If disabled, players can enter Naxx 40 through the crystal as soon as they are attuned and they have reached the correct
+#                     progression level - no Stratholme run will be required.
+#        Default: 0 - Disabled
+#                 1 - Enabled
 #
 
-VanillaNaxxramas.Naxxramas.RequireNaxxStrathEntrance = 1
+VanillaNaxxramas.Naxxramas.RequireNaxxStrathEntrance = 0
 
 #
 #    VanillaNaxxramas.Naxxramas.RequireAttunement
-#        Description: Requires Players to complete the attunement quests from Light's Hope Chapel
-#                     Note that disabling this requirement requires optional/SkipAttunement DB changes to work as expected
+#        Description: If enabled, this requires players to have the required AD rep (Honored+)
+#                     and complete the attunement quests from Light's Hope Chapel to enter the instance.
+#                     If disabled, the optional SQL files in data/optional/SkipAttunement/ need to be applied to the database to fully skip attunement.
 #        Default:   1 - Enabled
-#                   0 - Disabled (Requires optional/SkipAttunement DB changes)
+#                   0 - Disabled (Requires optional SkipAttunement DB changes to work as expected)
 #
 
 VanillaNaxxramas.Naxxramas.RequireAttunement = 1

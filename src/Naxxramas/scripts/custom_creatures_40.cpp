@@ -19,24 +19,24 @@ public:
 
         void MoveInLineOfSight(Unit* who) override
         {
-            if (who && me->GetDistance2d(who) < 5.0f)
+            if (!who)
+                return;
+            Player* player = who->ToPlayer();
+            if (!player)
+                return;
+            if (me->GetDistance2d(who) < 5.0f)
             {
-                if (Player* player = who->ToPlayer())
+                if (CanEnterNaxx40(player))
                 {
-                    if (IsAttuned(player))
-                    {
-                        player->SetRaidDifficulty(RAID_DIFFICULTY_10MAN_HEROIC);
-                        player->TeleportTo(533, 3005.51f, -3434.64f, 304.195f, 6.2831f);
-                    }
+                    player->SetRaidDifficulty(RAID_DIFFICULTY_10MAN_HEROIC);
+                    player->TeleportTo(533, 3005.51f, -3434.64f, 304.195f, 6.2831f);
                 }
-
             }
-            else if (who && me->GetDistance2d(who) < 20.0f)
+            else if (me->GetDistance2d(who) < 20.0f)
             {
-                if (Player* player = who->ToPlayer())
-                    if (IsAttuned(player))
-                        if (GameObject* door = me->FindNearestGameObject(GO_STRATH_GATE_40, 100.0f))
-                            door->SetGoState(GO_STATE_ACTIVE);
+                if (CanEnterNaxx40(player))
+                    if (GameObject* door = me->FindNearestGameObject(GO_STRATH_GATE_40, 100.0f))
+                        door->SetGoState(GO_STATE_ACTIVE);
             }
         }
     };

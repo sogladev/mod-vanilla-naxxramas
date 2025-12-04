@@ -22,13 +22,12 @@ public:
 
     bool OnGossipHello(Player* player, GameObject* /*go*/) override
     {
-        if ((!sVanillaNaxxramas->requireNaxxStrath || player->GetQuestStatus(NAXX40_ENTRANCE_FLAG) == QUEST_STATUS_REWARDED))
+        bool meetNaxx40TeleportSkipRequirement = !sVanillaNaxxramas->requireNaxxStrath
+            || (player->GetQuestStatus(NAXX40_ENTRANCE_FLAG) == QUEST_STATUS_REWARDED);
+        if (meetNaxx40TeleportSkipRequirement && CanEnterNaxx40(player))
         {
-            if (IsAttuned(player) || !sVanillaNaxxramas->requireAttunement)
-            {
-                player->SetRaidDifficulty(RAID_DIFFICULTY_10MAN_HEROIC);
-                player->TeleportTo(533, 3005.51f, -3434.64f, 304.195f, 6.2831f);
-            }
+            player->SetRaidDifficulty(RAID_DIFFICULTY_10MAN_HEROIC);
+            player->TeleportTo(533, 3005.51f, -3434.64f, 304.195f, 6.2831f);
         }
         return true;
     }
