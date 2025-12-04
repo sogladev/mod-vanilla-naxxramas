@@ -162,6 +162,7 @@ enum NX40AttunementQuests
     NAXX40_ENTRANCE_FLAG = 9378
 };
 
-bool IsAttuned(Player* player);
+bool IsAttuned(Player const& player);
+bool CanEnterNaxx40(Player const& player);
 
 #endif
