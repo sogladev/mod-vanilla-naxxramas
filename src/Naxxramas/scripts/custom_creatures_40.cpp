@@ -7,36 +7,55 @@
 
 class npc_naxx40_area_trigger : public CreatureScript
 {
+private:
+    static bool isAttuned(Player* player)
+    {
+        if (player->GetQuestStatus(NAXX40_ATTUNEMENT_1) == QUEST_STATUS_REWARDED)
+            return true;
+        if (player->GetQuestStatus(NAXX40_ATTUNEMENT_2) == QUEST_STATUS_REWARDED)
+            return true;
+        if (player->GetQuestStatus(NAXX40_ATTUNEMENT_3) == QUEST_STATUS_REWARDED)
+            return true;
+        return false;
+    }
+
 public:
     npc_naxx40_area_trigger() : CreatureScript("npc_naxx40_area_trigger") {}
 
     struct npc_naxx40_area_triggerAI: public ScriptedAI
     {
-        explicit npc_naxx40_area_triggerAI(Creature* creature) : ScriptedAI(creature)
+        npc_naxx40_area_triggerAI(Creature* creature) : ScriptedAI(creature)
         {
             me->SetDisplayId(11686); // Invisible
         }
 
         void MoveInLineOfSight(Unit* who) override
         {
-            if (!who)
-                return;
-            Player* player = who->ToPlayer();
-            if (!player)
-                return;
-            if (me->GetDistance2d(who) < 5.0f)
+            if (who && me->GetDistance2d(who) < 5.0f)
             {
-                if (CanEnterNaxx40(player))
+                if (Player* player = who->ToPlayer())
                 {
-                    player->SetRaidDifficulty(RAID_DIFFICULTY_10MAN_HEROIC);
-                    player->TeleportTo(533, 3005.51f, -3434.64f, 304.195f, 6.2831f);
+                    if (isAttuned(player))
+                    {
+                        player->SetRaidDifficulty(RAID_DIFFICULTY_10MAN_HEROIC);
+                        player->TeleportTo(533, 3005.51f, -3434.64f, 304.195f, 6.2831f);
+                    }
                 }
+
             }
-            else if (me->GetDistance2d(who) < 20.0f)
+            else if (who && me->GetDistance2d(who) < 20.0f)
             {
-                if (CanEnterNaxx40(player))
-                    if (GameObject* door = me->FindNearestGameObject(GO_STRATH_GATE_40, 100.0f))
-                        door->SetGoState(GO_STATE_ACTIVE);
+                if (Player* player = who->ToPlayer())
+                {
+                    if (isAttuned(player))
+                    {
+                        GameObject* door = me->FindNearestGameObject(GO_STRATH_GATE_40, 100.0f);
+                        if (door)
+                        {
+                            door->SetGoState(GO_STATE_ACTIVE);
+                        }
+                    }
+                }
             }
         }
     };
