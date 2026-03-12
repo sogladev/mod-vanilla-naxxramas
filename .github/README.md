@@ -1,13 +1,13 @@
 # AzerothCore Module Vanilla Naxxramas
 
-- Latest build status with azerothcore:
+- Latest build status with AzerothCore:
 
 [![Build Status](
 https://github.com/sogladev/mod-vanilla-naxxramas/actions/workflows/core-build.yml/badge.svg?branch=master&event=push)](https://github.com/sogladev/mod-vanilla-naxxramas)
 
 This is a module for [AzerothCore](http://www.azerothcore.org) that reintroduces the vanilla version of Naxxramas back to 335.
 
-This project is constrained by the 335 client, therefore vanilla naxx cannot be fully restored without a client-side patch. To ensure compatibility, no client-side change will be necessary to use this module. This also means there will be inaccuracies
+This project is constrained by the 335 client, therefore vanilla naxx cannot be fully restored without a client-side patch. ~~To ensure compatibility, no client-side change will be necessary to use this module. This also means there will be inaccuracies~~ A client patch is required to update `MapDifficulty.dbc` to avoid client crashes when logging into the map.`
 
 If you encounter any issues or have suggestions, please post them as Github issues so that we can resolve them and improve this project.
 
@@ -20,40 +20,29 @@ If you encounter any issues or have suggestions, please post them as Github issu
 * Add a shortcut to Naxxramas via a teleporter gameobject in EPL located in the closest Ziggurath to the Cauldron placed at the original Naxx teleporter location. An optional patch to restore the original entrance in EPL is added in `/optional`
 * Power level adjustments to vanilla values. [Feedback wanted](https://github.com/sogladev/mod-vanilla-naxxramas/discussions/58)
 
-![See Wiki for a summary of changes with pictures](https://github.com/sogladev/mod-vanilla-naxxramas/wiki/02-Summary-of-changes-with-pictures)
+[See Wiki for a summary of changes with pictures](https://github.com/sogladev/mod-vanilla-naxxramas/wiki/02-Summary-of-changes-with-pictures)
 
-![See Wiki for a full detailed list of changes](https://github.com/sogladev/mod-vanilla-naxxramas/wiki/04-List-of-changes-in-detail)
+[See Wiki for a full detailed list of changes](https://github.com/sogladev/mod-vanilla-naxxramas/wiki/04-List-of-changes-in-detail)
 
 https://github.com/sogladev/mod-vanilla-naxxramas/assets/46423958/2b56a239-001a-442a-aad4-df3717b21e9a
 
 ## How to install
 
-![See Wiki for installation instructions](https://github.com/sogladev/mod-vanilla-naxxramas/wiki/03-How-to-Install)
+[See Wiki for installation instructions](https://github.com/sogladev/mod-vanilla-naxxramas/wiki/03-How-to-Install)
 
 ## Known Issues
 
 Some are due to being limited by 335a client. Some of these could be fixed by client-side patch
 
 - [ ] Requires `Expansion = 2` in your `worldserver.conf`. Similarly, players must have an account with expansion set to 2. For details see https://github.com/sogladev/mod-vanilla-naxxramas/issues/17
-- [ ] Plaguewood Entrance was replaced with a Cauldron. The original entrance can be reintroduced with optional/PlaguewoodHub
+- [ ] Plaguewood Entrance was replaced with a Cauldron. The original entrance can be reintroduced with `optional/PlaguewoodHub/`
 - [ ] Icons are different for some spells e.g. Mark of Mograine, Loatheb's Deathbloom
 - [ ] Mechanics: Sapphiron's frost aura should tick every 1s instead of 2s, Blaumeux' Void Zone range should be 3yd instead of 2yd
 - [ ] Some models like Deathknight's use wrath death knight starter gear instead of the original armor set
 
-Not all vanilla mechanics are yet implemented yet due to scripts being ported from Azerothcore's WOTLK Naxx
-
-- [ ] Maexxna Web Wrap should stick to the wall
-
-Other issues are due to potential upstream bugs
-
-* Thaddius not moving
-* OOC RP of Heigans Eye Stalk
-
-![See Wiki for a list of Work To Be Done](https://github.com/sogladev/mod-vanilla-naxxramas/wiki/05-Work-To-Be-Done)
-
 ## Breaking
 
-The same instance is used for both the vanilla, 10 and 25 man difficulties. This means that same instance/boss/spell script(s) are used. Changes to Azerothcore's Naxxramas may cause breakage. So far only the Naxxramas instance script and Sapphiron are shared.
+The same instance is used for both the vanilla, 10 and 25 man difficulties. This means that same instance/boss/spell script(s) are used. Changes to Azerothcore's Naxxramas may cause breakage.
 
 ## Module compatibility
 
