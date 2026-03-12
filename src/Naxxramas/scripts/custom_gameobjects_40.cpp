@@ -1,3 +1,4 @@
+#include "Chat.h"
 #include "ScriptMgr.h"
 #include "SpellScript.h"
 #include "GameObjectAI.h"
@@ -14,11 +15,6 @@ bool IsAttuned(Player const* player)
         return true;
     }
     return false;
-}
-
-bool CanEnterNaxx40(Player const* player)
-{
-    return IsAttuned(player) || !sVanillaNaxxramas->requireAttunement;
 }
 
 class gobject_naxx40_tele : public GameObjectScript
@@ -38,13 +34,30 @@ public:
 
     bool OnGossipHello(Player* player, GameObject* /*go*/) override
     {
-        bool meetNaxx40TeleportSkipRequirement = !sVanillaNaxxramas->requireNaxxStrath
-            || (player->GetQuestStatus(NAXX40_ENTRANCE_FLAG) == QUEST_STATUS_REWARDED);
-        if (meetNaxx40TeleportSkipRequirement && CanEnterNaxx40(player))
+        bool meetLevelRequirement = player->GetLevel() >= 51;
+        if (!meetLevelRequirement)
         {
-            player->SetRaidDifficulty(RAID_DIFFICULTY_10MAN_HEROIC);
-            player->TeleportTo(533, 3005.51f, -3434.64f, 304.195f, 6.2831f);
+            ChatHandler(player->GetSession()).PSendSysMessage("You must be level 51+, in a Raid group, and be attuned to Naxxramas to enter.");
+            return true;
         }
+
+        bool meetTeleportSkipRequirement = (player->GetQuestStatus(NAXX40_ENTRANCE_FLAG) == QUEST_STATUS_REWARDED) || !sVanillaNaxxramas->requireNaxxStrath;
+        if (!meetTeleportSkipRequirement)
+        {
+            ChatHandler(player->GetSession()).PSendSysMessage("You do not meet the requirements to use the skip.");
+            return true;
+        }
+
+        bool isAttuned = IsAttuned(player) || !sVanillaNaxxramas->requireAttunement;
+        if (!isAttuned)
+        {
+            ChatHandler(player->GetSession()).PSendSysMessage("You must be level 51+, in a Raid group, and be attuned to Naxxramas to enter.");
+            return true;
+        }
+
+        player->SetRaidDifficulty(RAID_DIFFICULTY_10MAN_HEROIC);
+        player->TeleportTo(533, 3005.51f, -3434.64f, 304.195f, 6.2831f);
+
         return true;
     }
 };
