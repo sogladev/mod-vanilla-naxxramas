@@ -31,7 +31,7 @@ UPDATE `gameobject` SET `spawnMask` = 7 WHERE `spawnMask` = 3 AND `map` = 533; -
 UPDATE `gameobject` SET `spawnMask` = 3 WHERE `id` IN (202278, 202277);        -- Orb of Naxxramas does not exist in classic
 
 DELETE FROM `dungeon_access_template` WHERE `id` = 122;
-INSERT INTO `dungeon_access_template` (`id`, `map_id`, `difficulty`, `min_level`, `max_level`, `min_avg_item_level`, `comment`) VALUES 
+INSERT INTO `dungeon_access_template` (`id`, `map_id`, `difficulty`, `min_level`, `max_level`, `min_avg_item_level`, `comment`) VALUES
 (122, 533, 2, 60, 0, 0, 'Naxxramas - 40man');
 
 -- Naxx40 Dungeon DBC entries (helps Autobalance work correctly)

@@ -1,2 +1,0 @@
--- Disable 25man achievements
--- https://wow.tools/dbc/?dbc=achievement_criteria&build=3.3.5.12340
