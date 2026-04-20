@@ -6,7 +6,7 @@ INSERT INTO `creature_template_addon` (`entry`, `path_id`, `mount`, `bytes1`, `b
 -- fix: archmage not sitting properly, wrong animation (sleep) to dead
 UPDATE `creature_template_addon` SET `bytes1` = 7, `bytes2` = 1 WHERE (`entry` = 16381);
 UPDATE `smart_scripts` SET `action_param1` = 7 WHERE (`entryorguid` = 16381) AND (`source_type` = 0) AND (`id` = 2);
-UPDATE `creature_template` SET `scale` = 1.2 WHERE (`entry` = 16381);
+UPDATE `creature_template_model` SET `DisplayScale` = 1.2 WHERE (`CreatureID` = 16381);
 
 -- CreatureText
 DELETE FROM `creature_text` WHERE `CreatureID`=16381;
