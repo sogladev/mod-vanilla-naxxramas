@@ -391,7 +391,17 @@ public:
                     {
                         me->CastSpell(me, SPELL_TELEPORT_LIVE, false);
                     }
-                    me->GetThreatMgr().resetAggro(NotOnSameSide(me));
+                    {
+                        NotOnSameSide predicate(me);
+                        for (ThreatReference* ref : me->GetThreatMgr().GetModifiableThreatList())
+                        {
+                            if (Unit* target = ref->GetVictim())
+                            {
+                                if (predicate(target))
+                                    ref->ScaleThreat(0.0f);
+                            }
+                        }
+                    }
                     if (Unit* pTarget = SelectTarget(SelectTargetMethod::MaxDistance, 0))
                     {
                         me->GetThreatMgr().AddThreat(pTarget, 100.0f);
