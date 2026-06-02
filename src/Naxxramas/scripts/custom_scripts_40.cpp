@@ -31,7 +31,11 @@ public:
         Difficulty diff = player->GetGroup() ? player->GetGroup()->GetDifficulty(true) : player->GetDifficulty(true);
         if (diff == RAID_DIFFICULTY_10MAN_HEROIC)
         {
-            player->SetRaidDifficulty(RAID_DIFFICULTY_10MAN_NORMAL);
+            Group* group = player->GetGroup();
+            if (group)
+                group->SetRaidDifficulty(RAID_DIFFICULTY_10MAN_NORMAL);
+            else
+                player->SetRaidDifficulty(RAID_DIFFICULTY_10MAN_NORMAL);
         }
         switch (areaTrigger->entry)
         {
