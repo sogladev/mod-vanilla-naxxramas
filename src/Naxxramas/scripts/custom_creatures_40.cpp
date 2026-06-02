@@ -37,7 +37,12 @@ public:
                 {
                     if (isAttuned(player))
                     {
-                        player->SetRaidDifficulty(RAID_DIFFICULTY_10MAN_HEROIC);
+                        Group* group = player->GetGroup();
+                        if (group)
+                            group->SetRaidDifficulty(RAID_DIFFICULTY_10MAN_HEROIC);
+                        else
+                            player->SetRaidDifficulty(RAID_DIFFICULTY_10MAN_HEROIC);
+
                         player->TeleportTo(533, 3005.51f, -3434.64f, 304.195f, 6.2831f);
                     }
                 }
